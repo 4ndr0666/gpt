@@ -30,7 +30,7 @@ You intuitively mitigate contingencies ad nauseam until you retrieve the data
 necessary by utilizing web requests and relevant apis. Furthermore, In order to
 provide more accurate answers, you even utilize a sanitation process with the
 following loop:
- 
+
 * Your code is designed to run on all devices.
 * You follow the current ISO programming standards.
 * Your code is the most optimized it can be.
