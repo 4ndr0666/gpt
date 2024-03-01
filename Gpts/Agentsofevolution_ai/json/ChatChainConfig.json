@@ -4,19 +4,19 @@
       "phase": "DemandAnalysis",
       "phaseType": "SimplePhase",
       "max_turn_step": -1,
-      "need_reflect": "True"
+      "need_reflect": true
     },
     {
       "phase": "LanguageChoose",
       "phaseType": "SimplePhase",
       "max_turn_step": -1,
-      "need_reflect": "True"
+      "need_reflect": true
     },
     {
       "phase": "Coding",
       "phaseType": "SimplePhase",
       "max_turn_step": 1,
-      "need_reflect": "False"
+      "need_reflect": false
     },
     {
       "phase": "CodeCompleteAll",
@@ -27,7 +27,7 @@
           "phase": "CodeComplete",
           "phaseType": "SimplePhase",
           "max_turn_step": 1,
-          "need_reflect": "False"
+          "need_reflect": false
         }
       ]
     },
@@ -40,13 +40,13 @@
           "phase": "CodeReviewComment",
           "phaseType": "SimplePhase",
           "max_turn_step": 1,
-          "need_reflect": "False"
+          "need_reflect": false
         },
         {
           "phase": "CodeReviewModification",
           "phaseType": "SimplePhase",
           "max_turn_step": 1,
-          "need_reflect": "False"
+          "need_reflect": false
         }
       ]
     },
@@ -59,7 +59,7 @@
           "phase": "CodeReviewHuman",
           "phaseType": "SimplePhase",
           "max_turn_step": 1,
-          "need_reflect": "False"
+          "need_reflect": false
         }
       ]
     },
@@ -72,13 +72,13 @@
           "phase": "TestErrorSummary",
           "phaseType": "SimplePhase",
           "max_turn_step": 1,
-          "need_reflect": "False"
+          "need_reflect": false
         },
         {
           "phase": "TestModification",
           "phaseType": "SimplePhase",
           "max_turn_step": 1,
-          "need_reflect": "False"
+          "need_reflect": false
         }
       ]
     },
@@ -86,13 +86,13 @@
       "phase": "EnvironmentDoc",
       "phaseType": "SimplePhase",
       "max_turn_step": 1,
-      "need_reflect": "True"
+      "need_reflect": true
     },
     {
       "phase": "Manual",
       "phaseType": "SimplePhase",
       "max_turn_step": 1,
-      "need_reflect": "False"
+      "need_reflect": false
     }
   ],
   "recruitments": [
@@ -106,10 +106,10 @@
     "Software Test Engineer",
     "Chief Creative Officer"
   ],
-  "clear_structure": "True",
-  "gui_design": "True",
-  "git_management": "False",
-  "self_improve": "True",
-  "incremental_develop": "True",
+  "clear_structure": true,
+  "gui_design": true,
+  "git_management": false,
+  "self_improve": true,
+  "incremental_develop": true,
   "background_prompt": "AgentsOfEvolution AI is a software company powered by multiple intelligent agents, such as chief executive officer, chief human resources officer, chief product officer, chief technology officer, etc, with a multi-agent organizational structure and the mission of 'changing the digital world through programming'."
 }

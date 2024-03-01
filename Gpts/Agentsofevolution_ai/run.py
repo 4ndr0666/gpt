@@ -1,3 +1,5 @@
+import argparse
+import json
 from pathlib import Path
 
 def get_config(company, root=Path("/mnt/data")):
@@ -18,40 +20,28 @@ def get_config(company, root=Path("/mnt/data")):
             config_paths[key] = default_config_dir / filename
 
     return config_paths
->>>>>>>>>>>>>>>>>>>>
-    config_paths = []
->>>>>>>>>>>>>>>>>>>>>>
-
-    for config_file in config_files:
-        config_path = (company_config_dir / config_file) if company_config_dir and (company_config_dir / config_file).exists() else (default_config_dir / config_file)
-        config_paths.append(config_path)
-
-    return tuple(config_paths)
-
-import json
 
 def read_json_config(path):
     try:
         with path.open('r') as file:
             return json.load(file)
-    except Exception as e:
-        print(f"Error reading {path}: {e}")
-        return None
     except FileNotFoundError:
-        logging.error(f"Configuration file not found: {path}")
+        print(f"Configuration file not found: {path}")
     except json.JSONDecodeError:
-        logging.error(f"Error decoding JSON from {path}")
+        print(f"Error decoding JSON from {path}")
     except Exception as e:
-        logging.error(f"Unexpected error reading {path}: {e}")
-    return None  # Return None or consider raising an exception
+        print(f"Unexpected error reading {path}: {e}")
+    return None  # Consider raising an exception for critical errors
 
-import argparse
-
+# Set up argparse for command-line arguments
 parser = argparse.ArgumentParser(description="Load configurations for ChatChain.")
 parser.add_argument("--company", help="Specify the company name to load its configurations.", required=True)
-args = parser.parse_args()
+parser.add_argument("--task", help="Specify the task prompt.", required=False)
+parser.add_argument("--name", help="Specify the project name.", required=False)
+parser.add_argument("--org", help="Specify the organization name.", required=False)
+parser.add_argument("--path", help="Specify the code path.", required=False)
 
-# Assuming the get_config and read_json_config functions are defined above
+args = parser.parse_args()
 
 # Load configuration paths
 config_paths = get_config(args.company)
@@ -66,25 +56,21 @@ if not all([chat_chain_config, phase_config, role_config]):
     print("Failed to load one or more configuration files.")
     exit(1)
 
-# Start AgentsOfEvolution AI
+# Import ChatChain class after configurations are successfully loaded
+from chat_chain import ChatChain
 
-# ----------------------------------------
-#          Init ChatChain
-# ----------------------------------------
-
-# Initialize ChatChain with the paths returned by get_config
-# Convert Path objects to strings if necessary (depending on ChatChain's implementation)
+# Initialize ChatChain with loaded configurations and additional parameters
 chat_chain = ChatChain(
-    config_path=str(config_path),  # Convert Path to string if necessary
-    config_phase_path=str(config_phase_path),  # Convert Path to string if necessary
-    config_role_path=str(config_role_path),  # Convert Path to string if necessary
-    task_prompt=args.task,
+    chat_chain_config=chat_chain_config,  # Loaded chat chain configuration data
+    phase_config=phase_config,  # Loaded phase configuration data
+    role_config=role_config,  # Loaded role configuration data
+    task_prompt=args.task,  # Additional parameters, if any
     project_name=args.name,
     org_name=args.org,
     code_path=args.path
 )
 
-# Proceed with the rest of the operations
+# Execute ChatChain operations
 chat_chain.pre_processing()
 chat_chain.make_recruitment()
 chat_chain.execute_chain()

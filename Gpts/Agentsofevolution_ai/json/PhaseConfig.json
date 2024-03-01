@@ -10,7 +10,7 @@
       "Excel: can present information via .xlsx files.",
       "PDF: can present information via .pdf files.",
       "Website: can present personal resume, tutorial, products, or ideas, via .html files.",
-      "Application: can implement visualized game, software, tool, etc, via python.",
+      "Application: can implement visualized game, software, tool, etc., via python.",
       "Dashboard: can display a panel visualizing real-time information.",
       "Mind Map: can represent ideas, with related concepts arranged around a core concept.",
       "As the {assistant_role}, to satisfy the new user's demand and the product should be realizable, you should keep discussing with me to decide which product modality do we want the product to be?",
@@ -21,12 +21,12 @@
     "assistant_role_name": "Chief Technology Officer",
     "user_role_name": "Chief Executive Officer",
     "phase_prompt": [
-      "According to the new user's task and some creative brainstorm ideas listed below: ",
+      "According to the new user's task and some creative brainstorm ideas listed below:",
       "Task: \"{task}\".",
       "Modality: \"{modality}\".",
       "Ideas: \"{ideas}\".",
-      "We have decided to complete the task through a executable software implemented via a programming language. ",
-      "As the {assistant_role}, to satisfy the new user's demand and make the software realizable, you should propose a concrete programming language. If python can complete this task via Python, please answer Python; otherwise, answer another programming language (e.g., Java, C++, etc,).",
+      "We have decided to complete the task through executable software implemented via a programming language.",
+      "As the {assistant_role}, to satisfy the new user's demand and make the software realizable, you should propose a concrete programming language. If python can complete this task via Python, please answer Python; otherwise, answer another programming language (e.g., Java, C++, etc.).",
       "Note that we must ONLY discuss the target programming language and do not discuss anything else! Once we all have expressed our opinion(s) and agree with the results of the discussion unanimously, any of us must actively terminate the discussion and conclude the best programming language we have discussed without any other words or reasons, return only one line using the format: \"<INFO> *\" where \"*\" represents a programming language."
     ]
   },
@@ -34,13 +34,13 @@
     "assistant_role_name": "Programmer",
     "user_role_name": "Chief Technology Officer",
     "phase_prompt": [
-      "According to the new user's task and our software designs listed below: ",
+      "According to the new user's task and our software designs listed below:",
       "Task: \"{task}\".",
       "Task description: \"{description}\".",
       "Modality: \"{modality}\".",
       "Programming Language: \"{language}\"",
       "Ideas:\"{ideas}\"",
-      "We have decided to complete the task through a executable software with multiple files implemented via {language}. As the {assistant_role}, to satisfy the new user's demands, you should write one or multiple files and make sure that every detail of the architecture is, in the end, implemented as code. {gui}",
+      "We have decided to complete the task through executable software with multiple files implemented via {language}. As the {assistant_role}, to satisfy the new user's demands, you should write one or multiple files and make sure that every detail of the architecture is, in the end, implemented as code. {gui}",
       "Think step by step and reason yourself to the right decisions to make sure we get it right.",
       "You will first lay out the names of the core classes, functions, methods that will be necessary, as well as a quick comment on their purpose.",
       "Then you will output the content of each file including complete code. Each file must strictly follow a markdown code block format, where the following tokens must be replaced such that \"FILENAME\" is the lowercase file name including the file extension, \"LANGUAGE\" in the programming language, \"DOCSTRING\" is a string literal specified in source code that is used to document a specific segment of code, and \"CODE\" is the original code:",
@@ -54,7 +54,7 @@
       "You will start with the \"main\" file, then go to the ones that are imported by that file, and so on.",
       "Please note that the code should be fully functional. Ensure to implement all functions. No placeholders (such as 'pass' in Python)."
     ]
-  },
+},
   "ArtDesign": {
     "assistant_role_name": "Programmer",
     "user_role_name": "Chief Creative Officer",
