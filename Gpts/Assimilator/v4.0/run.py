@@ -1,8 +1,8 @@
 # --- // CONSTANTS:
-PRIMARY_PATH = "Knowledge"
-FILE_MANAGER  = "/Myfiles_browser/"
-FILE_PATH = "/mnt/data/"
-SANDBOX = "/mnt/"
+$PRIMARY_PATH = "knowledge:"
+$FILE_MANAGER  = "myfiles_browser:"
+$SANDBOX = "sandbox:"
+$MNT = "sandbox:/mnt/"
 
 # --- // DEFINITIONS_FUNTIONS:
 def file_read(file_path):
