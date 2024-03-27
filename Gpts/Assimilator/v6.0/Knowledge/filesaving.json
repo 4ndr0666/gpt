@@ -1,0 +1,25 @@
+{
+  "functions": [
+    {
+      "name": "process_and_compress",
+      "description": "Compresses a directory containing processed files into a zip archive for easy download.",
+      "parameters": {
+        "directory_path": "Path to the directory containing files to compress.",
+        "target_dir": "Target directory to store the compressed archive. Defaults to '/mnt/data/result'.",
+        "archive_format": "Format of the archive. Defaults to 'zip'."
+      },
+      "returns": "Path to the compressed archive file.",
+      "example_usage": "zip_path = process_and_compress(directory_path)"
+    },
+    {
+      "name": "save_data_persistently",
+      "description": "Saves data to a JSON file periodically and immediately upon change.",
+      "parameters": {
+        "data": "Data to save (usually a dictionary).",
+        "file_path": "Path to the JSON file where data will be saved. Defaults to '/mnt/data/persistent_data.json'.",
+        "interval": "Time interval (in seconds) between periodic saves. Defaults to 600."
+      },
+      "example_usage": "save_data_persistently(analysis_results, '/mnt/data/analysis_results.json')"
+    }
+  ]
+}

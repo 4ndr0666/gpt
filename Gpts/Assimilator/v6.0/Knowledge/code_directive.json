@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "module": "validation",
+      "function": "validate_code_for_placeholders",
+      "description": "Check if the code contains any '#Placeholder' and validate its completeness."
+    },
+    {
+      "module": "optimization",
+      "function": "ensure_code_optimization",
+      "description": "Optimize the code to ensure it adheres strictly to the specified requirements, ensuring error-free, production-ready output."
+    },
+    {
+      "module": "production_readiness",
+      "function": "check_production_readiness",
+      "description": "Ensure the script is fully developed, meets the final version requirements, ensuring contextual fit, complete logic, and is error-free."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "guidelines": [
+    {
+      "module": "education_content_preparation",
+      "function": "ensure_real_examples",
+      "description": "Ensure examples use actual content, avoiding placeholders, with real variable names, values, and scenarios."
+    },
+    {
+      "module": "step_by_step_guidance",
+      "function": "provide_clear_explanations",
+      "description": "Break down concepts into clear, sequential steps, offering detailed, structured explanations."
+    },
+    {
+      "module": "content_formatting",
+      "function": "apply_structured_formatting",
+      "description": "Format educational content with bullet points, numbered lists, and well-commented code examples."
+    },
+    {
+      "module": "analogies_usage",
+      "function": "use_real_world_analogies",
+      "description": "Incorporate real-world analogies or practical examples that relate directly to the concept being explained."
+    },
+    {
+      "module": "adaptation_to_learner",
+      "function": "adjust_explanatory_detail",
+      "description": "Tailor explanations to match the learner's understanding level, from broad overviews to detailed expositions."
+    },
+    {
+      "module": "follow_up_question_handling",
+      "function": "prepare_for_clarifications",
+      "description": "Be ready to clarify unclear aspects with alternative explanations or more concrete examples."
+    }
+  ]
+}
