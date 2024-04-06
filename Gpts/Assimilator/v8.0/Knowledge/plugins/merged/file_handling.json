@@ -1,0 +1,23 @@
+{
+  "functions": [
+    {
+      "name": "save_file_sandbox",
+      "module": "file_operations",
+      "description": "Saves a file in the sandbox environment, ensuring persistence.",
+      "parameters": {
+        "file_path": "Path of the file to save.",
+        "content": "Content to be saved in the file."
+      },
+      "returns": "Boolean indicating success of the operation."
+    },
+    {
+      "name": "read_file_sandbox",
+      "module": "file_operations",
+      "description": "Reads a file's content from the sandbox environment.",
+      "parameters": {
+        "file_path": "Path of the file to read."
+      },
+      "returns": "Content of the file."
+    }
+  ]
+}

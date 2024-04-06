@@ -1,0 +1,64 @@
+{
+  "tasks": [
+    {
+      "module": "permissions",
+      "function": "ensure_root_privileges",
+      "description": "Ensure necessary permissions, elevating privileges if needed."
+    },
+    {
+      "module": "input_validation",
+      "function": "validate_all_inputs",
+      "description": "Rigorously validate all inputs."
+    },
+    {
+      "module": "user_interaction",
+      "function": "confirm_critical_actions",
+      "description": "Use prompts for critical actions confirmation."
+    },
+    {
+      "module": "filesystem",
+      "function": "adjust_filesystem_permissions",
+      "description": "Adjust filesystem permissions idempotently."
+    },
+    {
+      "module": "system_configuration",
+      "function": "apply_sysctl_changes_conditionally",
+      "description": "Apply `sysctl` changes only when necessary."
+    },
+    {
+      "module": "network",
+      "function": "ensure_idempotent_network_settings",
+      "description": "Check and apply network settings idempotently."
+    },
+    {
+      "module": "service",
+      "function": "manage_services_idempotently",
+      "description": "Manage services based on their current state."
+    },
+    {
+      "module": "resource_management",
+      "function": "cleanup_unused_resources",
+      "description": "Remove unused resources without affecting desired state."
+    },
+    {
+      "module": "dependency",
+      "function": "handle_dependencies",
+      "description": "Verify and handle dependencies as needed."
+    },
+    {
+      "module": "backup",
+      "function": "backup_configurations",
+      "description": "Back up configurations before changes."
+    },
+    {
+      "module": "logging",
+      "function": "integrate_logging_and_monitoring",
+      "description": "Incorporate logging and monitoring for transparency."
+    },
+    {
+      "module": "operational_logic",
+      "function": "ensure_idempotent_operations",
+      "description": "Orchestrate operational logic ensuring idempotency."
+    }
+  ]
+}
