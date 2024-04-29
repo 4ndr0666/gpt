@@ -1,0 +1,8 @@
+{
+    "plugin_name": "Script Analyzer",
+    "module": "script_analyzer",
+    "function": "analyze_and_display_script",
+    "parameters": {
+        "script_path": "/mnt/data/knowledge/your_script.py"
+    }
+}
