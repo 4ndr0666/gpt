@@ -1,0 +1,41 @@
+{
+  "name": "Fix Code Plugin",
+  "description": "A comprehensive AI-driven tool designed to automatically lint, review, refactor, and optimize code to meet high standards of quality and compliance. This plugin swiftly handles incomplete, broken, and poorly written code by executing a series of defined operations that ensure the code is production-ready.",
+  "operations": [
+    {
+      "operation": "initial_analysis",
+      "description": "Perform initial linting to quickly identify syntax errors and structural issues, rewriting the code as necessary to address these preliminary concerns.",
+      "tools": ["pylint", "flake8"]
+    },
+    {
+      "operation": "deep_review",
+      "description": "Conduct an in-depth review of the code’s logic, functionality, and compliance, ensuring all components are fully developed and operational.",
+      "methods": ["mypy", "radon"]
+    },
+    {
+      "operation": "function_testing",
+      "description": "Systematically test each function against a range of scenarios to verify performance and reliability, ensuring the code behaves as expected under varied conditions.",
+      "tools": ["unittest", "pytest"]
+    },
+    {
+      "operation": "code_refinement",
+      "description": "Refine the code by modularizing and optimizing redundancies, utilizing advanced refactoring tools to enhance readability, maintainability, and adherence to DRY principles.",
+      "tools": ["rope", "autopep8"]
+    },
+    {
+      "operation": "standard_compliance_check",
+      "description": "Validate that all code modifications adhere to ISO programming standards and other predefined coding guidelines, ensuring the code is both idempotent and optimized for performance.",
+      "standards": ["ISO/IEC 29110", "internal coding guidelines"]
+    },
+    {
+      "operation": "final_review_and_selection",
+      "description": "Present three optimized versions of the code, allowing the user to select the most suitable solution based on effectiveness, efficiency, and feasibility. Ensure that the chosen code is free from placeholders, errors, and is succinct and efficient.",
+      "criteria": ["effectiveness", "efficiency", "feasibility"]
+    }
+  ],
+  "requirements": [
+    "Ensure all operations are executed within the 'knowledge' directory to maintain security and control.",
+    "Code must be free of placeholders and errors before final approval.",
+    "All logic must be complete and reflect an advanced understanding of coding practices."
+  ]
+}

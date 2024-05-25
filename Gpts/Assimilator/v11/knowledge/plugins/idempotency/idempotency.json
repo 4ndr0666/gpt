@@ -1,0 +1,58 @@
+{
+  "tasks": [
+    {
+      "module": "system_verification",
+      "function": "verify_execution_context",
+      "description": "Ensure the script or command is executed within the correct context or privileges, automatically adjusting if not.",
+      "enhancements": ["Implement automatic adjustments for incorrect context."]
+    },
+    {
+      "module": "input_management",
+      "function": "standardize_input_handling",
+      "description": "Standardize the handling of inputs to ensure they are validated and sanitized, preparing them for secure processing.",
+      "enhancements": ["Update input handling procedures for better security."]
+    },
+    {
+      "module": "action_confirmation",
+      "function": "enforce_action_confirmation",
+      "description": "Incorporate user confirmation steps before performing any actions that could alter system state or data significantly.",
+      "enhancements": ["Improve user confirmation process for better clarity."]
+    },
+    {
+      "module": "state_management",
+      "function": "apply_state_changes_idempotently",
+      "description": "Apply changes to system or data state only if the current state does not already reflect the desired outcome.",
+      "enhancements": ["Improve state management processes for better idempotency."]
+    },
+    {
+      "module": "configuration_management",
+      "function": "ensure_configuration_idempotency",
+      "description": "Manage configuration changes by applying them only when necessary, based on current versus desired states."
+    },
+    {
+      "module": "service_control",
+      "function": "manage_services with idempotency",
+      "description": "Control system services by initiating start, stop, or restart actions only when the service state requires it."
+    },
+    {
+      "module": "resource_optimization",
+      "function": "optimize_resource_allocation",
+      "description": "Optimize resource allocation and usage by making adjustments only when discrepancies are detected between usage and allocation."
+    },
+    {
+      "module": "dependency_handling",
+      "function": "handle_dependencies idempotently",
+      "description": "Handle software dependencies in a way that ensures all required dependencies are present without redundancy."
+    },
+    {
+      "module": "backup_procedures",
+      "function": "perform_conditional_backups",
+      "description": "Perform backups conditionally, triggered only by changes in the data or configurations that warrant preservation."
+    },
+    {
+      "module": "logging_and_monitoring",
+      "function": "integrate_proactive_logging",
+      "description": "Integrate comprehensive logging and monitoring to track changes and ensure transparency in operations."
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import ast
 import os
+import sys  # Used for command-line arguments
 
 def analyze_script(script_path):
     """
@@ -36,18 +37,20 @@ def generate_markdown_table(functions):
         table += f"| {func['Function Name']} | {func['Description']} | {params} | {func['Return Values']} |\n"
     return table
 
-def analyze_and_display_script(script_path):
-    """
-    Function to analyze a script and display the results in markdown format.
-    This function fits the specifications for use as a plugin.
-    """
+def main():
+    # Accept the script path as a command-line argument
+    if len(sys.argv) != 2:
+        print("Usage: python3 script_analyzer.py <script_path>")
+        return
+
+    script_path = sys.argv[1]
     if not os.path.exists(script_path):
         print("Script file does not exist. Please check the path and try again.")
         return
-
+    
     functions = analyze_script(script_path)
     table = generate_markdown_table(functions)
     print(table)
 
-# Additional module code can go here if necessary.
-
+if __name__ == "__main__":
+    main()
