@@ -29,9 +29,13 @@ def file_read(file_path):
                 logging.error("Invalid code detected: #Placeholder. Code must be complete for production.")
                 return None
             return content
+    except FileNotFoundError:
+        logging.error(f"File not found: {full_path}")
+    except IOError as e:
+        logging.error(f"IOError reading file {full_path}: {str(e)}")
     except Exception as e:
-        logging.error(f"Error reading file {full_path}: {str(e)}")
-        return None
+        logging.error(f"Unexpected error reading file {full_path}: {str(e)}")
+    return None
 
 class PluginManager:
     """Dynamic management of JSON-based plugins for system operations."""
@@ -51,6 +55,10 @@ class PluginManager:
                 plugin_data = json.loads(plugin_content)
                 self.execute_plugin(plugin_data)
                 logging.info(f"Plugin {plugin_name} applied successfully.")
+            except json.JSONDecodeError as e:
+                logging.error(f"JSON decode error in plugin {plugin_name}: {str(e)}")
+            except KeyError as e:
+                logging.error(f"Missing key in plugin {plugin_name}: {str(e)}")
             except Exception as e:
                 logging.error(f"Failed to apply plugin {plugin_name}: {str(e)}")
 
@@ -61,6 +69,10 @@ class PluginManager:
             func = getattr(module, plugin_data['function'])
             params = plugin_data['parameters']
             func(**params)
+        except ImportError as e:
+            logging.error(f"ImportError in plugin module: {str(e)}")
+        except AttributeError as e:
+            logging.error(f"Function not found in plugin module: {str(e)}")
         except Exception as e:
             logging.error(f"Error executing plugin: {str(e)}")
 
@@ -72,7 +84,7 @@ class PluginManager:
 def display_menu():
     """Display the available menu options for the user."""
     print("""
-    Below are the available commands and functionalities...
+    Below are the available commands and functionalities:
     - **Option 1: Assimilate Data 🧠🚀💡**
       - Engage in data assimilation for project planning and generation.
 
@@ -116,7 +128,7 @@ def main():
         elif args.option == 3:
             plugin_manager.apply_plugin('code_directive.json')
         elif args.option == 4:
-            plugin_manager.apply_plugin('script_analyzer_plugin.json')
+            plugin_manager.apply_plugin('script_analyzer.json')
         elif args.option == 5:
             plugin_manager.apply_plugin('error_handling.json')
         elif args.option == 6:
