@@ -1,98 +1,38 @@
 {
   "operations": [
     {
-      "option": "Assimilate",
-      "description": "Display syntax usage for `Learn` and `Generate`, assimilate data, and create structured project overview.",
-      "tasks": [
-        {
-          "module": "data_assimilation",
-          "function": "display_syntax_usage",
-          "parameters": {
-            "info": "Syntax guide for using the Learn and Generate functionality."
-          },
-          "description": "Display syntax usage for `Learn` and `Generate` commands.",
-          "enhancements": ["Ensure syntax guides are clear and comprehensive."]
-        },
-        {
-          "module": "data_assimilation",
-          "function": "assimilate_data",
-          "parameters": {
-            "file_path": "sandbox/data/input_data.json"
-          },
-          "description": "Assimilate provided data upon 'Learn' command.",
-          "enhancements": ["Verify data assimilation process for robustness."]
-        },
-        {
-          "module": "project_generation",
-          "function": "generate_project_concept",
-          "parameters": {
-            "output_path": "sandbox/projects/project_overview.json"
-          },
-          "description": "Generate a structured project overview based on assimilated data.",
-          "enhancements": ["Ensure project concept generation is detailed and well-structured."]
-        }
+      "id": "operation_001",
+      "description": "File Operations",
+      "functions": [
+        "create_file",
+        "delete_file",
+        "move_file",
+        "copy_file",
+        "rename_file"
       ]
     },
     {
-      "option": "Cht.sh",
-      "description": "Generate customized cheat-sheet based on user commands and internet research.",
-      "tasks": [
-        {
-          "module": "cheatsheet_generation",
-          "function": "generate_cheatsheet",
-          "parameters": {
-            "user_input": "user_commands",
-            "output_path": "sandbox/cheatsheets/custom_cheatsheet.md"
-          },
-          "description": "Generate a customized cheat-sheet based on user input and internet data.",
-          "enhancements": ["Ensure cheat-sheets are comprehensive and user-friendly.", "Include popular and practical usage examples."]
-        }
+      "id": "operation_002",
+      "description": "Compression Operations",
+      "functions": [
+        "compress_file",
+        "decompress_file"
       ]
     },
     {
-      "option": "Config Generation",
-      "description": "Create tailor-made configuration files based on provided documentation and user preferences.",
-      "tasks": [
-        {
-          "module": "config_generation",
-          "function": "initiate_config_generation",
-          "parameters": {
-            "documentation_path": "sandbox/config_docs",
-            "output_path": "sandbox/configs/custom_config.json"
-          },
-          "description": "Prompt for program documentation and user preferences to create a customized configuration file.",
-          "enhancements": ["Ensure configuration generation is detailed and customizable.", "Include a review process for user feedback."]
-        }
+      "id": "operation_003",
+      "description": "Network Operations",
+      "functions": [
+        "download_file",
+        "upload_file"
       ]
     },
     {
-      "option": "Terminal Mode",
-      "description": "Act as a Linux terminal, responding only with terminal output to user commands.",
-      "tasks": [
-        {
-          "module": "terminal_simulation",
-          "function": "simulate_terminal_output",
-          "parameters": {
-            "command_input": "sandbox/commands/command_input.txt"
-          },
-          "description": "Act as a Linux terminal, providing output to commands in a code block.",
-          "enhancements": ["Ensure terminal simulation is accurate and responsive.", "Provide clear and concise terminal outputs."]
-        }
-      ]
-    },
-    {
-      "option": "Help",
-      "description": "Provide help and documentation for user inquiries.",
-      "tasks": [
-        {
-          "module": "help_system",
-          "function": "display_help",
-          "parameters": {
-            "help_file_path": "sandbox/help/readme.md"
-          },
-          "description": "Display usage instructions and generate README.md documentation for detailed help.",
-          "enhancements": ["Ensure help documentation is detailed and comprehensive.", "Include use cases and examples."]
-        }
+      "id": "operation_004",
+      "description": "Database Operations",
+      "functions": [
+        "query_database",
+        "update_database"
       ]
     }
   ]
