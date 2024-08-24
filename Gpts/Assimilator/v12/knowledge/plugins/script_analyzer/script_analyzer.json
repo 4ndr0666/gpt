@@ -1,0 +1,22 @@
+{
+  "scripts": [
+    {
+      "id": "analyze_001",
+      "description": "Analyze Python script for compliance with the code directive.",
+      "functions": [
+        {
+          "name": "function_exists",
+          "details": "Check if all required functions are defined and implemented."
+        },
+        {
+          "name": "error_handling",
+          "details": "Ensure all functions have appropriate error handling mechanisms."
+        },
+        {
+          "name": "optimization",
+          "details": "Check for code optimization and performance improvements."
+        }
+      ]
+    }
+  ]
+}

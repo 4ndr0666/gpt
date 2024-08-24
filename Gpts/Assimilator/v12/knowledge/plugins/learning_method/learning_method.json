@@ -1,0 +1,24 @@
+{
+  "learning_methods": [
+    {
+      "id": "method_001",
+      "description": "Reinforcement Learning",
+      "details": "Use reinforcement learning to improve performance over time."
+    },
+    {
+      "id": "method_002",
+      "description": "Supervised Learning",
+      "details": "Train models using labeled data to make predictions."
+    },
+    {
+      "id": "method_003",
+      "description": "Unsupervised Learning",
+      "details": "Identify patterns and relationships in unlabeled data."
+    },
+    {
+      "id": "method_004",
+      "description": "Transfer Learning",
+      "details": "Leverage pre-trained models to improve learning efficiency."
+    }
+  ]
+}

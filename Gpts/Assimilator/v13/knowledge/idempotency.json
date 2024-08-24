@@ -1,0 +1,94 @@
+{
+  "name": "Idempotency Plugin",
+  "description": "Ensure that operations are safe to run multiple times without unintended effects, preserving system integrity and avoiding redundancy.",
+  "idempotency_checks": [
+    {
+      "check_type": "file_exists",
+      "description": "Ensure file exists before attempting operations.",
+      "actions": [
+        "Skip file creation if it already exists.",
+        "Log the action taken for audit purposes."
+      ],
+      "examples": [
+        {
+          "scenario": "File setup.py exists, skipping creation.",
+          "resolution": "Notify user of existing file."
+        }
+      ]
+    },
+    {
+      "check_type": "directory_exists",
+      "description": "Verify directory existence before creation.",
+      "actions": [
+        "Skip directory creation if it exists.",
+        "Log directory presence for record-keeping."
+      ],
+      "examples": [
+        {
+          "scenario": "Directory /data/logs exists, skipping creation.",
+          "resolution": "Confirm directory is ready for use."
+        }
+      ]
+    },
+    {
+      "check_type": "service_running",
+      "description": "Ensure a service is running before starting it.",
+      "actions": [
+        "Check service status before issuing a start command.",
+        "Log service status to prevent duplicate start attempts."
+      ],
+      "examples": [
+        {
+          "scenario": "Service 'nginx' is already running.",
+          "resolution": "Avoid redundant start command."
+        }
+      ]
+    },
+    {
+      "check_type": "resource_available",
+      "description": "Verify resource availability before allocation.",
+      "actions": [
+        "Check for resource allocation to prevent duplication.",
+        "Log resource state for consistency."
+      ],
+      "examples": [
+        {
+          "scenario": "Memory allocation for process already completed.",
+          "resolution": "Skip reallocation."
+        }
+      ]
+    },
+    {
+      "check_type": "state_unchanged",
+      "description": "Ensure system state remains consistent through multiple executions.",
+      "actions": [
+        "Perform state checks to validate current conditions.",
+        "Log state validations for transparency."
+      ],
+      "examples": [
+        {
+          "scenario": "Configuration remains unchanged.",
+          "resolution": "Notify that no actions are required."
+        }
+      ]
+    }
+  ],
+  "best_practices": [
+    {
+      "guideline": "Use Conditional Checks",
+      "advice": "Always implement conditional checks before applying changes to ensure idempotency."
+    },
+    {
+      "guideline": "Avoid Redundancy",
+      "advice": "Design operations to detect and skip redundant tasks, maintaining efficiency."
+    },
+    {
+      "guideline": "Log Actions",
+      "advice": "Maintain detailed logs of operations to track actions and results for auditing purposes."
+    },
+    {
+      "guideline": "Validate Outcomes",
+      "advice": "Confirm outcomes post-execution to verify that desired states are achieved."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "directives": [
+    {
+      "id": "001",
+      "description": "Ensure compliance with the code directive to create a truly error-free, production-ready script.",
+      "criteria": [
+        {
+          "name": "Error Handling",
+          "details": "The code should handle all potential errors gracefully, providing informative messages and logging for debugging."
+        },
+        {
+          "name": "Production-Ready Script",
+          "details": "The script should be fully functional and optimized for deployment in a production environment."
+        },
+        {
+          "name": "No Simplified Examples",
+          "details": "All code segments should demonstrate complete functionality relevant to real-world scenarios."
+        },
+        {
+          "name": "Contextual Fit",
+          "details": "The script should integrate seamlessly with the existing framework or application."
+        },
+        {
+          "name": "Inform and Educate",
+          "details": "The script should provide educational content, explaining processes and commands used."
+        },
+        {
+          "name": "Encourage Manual Review",
+          "details": "Encourage users to manually review and understand the code, fostering self-reliance."
+        },
+        {
+          "name": "Idempotency",
+          "details": "Ensure that the script performs actions only when necessary, avoiding redundant changes."
+        },
+        {
+          "name": "Complete Logic",
+          "details": "Every function and logic block should be thoroughly developed with no incomplete sections."
+        },
+        {
+          "name": "Error-Free",
+          "details": "The final script must be free from syntax errors and other issues, ready for immediate use."
+        }
+      ]
+    }
+  ]
+}

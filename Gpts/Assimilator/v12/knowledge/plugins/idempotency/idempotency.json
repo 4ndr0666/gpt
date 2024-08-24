@@ -1,0 +1,19 @@
+{
+  "idempotency_rules": [
+    {
+      "id": "rule_001",
+      "description": "Ensure actions are performed only when necessary.",
+      "example": "Check if a file already exists before creating a new one."
+    },
+    {
+      "id": "rule_002",
+      "description": "Avoid redundant updates.",
+      "example": "Update configuration settings only if they differ from the current settings."
+    },
+    {
+      "id": "rule_003",
+      "description": "Prevent duplicate entries.",
+      "example": "Check if an entry already exists in a database before inserting a new one."
+    }
+  ]
+}
