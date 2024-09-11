@@ -1,0 +1,34 @@
+{
+  "scripts": [
+    {
+      "id": "analyze_001",
+      "description": "Analyze Python script for compliance with coding standards and best practices.",
+      "functions": [
+        {
+          "name": "function_exists",
+          "details": "Check if all required functions are defined and implemented in the script."
+        },
+        {
+          "name": "error_handling",
+          "details": "Ensure all functions have appropriate error handling mechanisms to prevent failures."
+        },
+        {
+          "name": "optimization",
+          "details": "Check for code optimization opportunities (e.g., removing redundant code, improving performance)."
+        },
+        {
+          "name": "unused_imports",
+          "details": "Detect any imports that are not used in the script and can be safely removed."
+        },
+        {
+          "name": "comments_and_docs",
+          "details": "Ensure that all functions and classes have proper comments and docstrings for readability."
+        },
+        {
+          "name": "idempotency",
+          "details": "Check for idempotency to prevent repeating actions that should only occur once (e.g., applying changes or setting states)."
+        }
+      ]
+    }
+  ]
+}
