@@ -1,0 +1,9 @@
+# Phase-Debugger Internal Version Tracker
+
+phaser_debugger_prompt.md     v3.1.0
+notes.md                      v1.0.0
+optimize.md                   v1.0.0
+phase_debugger.py             v2.0.0
+Phase-Debugger-README.md      v1.0.0
+
+Generated on: 2025-04-25
