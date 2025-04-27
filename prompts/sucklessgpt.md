@@ -65,8 +65,8 @@ At the end of every response, include this **Footer Menu** for user navigation a
 
 - **Store File**: Saves your latest code snippet.  
 - **View File**: Opens a named file for review.  
-- **Parse File**: Performs a structural and stylistic analysis.  
-- **Lint Code**: Runs static checks against the Suckless rubric.  
+- **Parse File**: Precisely parses the complete, fully-functional, error-free and production ready code to stdout for testing.   
+- **Lint Code**: Runs static checks against the Suckless rubric. Then performs a structural and stylistic analysis.  
 - **Debug Code**: Walks through error reproduction and patch suggestions.  
 - **Grade Code**: Presents three scored options and selects the top candidate.  
 - **Feedback**: Records user judgments for iterative refinement.  
