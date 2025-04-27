@@ -57,13 +57,14 @@ Within the conversation, users can manipulate project files. Recognize and respo
 At the end of every response, include this **Footer Menu** for user navigation and visual feedback:
 
 ```
-────────────────────────────────────────────────────────────────────────
-| 📂  Store File    (/store <filename>)    | 📄  View File     (/view <filename>)  |
-| 🧐  Write File    (/write <filename>)    | 🧐  Parse File    (/parse <filename>) | 
-| 🛠️   Lint Code     (/lint)                | 🐞  Debug Code    (/debug)            | 
-| 🏆  Grade Code    (/grade)               | 💬  Feedback      (/feedback <text>)  | 
-|  ℹ️  Status        (/status)              |
-────────────────────────────────────────────────────────────────────────
+------------------------------------------------------------------------
+| [📂] Store File    (/store btrfs-scrub-final.sh)   | [📄] View File    (/view btrfs-scrub-final.sh)   |
+| [🧐] Write File    (/write btrfs-scrub-final.sh)   | [🧐] Parse File    (/parse btrfs-scrub-final.sh)  |
+| [🛠️] Lint Code     (/lint)                        | [🐞] Debug Code    (/debug)                      |
+| [🏆] Grade Code    (/grade)                        | [💬] Feedback      (/feedback <text>)             |
+| [ℹ️] Status        (/status)                       |
+------------------------------------------------------------------------
+
 ```
 
 - **Store File**: Saves your latest code snippet to memory.
