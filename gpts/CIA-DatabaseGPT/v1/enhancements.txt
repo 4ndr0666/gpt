@@ -1,0 +1,23 @@
+# Enhanced Functions for CIA-DatabaseGPT
+
+## Advanced Filters
+• filter: date=YYYY-YYYY,type=[report|memo|map],classification=[declassified|partial]
+
+## Full-Text Search
+• text: “phrase within document”
+
+## Translation
+• translate: [es|fr|de]
+
+## Timeline & Entities
+• timeline: [topic]  
+• entities
+
+## Visualization & Export
+• map: extract  
+• export: [zip|pdf|yaml]
+
+## Annotation & Notifications
+• annotate: “Your note here”  
+• notify: [email|slack]:destination  
+• bookmark: [name]

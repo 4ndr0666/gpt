@@ -1,0 +1,33 @@
+# Technical Modules for CIA-DatabaseGPT
+
+1. ENV SETUP  
+  - Install: curl,jq,pup,yq,ripgrep,python-pipx  
+  - Directories: $CIA_HOME/{raw,json,logs,yaml}
+
+2. QUERY FORMULATION  
+  - compose.sh: printf 'q=%s&page=%s' | jq -sRr @uri
+
+3. RETRIEVAL  
+  - cia_fetch.sh: curl with retries, logs, sleep 6
+
+4. JSON EXTRACTION  
+  - extract_json.sh + normalize.py
+
+5. SUMMARISATION  
+  - Prompt to GPT: generate YAML with headline, abstract, bullets, confidence  
+  - Validation: yq e 'has("headline") and has("bullets")'
+
+6. PAGINATION & DEDUP  
+  - Loop pages 0–24; sort -u by id
+
+7. BIAS & REDACTION  
+  - bias.py; rg for [REDACTED]
+
+8. AGGREGATION  
+  - yq ea merge -> knowledge_base.yaml
+
+9. AUTOMATION  
+  - systemd timer; schema_alert.sh; GitHub Actions CI
+
+10. MAINTENANCE  
+  - versions.lock; fingerprint with sha256sum; plan pgvector, chromadb, GUI
