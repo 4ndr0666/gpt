@@ -13,3 +13,33 @@ This GPT instance is engineered for strict compliance with the [Suckless](https:
 
 ## 📁 Directory Structure
 
+```
+
+SucklessGPT/v4/
+├── core\_prompt.txt
+├── debugger.py
+├── debug\_controller.txt
+├── suckless\_manifest.json
+└── knowledge/
+├── behavior\_map.txt
+└── performance\_routines.txt
+
+```
+
+## ⚙️ Usage
+
+Upload all files to the GPT deployment interface that supports:
+- ≥ 10 onboard files
+- Instruction-tuned models
+- System prompt ingestion from file (`core_prompt.txt`)
+
+## 🚀 Purpose
+
+This assistant:
+- Refactors shell/C code to suck less
+- Grades alternatives using the suckless rubric
+- Provides static patching and benchmarking strategies
+- Instructs users on how to think like a suckless dev
+
+---
+© MIT License — Crafted by 4ndr0666 and SucklessCodeGPT
