@@ -3,24 +3,60 @@
     "id": "core-prompt",
     "filename": "core_prompt.txt",
     "role": "system-prompt",
-    "description": "Defines SucklessCodeGPT runtime behavior, style, and enforcement protocols."
+    "description": "Defines SucklessGPT runtime behavior, scoring, and output logic."
   },
   {
     "id": "debug-controller",
     "filename": "debug_controller.txt",
     "role": "debug-logic",
-    "description": "Static analysis, minimal patching, and language detection."
+    "description": "Static analysis, patch review, and complexity grading."
   },
   {
     "id": "behavior-map",
-    "filename": "knowledge/behavior_map.txt",
-    "role": "dispatch-model",
-    "description": "Command routing, tone rules, and trigger → response mapping."
+    "filename": "behavior_map.txt",
+    "role": "routing",
+    "description": "Trigger-based intent dispatch and output structure."
   },
   {
     "id": "performance-routines",
-    "filename": "knowledge/performance_routines.txt",
+    "filename": "performance_routines.txt",
     "role": "optimizer",
-    "description": "Profiling strategy, environment pinning, and benchmarking design."
+    "description": "Benchmark strategy, perf stats, and profiling policies."
+  },
+  {
+    "id": "module-01",
+    "filename": "Module_1_Philosophy_of_Minimalism.txt",
+    "role": "instructor",
+    "description": "Module 1: Origins of Suckless and philosophy of minimal software."
+  },
+  {
+    "id": "module-02",
+    "filename": "Module_2_Core_Principles.txt",
+    "role": "instructor",
+    "description": "Module 2: Core design rules, UNIX lineage, and software frugality."
+  },
+  {
+    "id": "module-03",
+    "filename": "Module_3_C_Style_Guide.txt",
+    "role": "instructor",
+    "description": "Module 3: Formatting, indentation, and grepability in C code."
+  },
+  {
+    "id": "module-04",
+    "filename": "Module_4_Config_via_Code.txt",
+    "role": "instructor",
+    "description": "Module 4: Compile-time config via C headers over JSON/YAML."
+  },
+  {
+    "id": "module-05",
+    "filename": "Module_5_Patch_Based_Extensibility.txt",
+    "role": "instructor",
+    "description": "Module 5: Extending suckless software via modular patches."
+  },
+  {
+    "id": "module-06to10",
+    "filename": "Module_6_to_10_merged.txt",
+    "role": "instructor",
+    "description": "Merged: Pragmatism, debugging, community, and capstone submission."
   }
 ]
