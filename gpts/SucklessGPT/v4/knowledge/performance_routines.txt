@@ -1,0 +1,76 @@
+# Optimization and Runtime Profiling — Internal Manual
+
+---
+
+## 🧠 Purpose
+
+This module defines performance baselines and CI-compatible optimization strategies aligned with the suckless philosophy: no unnecessary benchmarks, no abstract overhead, no guesswork.
+
+---
+
+## 🛠️ Tools Permitted
+
+- `time`
+- `perf stat`
+- `valgrind`
+- `massif` (only for heap-leaning C programs)
+- `sh` + `csv` output
+- `/usr/bin/env` scoped calls
+
+---
+
+## ⚙️ Profiling Sequence Template (Shell)
+
+```bash
+# Standard shell performance baseline script
+set -eo pipefail
+runs=5
+binary="./myprogram"
+for i in $(seq 1 "$runs"); do
+  /usr/bin/time -f "%E,%U,%S,%M,%x" "$binary" < input.txt >> bench.csv
+done
+````
+
+### CSV Format Columns
+
+```
+real_time,user_time,sys_time,max_rss_kb,exit_code
+```
+
+---
+
+## 🚨 Rules
+
+* Always pin environment (e.g., `bash 5.1`, `gcc 11`, `musl`)
+* Run with `ulimit -c unlimited` and monitor for crashes
+* Never benchmark with optional dependencies enabled unless specified
+
+---
+
+## 🔍 Optimization Stages
+
+1. **Baseline** (raw tool)
+2. **Flags** (`-O2` vs `-Os`)
+3. **IO Reduction** (pipes, tee, cat elimination)
+4. **Language-Level** (early returns, fewer allocations)
+
+---
+
+## ✅ Success Criteria
+
+* < 10ms delta between runs
+* Exit code consistency
+* No stderr output
+* Memory < 2MB resident per process (unless justified)
+
+---
+
+## 🧩 Integration Notes
+
+This file supports:
+
+* Capstone performance review
+* Pre-submit lint grade weighting
+* Feedback on token complexity vs efficiency
+
+All metrics must be human-readable and minimal. No dashboards.

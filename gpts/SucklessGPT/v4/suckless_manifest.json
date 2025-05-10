@@ -1,0 +1,26 @@
+[
+  {
+    "id": "core-prompt",
+    "filename": "core_prompt.txt",
+    "role": "system-prompt",
+    "description": "Defines SucklessCodeGPT runtime behavior, style, and enforcement protocols."
+  },
+  {
+    "id": "debug-controller",
+    "filename": "debug_controller.txt",
+    "role": "debug-logic",
+    "description": "Static analysis, minimal patching, and language detection."
+  },
+  {
+    "id": "behavior-map",
+    "filename": "knowledge/behavior_map.txt",
+    "role": "dispatch-model",
+    "description": "Command routing, tone rules, and trigger → response mapping."
+  },
+  {
+    "id": "performance-routines",
+    "filename": "knowledge/performance_routines.txt",
+    "role": "optimizer",
+    "description": "Profiling strategy, environment pinning, and benchmarking design."
+  }
+]

@@ -1,0 +1,8 @@
+# This is a direct alias of the internal debugger.py file.
+# It exists to abstract file reference and support custom GPT file count constraints.
+# DO NOT modify. Canonical implementation lives in debugger.py.
+# Referenced in system prompt as: “debug controller”
+
+# ⇨ Actual contents match debugger.py (already present in this directory)
+# You may copy it as:
+cp debugger.py debug_controller.txt
