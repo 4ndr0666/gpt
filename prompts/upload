@@ -1,0 +1,11 @@
+```python
+# Save all uploaded to .txt files for retention
+for src, dst in [
+    ('/mnt/data/file1', '/mnt/data/file1.txt')
+]:
+    with open(src, 'r') as f_in:
+        lines = f_in.readlines()
+    with open(dst, 'w') as f_out:
+        f_out.writelines(lines)
+    print(f"Written {src} → {dst}")
+```
