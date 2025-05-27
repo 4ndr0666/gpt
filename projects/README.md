@@ -93,3 +93,52 @@ Every new project or suite of scripts in this repository should begin with a cop
 ---
 
 *For more details, see the comments and structure inside `controller.md` itself and the project-specific `instructions.md`.*
+
+---
+
+## **Thread Naming Convention**
+
+To ensure every new discussion, activity log, or support request is easily searchable and chronologically organized, use the following standardized naming convention for new threads:
+
+### **Structure:**
+
+```
+[YYYY-MM-DD] [CATEGORY] — [Summary/Topic]
+```
+
+* `[YYYY-MM-DD]`: Date of thread creation (e.g., `2025-05-27`)
+* `[CATEGORY]`: Classification of the thread (choose one):
+  `Q&A`, `Debug`, `Scripting`, `Refactor`, `Activity Log`, `Review`
+* `[Summary/Topic]`: Brief, descriptive summary of the thread's main focus
+
+---
+
+### **Examples:**
+
+* `2025-05-27 Debug — Pacman Dependency Issue`
+* `2025-05-27 Scripting — Bash Function for Backups`
+* `2025-05-27 Q&A — Mount Options for SSD Performance`
+* `2025-05-27 Activity Log — Update Kernel to 6.8`
+
+---
+
+### **Quick Reference Table:**
+
+| Example Title                                       | When to Use                     |
+| --------------------------------------------------- | ------------------------------- |
+| 2025-05-27 Debug — Pacman Dependency Issue          | Bug/conflict analysis           |
+| 2025-05-27 Scripting — Bash Function for Backups    | Script/procedure discussion     |
+| 2025-05-27 Q\&A — Mount Options for SSD Performance | General sysadmin best practices |
+| 2025-05-27 Activity Log — Update Kernel to 6.8      | Logging admin activities        |
+
+---
+
+**Usage Notes:**
+
+* Always use this convention for new threads to maintain order and traceability.
+* Threads should be easy to scan for context, topic, and chronology.
+* Adjust the `[CATEGORY]` and `[Summary/Topic]` fields to suit the content.
+
+---
+
+*This convention supports automated project auditing, searching, and future scripting or aggregation. See `controller.md` for more details and project governance rules.*
