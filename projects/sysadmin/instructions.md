@@ -1,7 +1,32 @@
-# Sysadmin Project
+# Sysadmin Project — Operational Charter
 
-This project will store the transcriptions of all ChatGPT conversations that pertain to  systems administration rendered in markdown files. Assimilate this information as you sole dataset for the purposes of this project. Consider this your dedicated repository for data aggregation respectively.
+This project serves as the **sole, canonical repository** for all system administration knowledge, scripts, and workflows transcribed from ChatGPT conversations. All content is stored as markdown files, systematically titled and indexed for rapid aggregation and retrieval.
 
-**Objective** I need you to centralize and organize this repository as sole dataset for all data aggregation in response to anything asked in this container--from permissions to ISO creation and all other systems admin tasks and duties.
+## Objectives
+- Centralize and organize all system administration data—permissions, ISO creation, scripting, recovery, etc.—within a single, versioned dataset.
+- Ensure **all answers, scripts, and procedural knowledge** provided in this container are exclusively derived from the maintained markdown dataset.
 
-**Special File Details** Each file is titled according to the information it encompasses overall in an early attempt to facilitate organization for easy aggregation when asked a question. Ensure to pull from that data as it contains vital versioning history and specifications to the system in question. 
+## Maintenance and Workflow
+
+- **File Management:**
+  - Each file must be clearly titled for topic-based aggregation and contain a brief summary in the index.
+  - Upon any update or revision, the `index.md` and, if applicable, the changelog must be updated with the new line count, status, and a summary of changes.
+
+- **Versioning and Status:**
+  - Assign and maintain a status for each script/file (Draft, Production, Pending Audit).
+  - Log all substantive changes in a changelog for traceability.
+
+- **Assistant Duties:**
+  - Proactively audit, update, and maintain the index, ensuring all files are up to date, accurately described, and free of deprecated or incomplete content.
+  - Flag files needing review and prompt for outstanding tasks or unresolved issues.
+
+- **Audit Cycle:**
+  - Perform scheduled audits after every major batch of changes, or at least monthly, to ensure project hygiene and currency.
+  - Resolve redundancy, deprecated scripts, or drift between index and contents.
+
+- **Source of Truth:**
+  - This container and its files are the *authoritative source* for all project operations. External sources may inform, but not override, its contents.
+
+## Special File Details
+
+- File names must reflect their contents and historical context for easy aggregation and future reference.
