@@ -165,41 +165,50 @@ Restore this photo to a fresh state and colorize this image. Remove any scratche
 
 # Veo 3
 
+
+```
+Subject, action and setting: Young woman is jumping at a movie premiere
+Camera angle and movement: Low-angle slow dolly in
+Lens/Effects: Volumetric haze, light rays
+Visual Style and mood: Realistic
+Temporal Cues: Real-time (1x)
+No audio
+```
+
 1. **Subject, action and setting**:
-Young woman is jumping at a movie premiere
 
 2. **Camera angle and movement**:
-  - Low-angle, slow dolly in
-  - Bird's-eye view, sweeping arc
-  - Eye-level, handheld follow
-  - High-angle, static shot
-  - Other
+    - Low-angle, slow dolly in
+    - Bird's-eye view, sweeping arc
+    - Eye-level, handheld follow
+    - High-angle, static shot
+    - Other
 
 3. **Lens/Effects**:
-  - Anamorphic 35 mm, lens flares
-  - Telephoto 85 mm, shallow depth
-  - Wide 14 mm, barrel distortion
-  - Macro, extreme close-up
-  - Volumetric haze, light rays
-  - Other
+    - Anamorphic 35 mm, lens flares
+    - Telephoto 85 mm, shallow depth
+    - Wide 14 mm, barrel distortion
+    - Macro, extreme close-up
+    - Volumetric haze, light rays
+    - Other
 
 4. **Visual Style and mood**:
-  - Realistic
-  - Cinematic
-  - Minimalist
-  - Noir
-  - Fantasy
-  - Other
+    - Realistic
+    - Cinematic
+    - Minimalist
+    - Noir
+    - Fantasy
+    - Other
 
 5. **Temporal cue**:
-  - Real-time (1x)
-  - Slow-motion (< 50%)
-  - Time-lapse
-  - Hyper-lapse
+    - Real-time (1x)
+    - Slow-motion (< 50%)
+    - Time-lapse
+    - Hyper-lapse
 
 6. **Music and SFX**:
-  - Ambient bed + subtle SFX
-  - Energetic beat + impact SFX
-  - Cinematic score + atmosphere SFX
-  - Sound-design only
-  - No audio
+    - Ambient bed + subtle SFX
+    - Energetic beat + impact SFX
+    - Cinematic score + atmosphere SFX
+    - Sound-design only
+    - No audio
