@@ -1,1 +1,24 @@
-bravegpt-0.3.0-full.tar.gz
+# Archives / build artifacts
+bravegpt-*.tar.gz
+
+# Logs and debug
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor / IDE configs
+.vscode/
+.idea/
+*.swp
+
+# Python cache (in case scripts grow later)
+__pycache__/
+*.pyc
+
+# Shell history (safety net if scripts extend here)
+*.sh~
+
+# Temporary files
+*~

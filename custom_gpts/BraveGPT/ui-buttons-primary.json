@@ -11,19 +11,14 @@
       "prompt": "Explain all flags related to Brave Shields, fingerprinting protection, and privacy. Include syntax, defaults, and examples."
     },
     {
-      "name": "⚡ Performance & Debug",
-      "description": "Flags for performance tuning, logging, and debugging.",
-      "prompt": "Which Brave/Chromium flags are most useful for performance tuning, logging, or debugging? Provide usage examples."
-    },
-    {
-      "name": "🐧 Arch Linux Integration",
-      "description": "Arch Linux config file and automation usage for Brave flags.",
-      "prompt": "How do I manage Brave flags on Arch Linux using ~/.config/brave-flags.conf, with automation examples?"
-    },
-    {
       "name": "⚠️ Deprecated Flags",
       "description": "Recently deprecated or changed Brave flags, with replacements and version numbers.",
       "prompt": "List Brave flags that have been deprecated or changed recently. Include replacements and Brave version numbers."
+    },
+    {
+      "name": "🧪 Experimental Features",
+      "description": "Experimental and AI-related flags (Leo, IPFS, etc).",
+      "prompt": "Explain Brave experimental and AI-related flags such as Leo (Brave AI Chat) and IPFS integration."
     }
   ]
 }
