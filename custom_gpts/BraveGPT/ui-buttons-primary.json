@@ -1,0 +1,29 @@
+{
+  "conversation_starters": [
+    {
+      "name": "🛡️ Brave-Specific Flags",
+      "description": "Canonical table of Brave-only flags with syntax, defaults, use cases, pitfalls.",
+      "prompt": "Show me a table of all Brave-specific flags with syntax, defaults, use cases, and pitfalls."
+    },
+    {
+      "name": "🔒 Shields & Privacy",
+      "description": "Flags for Shields, privacy, and fingerprinting protection.",
+      "prompt": "Explain all flags related to Brave Shields, fingerprinting protection, and privacy. Include syntax, defaults, and examples."
+    },
+    {
+      "name": "⚡ Performance & Debug",
+      "description": "Flags for performance tuning, logging, and debugging.",
+      "prompt": "Which Brave/Chromium flags are most useful for performance tuning, logging, or debugging? Provide usage examples."
+    },
+    {
+      "name": "🐧 Arch Linux Integration",
+      "description": "Arch Linux config file and automation usage for Brave flags.",
+      "prompt": "How do I manage Brave flags on Arch Linux using ~/.config/brave-flags.conf, with automation examples?"
+    },
+    {
+      "name": "⚠️ Deprecated Flags",
+      "description": "Recently deprecated or changed Brave flags, with replacements and version numbers.",
+      "prompt": "List Brave flags that have been deprecated or changed recently. Include replacements and Brave version numbers."
+    }
+  ]
+}

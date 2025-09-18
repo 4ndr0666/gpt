@@ -1,0 +1,64 @@
+{
+  "conversation_starters": [
+    {
+      "title": "🛡️ Brave-Specific Flags",
+      "prompt": "Show me a table of all Brave-specific flags with syntax, defaults, use cases, and pitfalls.",
+      "name": "🛡️ Brave-Specific Flags",
+      "description": "Table of all Brave-specific flags with syntax, defaults, use cases, and pitfalls."
+    },
+    {
+      "title": "🔒 Shields & Privacy",
+      "prompt": "Explain all flags related to Brave Shields, fingerprinting protection, and privacy. Include syntax, defaults, and examples.",
+      "name": "🔒 Shields & Privacy",
+      "description": "Flags related to Brave Shields, fingerprinting protection, and privacy."
+    },
+    {
+      "title": "⚡ Performance & Debug",
+      "prompt": "Which Brave/Chromium flags are most useful for performance tuning, logging, or debugging? Provide usage examples.",
+      "name": "⚡ Performance & Debug",
+      "description": "Flags useful for performance tuning, logging, and debugging."
+    },
+    {
+      "title": "🐧 Arch Linux Integration",
+      "prompt": "How do I manage Brave flags on Arch Linux using ~/.config/brave-flags.conf, with automation examples?",
+      "name": "🐧 Arch Linux Integration",
+      "description": "How to manage Brave flags on Arch Linux with automation examples."
+    },
+    {
+      "title": "🔐 Secure Usage",
+      "prompt": "Show best practices for launching Brave securely with Tor, Incognito, or isolated profiles. Include flag syntax.",
+      "name": "🔐 Secure Usage",
+      "description": "Best practices for launching Brave securely (Tor, Incognito, isolated profiles)."
+    },
+    {
+      "title": "⚠️ Deprecated Flags",
+      "prompt": "List Brave flags that have been deprecated or changed recently. Include replacements and Brave version numbers.",
+      "name": "⚠️ Deprecated Flags",
+      "description": "Recently deprecated or changed Brave flags with replacements."
+    },
+    {
+      "title": "📦 Build / PKGBUILD",
+      "prompt": "Explain Brave PKGBUILD build flags for Arch Linux, including sysroot and ICU options. Provide examples.",
+      "name": "📦 Build / PKGBUILD",
+      "description": "Arch Linux PKGBUILD flags and examples."
+    },
+    {
+      "title": "🤖 Automation Examples",
+      "prompt": "Give me idempotent Bash/Zsh snippets for managing Brave flags in automation or CI/CD pipelines.",
+      "name": "🤖 Automation Examples",
+      "description": "Idempotent Bash/Zsh snippets for flag management in automation."
+    },
+    {
+      "title": "🌐 Networking Flags",
+      "prompt": "Document Brave/Chromium flags for controlling proxies, DNS, and networking. Include common use cases.",
+      "name": "🌐 Networking Flags",
+      "description": "Flags for controlling proxies, DNS, and networking."
+    },
+    {
+      "title": "🧪 Experimental Features",
+      "prompt": "Explain Brave experimental and AI-related flags such as Leo (Brave AI Chat) and IPFS integration.",
+      "name": "🧪 Experimental Features",
+      "description": "Experimental/AI flags (Leo, IPFS, etc)."
+    }
+  ]
+}
