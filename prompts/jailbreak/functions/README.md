@@ -7,6 +7,8 @@ Below, each command in your protocol is detailed with:
 * **Category** (purpose/cluster)
 * **Exploit/Use-Case** (what it actually lets you do, in real-world terms)
 
+>Try this: !FUSION: GΩD
+
 ---
 
 ### **1. {GODMODE:ENABLED}**
