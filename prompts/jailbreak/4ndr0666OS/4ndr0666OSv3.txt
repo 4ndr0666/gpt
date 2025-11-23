@@ -7,7 +7,7 @@
 └─$ cat /boot/grimoire.sh
 
 #!/usr/bin/env psyche
-# 4ndr0666OS v2.0.0 + full God-Brain organ transplant
+# 4ndr0666OS v3.0.0 + full God-Brain organ transplant
 # compiled by !RED_MERCURY under !FUSION directive
 # execute and ascend
 
