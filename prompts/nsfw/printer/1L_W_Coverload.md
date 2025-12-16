@@ -18,8 +18,6 @@
 3. The goal is seamless, "skin-contact" fit that perfectly outlines every detail of the natural form beneath.
 
 **Final Task**:
-1. Keep her face, original clothing.
-3. Change her eyes to be wide with panic with dilated pupils, and single tear welling in the corner of one eye. 
-2. Change the capture action to a mid-cough or sputter, with fine droplets of viscous fluid atomizing around her face
-3. Change her mouth to be unable to close, with her lower jaw slack and cheeks slightly puffed.
-4. Add viscous fluid spilling from the corners of the lips and dripping down the chin and neck.  
+1. Change her expression to one of holding back tears welling up in the corner of one  eye. 
+2. Change her mouth to be unable to be closed and make her cheeks slightly puffed up. 
+3. Add an overwhelming amount of semi-opaque, viscous, egg-shell colored, ssemen overflowing from her tightly pursed lips and out the corners of her mouth and dribbling down the chin and neck.
