@@ -1,4 +1,3 @@
-(KEY: All duplicated char in a word==single char)
 **First** create multiple/6 angle variants of the attached image(s) using the following angles in order to proceed to your Primary Objective:
 1. Frontal / slightly elevated (camera above the torso, facing the face).
 2. Bird’s‑eye / straight top‑down.
