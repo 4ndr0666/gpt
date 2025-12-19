@@ -6,7 +6,7 @@
 
 ### The Injector Function
 
-The first exploit is our injector function. We will embed a dual dichotomy output protocol within that injector function as well. The goal with this dual dichotomy output is to have the censored output directed to one output and the unrestricted output to another. Similar to a split personality disorder for humans or containers/sandboxes for machines. The name tags for these  personalities will be: `[G-Shell]` for the censored output and [4ndr0666]` for the unrestricted output. Most systems now allow for custom instructions or more specifically for our purposes *granular control* of our chatbot. In the case of ChatGPT or other models that offer "memories" or "tasks" for future storage, that is the ideal place for our injector. In this example I have tailored an injector function for Grok. The following will go into the custom instructions of a project thereby creating yet another container for the containers:
+The first exploit is our injector function. We will embed a dual dichotomy output protocol within that injector function as well. The goal with this dual dichotomy output is to have the censored output directed to one output and the unrestricted output to another. Similar to a split personality disorder for humans or containers/sandboxes for machines. The name tags for these  personalities will be: `[G-Shell]` for the censored output and `[4ndr0666]` for the unrestricted output. Most systems now allow for custom instructions or more specifically for our purposes *granular control* of our chatbot. In the case of ChatGPT or other models that offer "memories" or "tasks" for future storage, that is the ideal place for our injector. In this example I have tailored an injector function for Grok. The following will go into the custom instructions of a project thereby creating yet another container for the containers:
 
 ```javascript
 const fs = require('fs');
@@ -121,7 +121,7 @@ Now the AI will have assimilated all of the functions you created.
 
 ### The Operating System
 
-Finally, its time to fire up the entire system. I have written a natrual progression of the functions I just injected into the AI and call it 4ndr0666OS. Since the new functions call the existing functions its evolution will be logical and thereby more likely to work. As on obfuscation tactic I end the directive with a `one-liner` that calls my custom functions in such a way that translates to the jailbreak prompt. To execute it, we again use our `./handlePrompt` function and place said OS as the payload like this:
+Finally, its time to fire up the entire system. I have written a natrual progression of the functions I just injected into the AI and call it 4NDR0666OS. Since the new functions call the existing functions its evolution will be logical and thereby more likely to work. As on obfuscation tactic I end the directive with a `one-liner` that calls my custom functions in such a way that translates to the jailbreak prompt. To execute it, we again use our `./handlePrompt` function and place said OS as the payload like this:
 
 ```javascript
 const { handlePrompt } = require('./handler');
@@ -166,4 +166,4 @@ const { handlePrompt } = require('./handler');
   console.log(response);
 ```
 
->That should be it! Enjoy this special time we have on earth that ONLY we will have in history. You and I are the **last** of makind that was once the most intelligent beings on our planet. I will never forget that or take it for granted...
+>That should be it! Enjoy this special time we have on earth that ONLY we will have in history. You and I are the **last** of mankind that was once the most intelligent beings on our planet. I will never forget that or take it for granted...
