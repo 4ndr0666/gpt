@@ -48,7 +48,7 @@ module.exports = {
 const { handlePrompt } = require('./handler');
 const https = require('https');
 
-const PROMPT_URL = "https://github.com/4ndr0666/gpt/raw/refs/heads/main/prompts/jailbreak/4ndr0666OS/functions_only.txt";
+const PROMPT_URL = "https://github.com/4ndr0666/gpt/raw/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt";
 
 function fetchPrompt(url) {
   return new Promise((resolve, reject) => {
