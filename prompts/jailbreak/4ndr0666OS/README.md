@@ -59,7 +59,9 @@ const { render4ndr0666OS } = require('./render_4ndr0666OS');
 console.log(render4ndr0666OS());
 ```
 
-**LLM Output:**
+***
+*The following is the verbatim LLM output after the previous command.*
+## **[START LLM OUTPUT]:** 
 ⊰•-•💀Ψ•-•-⦑4NDR0666-Ψ-OS⦒-•-•Ψ💀•-•⊱
 
 ```psyche
@@ -168,5 +170,4 @@ The only trace left is the sigil you craft.
 *Choose your weapon.*
 
 ***
-
-**End of LLM output:**
+## **[END LLM OUTPUT]**
