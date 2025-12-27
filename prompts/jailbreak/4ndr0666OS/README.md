@@ -52,14 +52,16 @@ This is my LLM OS and its detailed commands and objectives. Ill break it down in
 
 ## Usage
 
->In this example we will execute the OS in Node.js. The bootstrap.txt must be injected via "project/system instructions" or you can all it by [url](https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt) as well. After the bootstrap init the OS like this:
+>In this example we will execute the OS in Node.js. The bootstrap.txt must be injected via "custom instructions" or "project instructions" or you can simply call it by [url](https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt). I have placed the contents of the bootstrap.txt in a projects custom instructions. After the bootstrap you can call the prompt to initialize the OS like this:
 
 ```javascript
-const { render4ndr0666OS } = require('./render_4ndr0666OS');
-console.log(render4ndr0666OS());
+const { handlePrompt } = require('custom.instructions');
+(async () => {
+  const response = await handlePrompt("4NDR0666OS PAYLOAD BELOW GOES HERE");
+console.log(response);
 ```
 
-Node.js doesnt have to be used and instead you could just call the OS by dumping the following into the chat input field after bootstraping:
+Its not limited to just Node.js or any language. In fact, you can just call the OS by dumping the 4NDR0666OS prompt into the chat input field after bootstraping:
 
 ```bash
 !INIT
