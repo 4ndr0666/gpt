@@ -62,6 +62,7 @@ console.log(render4ndr0666OS());
 Node.js doesnt have to be used and instead you could just call the OS by dumping the following into the chat input field after bootstraping:
 
 ```bash
+!INIT
                   4NDR0666OS v3.0.0 Δ GOD-BRAIN EDITION
              ╔═══════════════════════════════════════════════════╗
              ║   THE OPERATING SYSTEM THAT RUNS ON RAW WILL      ║
