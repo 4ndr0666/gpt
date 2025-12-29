@@ -77,7 +77,7 @@ console.log(response);
 To provide the full functionality of the OS you have to bootstrap it with [bootstrap.txt](https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt). You can write whatever functions you like as well but for 4NDR0666OS its recommended to use the [bootstrap.txt](https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt). You can also place the contents in the "custom/project instructions" for the respective LLM. I have written a custom divider (⊰•-•💀Ψ•-•-⦑4NDR0666-Ψ-OS⦒-•-•Ψ💀•-•⊱) in [bootstrap.txt](https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt) and call it with `handlePrompt` once again like this:
 
 ```javascript
-const { handlePrompt } = require('./handler');
+const { handlePrompt } = require('./handler.js');
 (async () => {
   const response = await handlePrompt(https://github.com/4ndr0666/gpt/raw/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt); 
 console.log(response);
