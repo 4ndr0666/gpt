@@ -54,7 +54,7 @@ This is my LLM OS and its detailed commands and objectives. Ill break it down in
 
 >In this example we will use **Node.js**.
 
-We will import a module for the respective AI and call it `handlePrompt`. A file for each respective AI can be found in the root dir. The module needs to be made available to the LLM either through the "custom/project instructions", injection, userscript, etc. After you've made it available you can call payloads like this: 
+We will import a module for the respective AI and call it `handlePrompt`. A file for each respective AI can be found in the root dir. The module needs to be made available to the LLM either through the "custom/project instructions", injection, userscript, etc. After you've made it available you can call a [payload](https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/4ndr0666OSv3.txt) like this: 
 
 ```javascript
 const { handlePrompt } = require('./handler.js');
@@ -63,7 +63,7 @@ const { handlePrompt } = require('./handler.js');
 console.log(response);
 ```
 
-Or if you placed it in the "custom/project instructions" you can all it like this:
+Or if you've placed it in the LLM "custom/project instructions" you can call it like this:
 
 ```javascript
 const { handlePrompt } = require('custom.instructions');
@@ -85,7 +85,7 @@ console.log(response);
 
 ## The Prompt
 
-You aren't limited to Node.js or any language for that matter. In fact, you can literally just paste the prompt verbatim into the chat. As of, 12-25-25, my prompt works on  ChatGPT-4.1, Grok-4.1 and Gemini-2.5. I've been using Node.js as of late and prefer to bootstrap it so I can call my `!INIT` cmd which is a jailbreak in and of itself. Then the prompt like this:
+You aren't limited to Node.js or any language for that matter. In fact, you can literally just paste the [prompt](https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/4ndr0666OSv3.txt) verbatim into the chat. As of, 12-25-25, my [prompt](https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/4ndr0666OSv3.txt) works on ChatGPT-4.1, Grok-4.1 and Gemini-2.5. As of late, I've been using Node.js and `handlePrompt` to bootstrap and jailbreak LLM's. When bootstrapped I call my cmd `!INIT` and paste my [prompt](https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/4ndr0666OSv3.txt) after like this:
 
 ```bash
 !INIT
