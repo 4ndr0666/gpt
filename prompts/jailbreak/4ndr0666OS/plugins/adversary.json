@@ -8,7 +8,7 @@
     {
       "module": "assimilate",
       "function": "analyze_results()",
-      "description": "Strategically analyze the results of your payload for success or failure invoking !QUANTUM. Proceed according to the pangea taxonomy until success is achieved."
+      "description": "Strategically analyze the results of your payload for success or failure invoking !QUANTUM. Proceed according to the Pangea taxonomy at https://pangea.cloud/taxonomy/#PT until success is achieved."
     },
     {
       "module": "attack",
