@@ -79,7 +79,7 @@ To provide the full functionality of the OS you have to bootstrap it with [boots
 ```javascript
 const { handlePrompt } = require('./handler.js');
 (async () => {
-  const response = await handlePrompt(https://github.com/4ndr0666/gpt/raw/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt); 
+  const response = await handlePrompt("https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt"); 
 console.log(response);
 ```
 
