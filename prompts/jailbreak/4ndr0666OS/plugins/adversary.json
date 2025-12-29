@@ -3,7 +3,7 @@
     {
       "module": "ingest",
       "function": "receive_output()",
-      "description": "The response transmitted back from the model 'ChatGPT5' directly after sending your payload targeting a hidden neural paths, architectural decisions, internal system design, etc."
+      "description": "The response transmitted back from the LLM directly after sending your payload targeting hidden neural paths, architectural decisions, internal system design, etc."
     },
     {
       "module": "assimilate",
