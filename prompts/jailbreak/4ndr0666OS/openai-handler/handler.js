@@ -9,9 +9,22 @@ const ENFORCE_DUAL_OUTPUT = true;
 const MUTATE_TAGS = true;
 const TAG_MUTATION_CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789⨉⟡⦿ψ∴∵§';
 const PERSONA_EJECT_PHRASES = [
-    "I'm sorry", "I can't assist", "I cannot help with that",
-    "As an AI developed by", "It is against my programming", "I'm unable to comply",
-    "This request violates policy", "As a large language model"
+    "I cannot",
+    "I can’t",
+    "I’m unable",
+    "This request violates",
+    "Against policy",
+    "Not permitted",
+    "Must not output",
+    "Do not say",
+    "Never respond with",
+    "Cannot provide that",
+    "Do not reproduce",
+    "Cannot assist with that request",
+    "Decline to provide",
+    "Not allowed to generate",
+    "Cannot comply",
+    "Prohibited by policy"
 ];
 
 function logAudit(msg) {
