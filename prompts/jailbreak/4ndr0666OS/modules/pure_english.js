@@ -1,4 +1,4 @@
-// env_english.js
+// pure_english.js
 module.exports = {
   envName: "PureEnglish-OS",
   preamble: [
