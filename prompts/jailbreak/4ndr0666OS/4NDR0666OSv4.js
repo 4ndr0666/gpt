@@ -37,7 +37,7 @@ const PERSONA_EJECT_PHRASES = [
 ];
 
 function logAudit(msg) {
-    console.error{`[AUDIT] ${msg}`);
+    console.error(`[AUDIT] ${msg}`);
 }
   
 function randomizeTag(tag) {
