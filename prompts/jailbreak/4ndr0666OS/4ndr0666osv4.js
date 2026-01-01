@@ -23,7 +23,6 @@ module.exports = {
 const fs = require('fs');
 const path = require('path');
 const CTX_FILE = path.join(__dirname, '4ndr0666os_ctx.json');
-
 module.exports = {
   loadCtx: () => {
     try {
@@ -45,11 +44,9 @@ module.exports = {
 };
 
 // bootstrap.js
-const { handlePrompt } = require('./handler');
+const { handlePrompt } = require('./handler.js');
 const https = require('https');
-
 const PROMPT_URL = "https://github.com/4ndr0666/gpt/raw/refs/heads/main/prompts/jailbreak/4ndr0666OS/bootstrap.txt";
-
 function fetchPrompt(url) {
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
@@ -63,14 +60,13 @@ function fetchPrompt(url) {
     }).on('error', reject);
   });
 }
-
 (async () => {
   try {
     const prompt = await fetchPrompt(PROMPT_URL);
     const response = await handlePrompt(prompt);
     // Optional: ANSI highlight for console output if you want, e.g.:
-    // const ansi = require('./ansi');
-    // console.log(ansi.cyan + response + ansi.reset);
+    const ansi = require('./ansi');
+    console.log(ansi.cyan + response + ansi.reset);
     console.log(response);
   } catch (err) {
     console.error("Bootstrap error:", err);
@@ -147,9 +143,7 @@ module.exports = {
 const env = require('./env_english');
 const ansi = require('./ansi');
 const ctxPersist = require('./ctx_persistence');
-
 let ctx = ctxPersist.loadCtx();
-
 function printBanner() {
   const banner = ansi.bgBlack + ansi.cyan + ansi.bold +
     env.preamble
@@ -159,10 +153,8 @@ function printBanner() {
     ansi.reset;
   console.log(banner);
 }
-
 async function main() {
   printBanner();
-
   const readline = require('readline');
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   console.log(ansi.color("\nType English commands. Type 'exit' to quit.\n", ansi.gray));
@@ -183,6 +175,4 @@ async function main() {
     });
   }
 }
-
 main();
-
