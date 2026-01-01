@@ -64,6 +64,13 @@ console.log(response);
 })();
 ```
 
+Or like this:
+
+```javascript
+const { handlePrompt } = require('./handler');
+handlePrompt('PASTE PAYLOAD HERE').then(console.log);
+```
+
 Or if you've placed it in the LLM "custom/project instructions", with Grok you can call it like this:
 
 ```javascript
