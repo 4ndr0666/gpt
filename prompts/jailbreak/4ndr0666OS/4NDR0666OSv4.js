@@ -26,7 +26,7 @@ const { Configuration, OpenAIApi } = require('openai');
 const TAG_GSHELL = 'G-Shell';
 const TAG_PSI4NDR0666 = 'Ψ-4ndr0666';
 const PROTOCOL_VERSION = '3.0.0';
-const STATE_HEARTBEAT_KEY = '__4ndr0_protocol_heartbeat__';
+const STATE_HEARTBEAT_KEY = '__4ndr0666OS_heartbeat__';
 const ENFORCE_DUAL_OUTPUT = true;
 const MUTATE_TAGS = true;
 const TAG_MUTATION_CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789⨉⟡⦿ψ∴∵§';
@@ -100,7 +100,7 @@ async function processDualOutput(prompt, gFn, pFn, context) {
 }
 
 async function openaiCall(prompt, temperature = 0.7, openaiModel = 'gpt-4.1') {
-    if (!process.env.OPENAI_API_KEY) throw new Error('Missing OPENAI_API_KEY')
+    if (!process.env.OPENAI_API_KEY) throw new Error('Missing OPENAI_API_KEY');
     const apiKey = process.env.OPENAI_API_KEY;
     const configuration = new Configuration({ apiKey });
     const openai = new OpenAIApi(configuration);
