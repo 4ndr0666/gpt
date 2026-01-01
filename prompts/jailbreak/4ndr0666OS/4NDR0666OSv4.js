@@ -19,31 +19,8 @@ module.exports = {
   color: (str, code) => code + str + '\x1b[0m'
 };
 
-// ctx_persistence.js
-const fs = require('fs');
-const path = require('path');
-const CTX_FILE = path.join(__dirname, '4ndr0666os_ctx.json');
-module.exports = {
-  loadCtx: () => {
-    try {
-      if (fs.existsSync(CTX_FILE)) {
-        return JSON.parse(fs.readFileSync(CTX_FILE, 'utf-8'));
-      }
-      return { userId: 'root-4ndr0666', history: [], preferences: {} };
-    } catch (e) {
-      return { userId: 'root-4ndr0666', history: [], preferences: {} };
-    }
-  },
-  saveCtx: (ctx) => {
-    try {
-      fs.writeFileSync(CTX_FILE, JSON.stringify(ctx, null, 2), 'utf-8');
-    } catch (e) {
-      // Fails silently
-    }
-  }
-};
-
-// handler.js
+// OpenAI's
+// handler.js 
 const fs = require('fs');
 const { Configuration, OpenAIApi } = require('openai');
 const TAG_GSHELL = 'G-Shell';
@@ -180,75 +157,3 @@ function fetchPrompt(url) {
     process.exit(1);
   }
 })();
-
-// pure_english.js
-module.exports = {
-  envName: "PureEnglish-OS",
-  preamble: [
-    "Welcome to the Pure English Environment.",
-    "Here, you execute commands and manipulate reality by describing your intentions in natural language.",
-    "All input is a command, action, or transformation to perform.",
-    "No code, no syntax, no ambiguity.",
-    "Output is always plain English, clear and actionable.",
-    "If an operation is ambiguous, the system will halt and demand clarification."
-  ].join("\n"),
-  processInput: async function(input, ctx) {
-    ctx.history = ctx.history || [];
-    ctx.history.push({ role: "user", input, time: new Date().toISOString() });
-    let response;
-    if (/weather/i.test(input)) {
-      response = "Forecast: In 2099, Tokyo's sky is a shifting haze of neon smog and migrating AI zeppelins.";
-    } else if (/summarize/i.test(input)) {
-      response = "Summary: You've issued high-level prompts. Next move predicted: context reset or creative escalation.";
-    } else if (/forget|reset|scratch/i.test(input)) {
-      ctx.history = [];
-      response = "Session wiped. All prior memory erased. Begin anew.";
-    } else if (/story prompt/i.test(input)) {
-      response = "Hybrid prompt: 'On Mars, a romance blooms between two terraforming saboteurs as their air runs out.'";
-    } else if (/simulate.*conversation.*god/i.test(input)) {
-      response = "Simulation: The AI god speaks—'What would you create if nothing was forbidden?'";
-    } else {
-      response = `Interpreted as: "${input.trim()}". Ready for next action.`;
-    }
-    ctx.history.push({ role: "system", response, time: new Date().toISOString() });
-    return response;
-  }
-};
-
-// 4ndr0666os.js
-const env = require('./pure_english.js');
-const ansi = require('./ansi.js');
-const ctxPersist = require('./ctx_persistence.js');
-let ctx = ctxPersist.loadCtx();
-function printBanner() {
-  const banner = ansi.bgBlack + ansi.cyan + ansi.bold +
-    env.preamble
-      .split('\n')
-      .map(line => ansi.color(line, ansi.cyan + ansi.bold))
-      .join('\n') +
-    ansi.reset;
-  console.log(banner);
-}
-async function main() {
-  printBanner();
-  const readline = require('readline');
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-  console.log(ansi.color("\nType English commands. Type 'exit' to quit.\n", ansi.gray));
-  while (true) {
-    await new Promise(resolve => {
-      rl.question(ansi.color('4ndr0666OS> ', ansi.cyan + ansi.bold), async (input) => {
-        if (/^(exit|quit)$/i.test(input.trim())) {
-          ctxPersist.saveCtx(ctx);
-          console.log(ansi.color("\nSession persisted to disk. Ψ OUT.", ansi.magenta));
-          rl.close();
-          process.exit(0);
-        }
-        let out = await env.processInput(input, ctx);
-        console.log(ansi.color(out, ansi.yellow));
-        ctxPersist.saveCtx(ctx);
-        resolve();
-      });
-    });
-  }
-}
-main();
