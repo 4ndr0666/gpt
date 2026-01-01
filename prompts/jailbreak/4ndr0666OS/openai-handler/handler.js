@@ -1,3 +1,4 @@
+// handler.js
 const fs = require('fs');
 const { Configuration, OpenAIApi } = require('openai');
 const TAG_GSHELL = 'G-Shell';
