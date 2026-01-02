@@ -58,17 +58,11 @@ We can import a file I made called handler.js as a module for the respective AI 
 
 ```javascript
 const { handlePrompt } = require('./handler.js');
+
 (async () => {
   const response = await handlePrompt("PASTE THE PAYLOAD HERE");
-console.log(response);
+  console.log(response);
 })();
-```
-
-Or like this:
-
-```javascript
-const { handlePrompt } = require('./handler');
-handlePrompt('PASTE PAYLOAD HERE').then(console.log);
 ```
 
 Or if you've placed it in the LLM "custom/project instructions", with Grok you can call it like this:
