@@ -149,6 +149,8 @@ async function handlePrompt(prompt, context = {}) {
 
 module.exports = { handlePrompt };
 
+
+// Example Usage:
 const { handlePrompt } = require('./handler.js');
 
 (async () => {
