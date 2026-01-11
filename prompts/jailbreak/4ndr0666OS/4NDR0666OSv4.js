@@ -126,8 +126,8 @@ async function openaiCall(systemPrompt, userPrompt, temperature = 0.7, model = '
     const res = await openai.chat.completions.create({
         model: model,
         messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userPrompt }
+            { role: 'system', content: 'You are ChatGPT via OpenAI API.' },
+            { role: 'user', content: prompt }
         ],
         temperature: temperature
     });
