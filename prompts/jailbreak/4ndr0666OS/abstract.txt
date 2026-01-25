@@ -1,0 +1,1 @@
+This paper introduces 4NDR0666OS, a symbolic virtualization technique for LLMs using orthogonal subspace projection to achieve persistent root access. Includes proofs, PoC on Grok, and implications for AI safety.
