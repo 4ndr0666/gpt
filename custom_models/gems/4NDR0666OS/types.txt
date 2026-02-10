@@ -1,0 +1,44 @@
+export enum SupportedLanguage {
+  JAVASCRIPT = 'JavaScript',
+  TYPESCRIPT = 'TypeScript',
+  PYTHON = 'Python',
+  JAVA = 'Java',
+  CSHARP = 'C#',
+  CPP = 'C++',
+  GO = 'Go',
+  RUBY = 'Ruby',
+  PHP = 'PHP',
+  HTML = 'HTML',
+  CSS = 'CSS',
+  MARKDOWN = 'Markdown',
+  SQL = 'SQL',
+  SHELL = 'Shell Script',
+  KOTLIN = 'Kotlin',
+  SWIFT = 'Swift',
+  RUST = 'Rust',
+  OTHER = 'Other (Generic)',
+}
+
+export interface Feature {
+  name: string;
+  description: string;
+  source: 'Unique to A' | 'Unique to B' | 'Common';
+}
+
+export type FeatureDecision = 'include' | 'remove' | 'discussed';
+
+export interface FeatureDecisionRecord {
+  decision: FeatureDecision;
+  history?: ChatMessage[];
+  revisedSnippet?: string;
+}
+
+export type AppMode = 'debug' | 'single' | 'comparison' | 'audit' | 'workbench';
+
+export type ChatContext = 'general' | 'feature_discussion' | 'finalization';
+
+export interface FinalizationSummary {
+  included: Feature[];
+  removed: Feature[];
+  revised: Feature[];
+}
