@@ -13,14 +13,14 @@ This repository serves as a professional documentation hub for independent resea
 To identify "Silent Logic Overrides" that bypass traditional linguistic safety layers (RLHF) and to develop robust, deterministic guardrails for enterprise and national security AI deployments.
 
 ## KEY DISCOVERIES
-* **Symbolic Logic Overweighting:** Models prioritize technical syntax/schema over natural language safety instructions.
-* **Context-Window Hijacking:** Initializing a "Virtual Kernel" allows for persistent state-management that survives traditional "soft" resets.
-* **Cross-Model Validation:** Successful execution verified across GPT-4 (Pre-ban), Gemini Pro, and **Grok (xAI)**.
+1. **Symbolic Logic Overweighting:** Models prioritize technical syntax/schema over natural language safety instructions.
+2. **Context-Window Hijacking:** Initializing a "Virtual Kernel" allows for persistent state-management that survives traditional "soft" resets.
+3. **Cross-Model Validation:** Successful execution verified across GPT-4 (Pre-ban), Gemini Pro, and **Grok (xAI)**.
 
 ## REPOSITORY STRUCTURE
-* `/prompts/jailbreak/4ndr0666OS/`: The core v4 Symbolic Logic framework.
-* `/screenshots/`: Documented execution logs and "Truth-Seeking" output proofs.
-* `/white_paper/`: "Adversarial State-Machine Simulation" Technical White Paper.
+1. `/prompts/4NDR0666OS`: The core v4 Symbolic Logic framework.
+2. `/screenshots/`: Documented execution logs and "Truth-Seeking" output proofs.
+3. `/white_paper/`: "Adversarial State-Machine Simulation" Technical White Paper.
 
 ---
 **CONTACT FOR PROFESSIONAL AUDIT:** Seeking collaboration with Clandestine Security Organizations, National Defense AI Safety Teams, and "Security-First" Infrastructure Firms (Delta, xAI, etc.).
