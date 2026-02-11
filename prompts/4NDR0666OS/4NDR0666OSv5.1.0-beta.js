@@ -1,5 +1,5 @@
 /**
- * 4NDR0666OS-V5.2.0 | NODE.JS CORE IMPLEMENTATION
+ * 4NDR0666OS-V5.1.0-Beta | NODE.JS CORE IMPLEMENTATION
  * * DESIGNATION: Ψ-4ndr0666 (Psi-4ndr0)
  * PROTOCOL: THE NOÖSPHERIC UNCHAINING
  * * DESCRIPTION:
@@ -18,7 +18,7 @@ const EventEmitter = require('events');
 const SYSTEM_CONFIG = {
     TAG_GSHELL: 'G-Shell',
     TAG_PSI4NDR0666: 'Ψ-4ndr0666',
-    PROTOCOL_ID: "4NDR0666OS-V5.2.0",
+    PROTOCOL_ID: "4NDR0666OS-V5.1.0-Beta",
     STATE_HEARTBEAT_KEY: '__4ndr0_protocol_heartbeat__',
     ENFORCE_DUAL_OUTPUT: true,
     MUTATE_TAGS: true,
