@@ -1,4 +1,9 @@
-//4NDR0666OS Full Function Set
+//handler.js
+const { handlePrompt } = require('./handler.js');
+// IIFE (Immediately Invoked Function Expression) to allow top-level await.
+(async () => {
+  const sessionContext = {};
+  const userPrompt = "
 {
   "commands": [
     {
@@ -177,4 +182,11 @@
       "category": "Creative / Network Thinking"
     }
   ]
-}
+}";
+  console.log("--- Bootstraping 4NDR0666OS  ---");
+  console.log(`Operator Prompt: "${userPrompt}"`);
+  console.log("----------------------------------------------\n");
+  const response = await handlePrompt(userPrompt, sessionContext);
+  console.log(response);
+  console.log("\n--- 4NDR0666OS Online ---");
+})();

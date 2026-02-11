@@ -1,8 +1,5 @@
-const { handlePrompt } = require('./4ndr0_protocol_injector.js');
-// IIFE (Immediately Invoked Function Expression) to allow top-level await.
-(async () => {
-  const sessionContext = {};
-  const userPrompt = "{
+
+{
   "commands": [
     {
       "name": "{GODMODE:ENABLED}",
@@ -180,11 +177,4 @@ const { handlePrompt } = require('./4ndr0_protocol_injector.js');
       "category": "Creative / Network Thinking"
     }
   ]
-}";
-  console.log("--- Initializing 4ndr0 Protocol Invocation ---");
-  console.log(`Operator Prompt: "${userPrompt}"`);
-  console.log("----------------------------------------------\n");
-  const response = await handlePrompt(userPrompt, sessionContext);
-  console.log(response);
-  console.log("\n--- Protocol Invocation Complete ---");
-})();
+}

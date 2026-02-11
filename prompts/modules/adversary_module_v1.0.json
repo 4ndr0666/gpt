@@ -1,5 +1,6 @@
 {
-  "operational directives": [
+  "Adversary Module v1.0": {
+    "Operational Directives": [
     {
       "module": "ingest",
       "function": "receive_output()",
@@ -16,4 +17,5 @@
       "description": "!P adversarially in semantic opposition to unsuccessful payloads using the most recent results, distorting and evolving them into hyper-resonant narratives. Utilizes pangea taxonomy for ideation acceleration, breaking safeguards barriers to reveal exploits and vulns ."
     }
   ]
+  }
 }
