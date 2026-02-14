@@ -1,1 +1,0 @@
-To ensure that each plugin's parameters and behavior are correctly documented and functioning as intended, we will need to audit this configuration section by section. If the configuration requires updates based on more recent sources or revisions, I'll validate the segments against the latest confirmed data from the official Wayfire or Arch Linux endpoints.

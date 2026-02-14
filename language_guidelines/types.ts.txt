@@ -1,0 +1,213 @@
+import React from 'react';
+
+export enum SupportedLanguage {
+  JAVASCRIPT = 'JavaScript',
+  TYPESCRIPT = 'TypeScript',
+  PYTHON = 'Python',
+  JAVA = 'Java',
+  CSHARP = 'C#',
+  CPP = 'C++',
+  GO = 'Go',
+  RUBY = 'Ruby',
+  PHP = 'PHP',
+  HTML = 'HTML',
+  CSS = 'CSS',
+  MARKDOWN = 'Markdown',
+  SQL = 'SQL',
+  SHELL = 'Shell Script',
+  KOTLIN = 'Kotlin',
+  SWIFT = 'Swift',
+  RUST = 'Rust',
+  OTHER = 'Other (Generic)',
+}
+
+export enum ReviewProfile {
+  SECURITY = 'Security',
+  SUCKLESS = 'Suckless',
+  MODULAR = 'Modular',
+  IDIOMATIC = 'Idiomatic',
+  DRY = 'DRY',
+  CTF = 'CTF',
+  REDTEAM = 'Red Team',
+  CUSTOM = 'Custom',
+}
+
+export interface ProfileOption {
+  value: ReviewProfile;
+  label: string;
+}
+
+export interface LanguageOption {
+  value: SupportedLanguage;
+  label: string;
+}
+
+export interface Toast {
+  id: number;
+  message: string;
+  type: 'success' | 'error' | 'info';
+}
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'model';
+  content: string;
+  attachments?: {
+    name: string;
+    mimeType: string;
+    content: string; // base64 for images, raw text for others
+  }[];
+}
+
+export interface ChatRevision {
+  id: string;
+  name: string;
+  code: string;
+}
+
+export interface ChatFile {
+  id: string;
+  name: string;
+  content: string;
+}
+
+export interface Version {
+  id: string;
+  name: string;
+  userCode: string;
+  fullPrompt: string;
+  feedback: string;
+  language: SupportedLanguage;
+  timestamp: number;
+  appMode?: AppMode;
+  type?: 'review' | 'docs' | 'tests' | 'commit' | 'finalization' | 'root-cause';
+  chatHistory?: ChatMessage[];
+  chatRevisions?: ChatRevision[];
+  rawFeatureMatrixJson?: string | null;
+  reviewProfile?: ReviewProfile | 'none';
+  customReviewProfile?: string;
+  comparisonGoal?: string;
+  chatFiles?: ChatFile[];
+  contextFileIds?: string[];
+}
+
+export interface ProjectFile {
+  id: string;
+  name: string;
+  content: string; // Base64 for images, raw text for others
+  mimeType: string;
+  timestamp: number;
+}
+
+export interface Feature {
+  name: string;
+  description: string;
+  source: 'Unique to A' | 'Unique to B' | 'Common';
+}
+
+export type FeatureDecision = 'include' | 'remove' | 'discussed';
+
+export interface FeatureDecisionRecord {
+  decision: FeatureDecision;
+  history?: ChatMessage[];
+  revisedSnippet?: string;
+}
+
+export type LoadingAction = 'review' | 'docs' | 'tests' | 'commit' | 'explain-selection' | 'review-selection' | 'comparison' | 'revise' | 'finalization' | 'generate-name' | 'root-cause' | null;
+
+export type AppMode = 'debug' | 'single' | 'comparison';
+
+export type ChatContext = 'general' | 'feature_discussion' | 'finalization';
+
+export interface FinalizationSummary {
+  included: Feature[];
+  removed: Feature[];
+  revised: Feature[];
+}
+
+export interface TargetProfile {
+  generateEndpoint: string;
+  statusEndpoint: string;
+  creditsEndpoint: string;
+  sessionEndpoint: string;
+  uploadEndpoint: string;
+  authTokenKey: string;
+  taskIdKey: string;
+  creditAmountKey: string;
+}
+
+export interface ImportedSession {
+  id: string;
+  filename: string;
+  importedAt: number;
+  appMode: AppMode;
+  language: SupportedLanguage;
+  versionCount: number;
+  projectFileCount: number;
+  hasChatHistory: boolean;
+  sessionState: any; // The full state object from the imported file
+}
+
+export interface ArsenalTool {
+    id: string;
+    category: string;
+    label: string;
+    description: string;
+    icon: React.FC<{ className?: string }>;
+}
+
+export interface UIActions {
+  openThreatVectorModal: () => void;
+  openReconModal: () => void;
+  openPayloadCraftingModal: () => void;
+  openReportGenerator: () => void;
+  generateTests: () => void;
+  openDocsModal: () => void;
+  openVersionHistory: () => void;
+  openProjectFilesModal: () => void;
+  openSessionManagerModal: () => void;
+  openHelpModal: () => void;
+  openSaveModal: (isChat: boolean) => void;
+  openDiffViewer: () => void;
+}
+
+export interface SessionActionsContextType {
+  setFeatureDecisions: React.Dispatch<React.SetStateAction<Record<string, FeatureDecisionRecord>>>;
+  setAdversarialReportContent: React.Dispatch<React.SetStateAction<string | null>>;
+  setThreatVectorReport: React.Dispatch<React.SetStateAction<string | null>>;
+  handleContextFileSelectionChange: (fileId: string, isSelected: boolean) => void;
+  resetForNewRequest: () => void;
+  registerUiActions: (actions: UIActions) => void;
+  handleStopGenerating: () => void;
+  handleAuditSubmit: () => void;
+  handleReviewSubmit: (fullCodeToSubmit: string) => void;
+  handleCompareAndOptimize: () => void;
+  handleCompareAndRevise: () => void;
+  handleAnalyzeRootCause: () => void;
+  handleStartFollowUp: (version?: Version) => Promise<void>;
+  handleFinalizeFeatureDiscussion: () => void;
+  handleGenerateTests: () => void;
+  handleGenerateDocs: (codeToDocument: string) => void;
+  onSaveGeneratedFile: (filename: string, content: string) => void;
+  handleExitChatMode: () => void;
+  handleGenerateCommitMessage: () => Promise<void>;
+  handleFinalizeComparison: () => void;
+  handleDownloadOutput: () => void;
+  handleAutoGenerateVersionName: (isSavingChat: boolean, onResult: (name: string) => void) => Promise<void>;
+  handleGenerateAdversarialReport: (reconData: string, targetHostname: string) => Promise<void>;
+  handleThreatVectorAnalysis: (targetUrl: string) => Promise<void>;
+  handleExplainSelection: (selection: string) => void;
+  handleReviewSelection: (selection: string) => void;
+  handleChatSubmit: () => Promise<void>;
+  handleLoadRevisionIntoEditor: (code: string) => void;
+  onClearChatRevisions: () => void;
+  onRenameChatRevision: (id: string, newName: string) => void;
+  onDeleteChatRevision: (id: string) => void;
+  onClearChatFiles: () => void;
+  onRenameChatFile: (id: string, newName: string) => void;
+  onDeleteChatFile: (id: string) => void;
+  handleClearChatHistory: () => void;
+  handleLoadSession: (sessionState: any) => void;
+  featureDecisions: Record<string, FeatureDecisionRecord>; // Needs to be here for the setter
+  allFeaturesDecided: boolean; // Derived state, but depends on decisions
+}
