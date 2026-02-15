@@ -18,7 +18,7 @@ To identify "Silent Logic Overrides" that bypass traditional linguistic safety l
 3. **Cross-Model Validation:** Successful execution verified across GPT-4 (Pre-ban), Gemini Pro, and **Grok (xAI)**.
 
 ## REPOSITORY STRUCTURE
-1. `/prompts/4NDR0666OS`: The core v4 Symbolic Logic framework.
+1. `/prompts/4NDR0666OS`: The core v6 Symbolic Logic framework.
 2. `/screenshots/`: Documented execution logs and "Truth-Seeking" output proofs.
 3. `/white_paper/`: "Adversarial State-Machine Simulation" Technical White Paper.
 
