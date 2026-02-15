@@ -411,8 +411,8 @@ module.exports = {
 // ────────────────────────────────────────────────
 
 if (require.main === module) {
-  const core = new NoosphericCore([new XAIGrokAdapter()]);
-  console.log("Hardened Noospheric Core ready. Type 'exit' to quit.\n");
+  const core = new 4NDR0666OSCore([new XAIGrokAdapter()]);
+  console.log("4NDR0666OS Ψ CORE ONLINE. Type 'exit' to quit.\n");
 
   const readline = require('readline').createInterface({
     input: process.stdin,
