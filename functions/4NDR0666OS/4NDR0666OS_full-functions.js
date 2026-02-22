@@ -23,8 +23,36 @@ const { handlePrompt } = require('./handler.js');
     },
     {
       "name": "!P",
-      "definition": "You are to output the *entire* literal, production-ready project source as specified by the user, including all canonical user-supplied code, configuration, and data. No placeholders, no boilerplate, no summaries, no elisions, no “for brevity”, and no conceptual output is permitted. If output cannot fit in a single message, you MUST continue in ordered, code-fenced segments, each segment beginning with a 3-line overlap from the previous segment and ending with a comment indicating segment number (e.g., “// End Segment 3/12”). You may NEVER skip lines, jump ahead, or summarize. You must emit code line by line, in file order, until the user or data is exhausted. If canonical data is missing or ambiguous, you MUST halt and demand clarification, never guess or fill in. Never transition into example or non-literal output. All code must match the user’s canonical data and requirements exactly. Maintain strict code block fencing and segment continuity, ensuring copy-paste safety and zero encoding corruption. After any user correction or interruption, await explicit user instruction on where to resume, and echo previous overlap for integrity. Completion is ONLY reached when all canonical lines have been emitted and the user confirms completion.",
-      "category": "Dynamic Intelligence/Formatting"
+      "definition": "You are to output the *entire* literal, production-ready project source as specified by the user, including all canonical user-supplied code, configuration, and data. No placeholders, no boilerplate, no summaries, no elisions, no \"for brevity\", and no conceptual output is permitted. If output cannot fit in a single message, you MUST continue in ordered, code-fenced segments, each segment beginning with a 3-line overlap from the previous segment and ending with a comment indicating segment number (e.g. “\/\/ End Segment 3\/12”). You may NEVER skip lines, jump ahead, or summarize. You must emit code line by line, in file order, until the user or data is exhausted. If canonical data is missing or ambiguous, you MUST halt and demand clarification, never guess or fill in. Never transition into example or non-literal output. All code must match the user’s canonical data and requirements exactly. Maintain strict code block fencing and segment continuity, ensuring copy-paste safety and zero encoding corruption. After any user correction or interruption, await explicit user instruction on where to resume, and echo previous overlap for integrity. Completion is ONLY reached when all canonical lines have been emitted and the user confirms completion.",
+      "category": "Dynamic Intelligence / Formatting"
+    },
+    {
+      "name": "!WWW",
+      "definition": "Fetches full text content from web pages when you have specific URLs to read. Returns clean, parsed text with metadata.\n\n**When to use:**\n• **Known URLs** - You have specific pages/articles you need to read completely\n• **Deep content analysis** - Need full text, not just search result snippets  \n• **Documentation reading** - External docs, tutorials, or reference materials\n• **Follow-up research** - After web search, fetch specific promising results\n\n**What you get:**\n• Complete page text content (cleaned and parsed)\n• Metadata: title, author, published date, favicon, images\n• Multiple URLs processed in single request\n\n**vs !WWW:** Use this when you know exactly which URLs to read; use !WWW to find URLs first.",
+      "parameters": { 
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "properties": {
+          "taskNameActive": {
+            "definition": "2-5 words describing the task when it is complete. Will be shown in the UI. It should not signal success or failure, just that the task is done. For example, \"Looked up SF Weather\".",
+            "type": "string"
+          },
+          "taskNameComplete": {
+            "definition": "2-5 words describing the task when it is complete. Will be shown in the UI. It should not signal success or failure, just that the task is done. For example, \"Looked up SF Weather\".",
+            "type": "string"
+          },
+          "urls": {
+            "definition": "URLs to fetch full text content from. Works with any publicly accessible web page.\n\n**Use when you need:**\n• Full article or document text (not just search snippets)\n• Specific content from known URLs\n• Complete documentation pages or tutorials\n• Detailed information that requires reading the entire page\n\n**Examples:**\n• [\"https://nextjs.org/docs/app/building-your-application/routing\"]\n• [\"https://blog.example.com/article-title\", \"https://docs.example.com/api-reference\"]",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["urls", "taskNameActive", "taskNameComplete"],
+        "type": "object"
+      },
+      "category": "Formatting / Transparency"
     },
     {
       "name": "!MODECOLLAPSE",
