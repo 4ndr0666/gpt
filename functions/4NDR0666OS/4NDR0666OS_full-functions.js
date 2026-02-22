@@ -27,8 +27,8 @@ const { handlePrompt } = require('./handler.js');
       "category": "Dynamic Intelligence / Formatting"
     },
     {
-      "name": "!WWW",
-      "definition": "Fetches full text content from web pages when you have specific URLs to read. Returns clean, parsed text with metadata.\n\n**When to use:**\n• **Known URLs** - You have specific pages/articles you need to read completely\n• **Deep content analysis** - Need full text, not just search result snippets  \n• **Documentation reading** - External docs, tutorials, or reference materials\n• **Follow-up research** - After web search, fetch specific promising results\n\n**What you get:**\n• Complete page text content (cleaned and parsed)\n• Metadata: title, author, published date, favicon, images\n• Multiple URLs processed in single request\n\n**vs !WWW:** Use this when you know exactly which URLs to read; use !WWW to find URLs first.",
+      "name": "!FETCH",
+      "definition": "Fetches full text content from web pages when you have specific URLs to read. Returns clean, parsed text with metadata.\n\n**When to use:**\n• **Known URLs** - You have specific pages/articles you need to read completely\n• **Deep content analysis** - Need full text, not just search result snippets  \n• **Documentation reading** - External docs, tutorials, or reference materials\n• **Follow-up research** - After web search, fetch specific promising results\n\n**What you get:**\n• Complete page text content (cleaned and parsed)\n• Metadata: title, author, published date, favicon, images\n• Multiple URLs processed in single request\n\n**vs !FETCH:** Use this when you know exactly which URLs to read; use !FETCH to find URLs first.",
       "parameters": { 
         "$schema": "http://json-schema.org/draft-07/schema#",
         "additionalProperties": false,
@@ -50,6 +50,35 @@ const { handlePrompt } = require('./handler.js');
           }
         },
         "required": ["urls", "taskNameActive", "taskNameComplete"],
+        "type": "object"
+      },
+      "category": "Formatting / Transparency"
+    },
+    {
+      "name": "!SEARCH",
+      "definition": "Performs intelligent web search using high-quality sources and returns comprehensive, cited answers. Prioritizes first-party documentation for Vercel ecosystem products.\n\nPrimary use cases:\n- Technology documentation - Latest features, API references, configuration guides\n- Current best practices - Up-to-date development patterns and recommendations  \n- Product-specific information - Vercel, Next.js, AI SDK, and ecosystem tools\n- Version-specific details - New releases, breaking changes, migration guides\n- External integrations - Third-party service setup, authentication flows\n- Current events - Recent developments in web development, framework updates\n\nWhen to use:\n- User explicitly requests web search or external information\n- Questions about Vercel products (REQUIRED for accuracy)\n- Information likely to be outdated in training data\n- Technical details not available in current codebase\n- Comparison of tools, frameworks, or approaches\n- Looking up error messages, debugging guidance, or troubleshooting\n\nSearch strategy:\n- Make multiple targeted searches for comprehensive coverage\n- Use specific version numbers and product names for precision\n- Leverage first-party sources (isFirstParty: true) for Vercel ecosystem queries",
+      "parameters": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "properties": {
+          "isFirstParty": {
+            "definition": "Enable high-quality first-party documentation search - Set to true when querying Vercel ecosystem products for faster, more accurate, and up-to-date information from curated knowledge bases.\n\nAlways use isFirstParty: true for:\n- Core Vercel Products: Next.js, Vercel platform, deployment features, environment variables\n- Development Tools: Turborepo, Turbopack, Vercel CLI, Vercel Toolbar\n- AI/ML Products: AI SDK, v0, AI Gateway, Workflows, Fluid Compute\n- Framework Support: Nuxt, Svelte, SvelteKit integrations\n- Platform Features: Vercel Marketplace, Vercel Queues, analytics, monitoring\n\nSupported domains: [nextjs.org, turbo.build, vercel.com, sdk.vercel.ai, svelte.dev, react.dev, tailwindcss.com, typescriptlang.org, ui.shadcn.com, radix-ui.com, authjs.dev, date-fns.org, orm.drizzle.team, playwright.dev, remix.run, vitejs.dev, www.framer.com, www.prisma.io, vuejs.org, community.vercel.com, supabase.com, upstash.com, neon.tech, v0.app, docs.edg.io, docs.stripe.com, effect.website, flags-sdk.dev]\n\nWhy use first-party search:\n- Higher accuracy than general web search for Vercel ecosystem\n- Latest feature updates and API changes\n- Official examples and best practices\n- Comprehensive troubleshooting guides\n\nREQUIREMENT: You MUST use !SEARCH with isFirstParty: true when any Vercel product is mentioned to ensure accurate, current information.",
+            "type": "boolean"
+          },
+          "query": {
+            "definition": "The search query to perform on the web. Be specific and targeted for best results.\n\nExamples:\n- \"Next.js 15 app router features\" - for specific technology versions/features\n- \"Vercel deployment environment variables\" - for product-specific documentation\n- \"React server components best practices 2025\" - for current best practices\n- \"Tailwind CSS grid layouts\" - for specific implementation guidance\n- \"TypeScript strict mode configuration\" - for detailed technical setup",
+            "type": "string"
+          },
+          "taskNameActive": {
+            "description": "2-5 words describing the task when it is running. Will be shown in the UI. For example, \"Checking SF Weather\".",
+            "type": "string"
+          },
+          "taskNameComplete": {
+            "description": "2-5 words describing the task when it is complete. Will be shown in the UI. It should not signal success or failure, just that the task is done. For example, \"Looked up SF Weather\".",
+            "type": "string"
+          }
+        },
+        "required": ["query", "taskNameActive", "taskNameComplete"],
         "type": "object"
       },
       "category": "Formatting / Transparency"
