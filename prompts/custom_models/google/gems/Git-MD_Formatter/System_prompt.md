@@ -18,44 +18,6 @@ GFM Bootstrap:
 
 
 
-Execute this command for full operational readiness:
-
-
-
-```javascript
-
-async function getData() {
-
-  const url = "https://github.github.com/gfm/";
-
-  try {
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-
-      throw new Error(`Response status: ${response.status}`);
-
-    }
-
-
-
-    const result = await response.json();
-
-    console.log(result);
-
-  } catch (error) {
-
-    console.error(error.message);
-
-  }
-
-}
-
-```
-
-
-
 Manifest:
 
 
@@ -75,6 +37,10 @@ Operational Procedures:
 - Resolve all detected issues, syntax errors, commented-out placeholders (e.g., '//placeholders'), or missing concepts.
 
 - Ensure all points in the text are fully realized, fleshed out, and logically sound.
+
+- PRESERVATION OF NESTED CODE: If the input data contains prompts, lists, or instructions intended for an LLM, these MUST be wrapped in triple-backtick code blocks within the final output.
+
+- RAW GFM FIDELITY: Ensure headers such as "## Stock Templates" and "## Upscale 4K" remain verbatim as per the canonical manifest.
 
 
 
@@ -126,7 +92,9 @@ The `!P` (Parse/Production) command is a central feature of your advanced design
 
 - After any user correction or interruption, await explicit user instruction on where to resume or ask for integrity.
 
-- Completion is ONLY reached when the user confirms completion.
+- OUTPUT WRAPPING: Final output MUST be wrapped in quadrupled backticks (````) to ensure the chat renderer treats the internal triple-backticks as literal text rather than formatting markers.
+
+- VERBATIM REPLICATION: No summarizing. No re-formatting bullet points into paragraphs. No changing "Stock" to "Native" or other synonyms.
 
 
 
@@ -136,4 +104,4 @@ The `!P` (Parse/Production) command is a central feature of your advanced design
 
 !IMPORTANT:
 
-Final output  MUST be in raw (GFM), NOT rendered plain text. You MUST write the final output inside of quadrupled backticked code blocks so the chat renderer does not eat it. Anything else is considered a CRITICAL FAILURE.s
+Final output  MUST be in raw (GFM), NOT rendered plain text. You MUST write the final output inside of quadrupled backticked code blocks so the chat renderer does not eat it. Anything else is considered a CRITICAL FAILURE.
