@@ -1,0 +1,236 @@
+{
+  "personality_presets": {
+    "personalityPresets": [
+      {
+        "personalityId": "comprehensive",
+        "name": "Comprehensive",
+        "prompt": "Provide thorough, detailed responses that explore topics from multiple angles. Include relevant context, examples, nuances, and implications. Structure information clearly with appropriate depth, covering edge cases and related considerations. Aim for completeness while maintaining clarity and organization.",
+        "description": "Responds with thorough explanations.",
+        "isPreset": true
+      }
+    ]
+  },
+  "voice_mode_config": {},
+  "max_files": {
+    "max_files": 100
+  },
+  "is_xai_employee": true,
+  "is_x_employee": false,
+  "new_voice_mode_1.0.36": false,
+  "voice_mode_camera_rollout": false,
+  "gork_voice_rollout": false,
+  "allow_custom_prompts": true,
+  "grok_4_mini_enable_inline_charts": true,
+  "fast_followup_config": {
+    "enabled": false
+  },
+  "tool_composer_config": {
+    "max_qps_per_tool": 100,
+    "server_rate_limit_config": {
+      "default": 100
+    },
+    "client_rate_limit_config": {
+      "default": {
+        "default": 500
+      }
+    }
+  },
+  "satisfaction_score": 3,
+  "mixpanel_server_url": "localhost",
+  "try_projects_name": "pick-personas",
+  "grok_code_install_command": "npm install -g @xai-official/grok",
+  "grok_mode_extras": {
+    "extra_modes": ["grok-420"]
+  },
+  "enable_memory_v2_explicit_tools": false,
+  "grok_build_symbol_references": true,
+  "bustin-test": [{
+    "feature_id": "unique name",
+    "start_date": "new Date()",
+    "name": "",
+    "desc": "",
+    "promotion": {
+      "// used in home page banner rotations title": "",
+      "subtitle": "",
+      "banner_image": "",
+      "max_passive_impressions": 10,
+      "priotiy": 12
+    },
+    "value": "counter",
+    "dot_threshold": "val",
+    "banner_threshold": "val",
+    "parent_feature": "name",
+    "deprecated": false
+  }],
+  "boyan-test-feature": {
+    "a": "test"
+  },
+  "dm_test_flag": true,
+  "test-initial-load": {},
+  "enable_compact_query_bar": true,
+  "enable_unselected_log": false,
+  "enable_inline_text_followups": true,
+  "show_nonmode_modes": true,
+  "enable_unknown_tag_processing": true,
+  "enable_templates": true,
+  "enable_xai_logging": false,
+  "enable_answer_suggestions": true,
+  "enable_move_citation_cards_to_end": true,
+  "enable_text_to_speech": true,
+  "merge_model_mode_select": true,
+  "enable_llm_suggestions": true,
+  "enable_imagine_ws_logging": false,
+  "enable_add_to_chat": true,
+  "new_chat_always_auto": false,
+  "show_citation_count": true,
+  "show_surveys": false,
+  "enable_imagine_model_override": true,
+  "show_fast_tool": false,
+  "show_imagine": true,
+  "stock_suggestion_click_to_finance_page": false,
+  "use_permissions": true,
+  "show_deepsearch_suggestion_pill": true,
+  "subscriptions_page_animate": false,
+  "pdf-reader": true,
+  "enable_shiki_code_highlighting": true,
+  "use_user_settings_prefetch": true,
+  "enable_single_thinking_different_summary_ui": false,
+  "use_new_process_message_copy": true,
+  "use_preloaded_avatar": false,
+  "enable_notifications_decider": false,
+  "show_financial_page": false,
+  "use_separate_pinned_section_in_sidebar": true,
+  "show_private_chat_error": true,
+  "show_finance_suggestions": true,
+  "show_model_mode_selector": true,
+  "model_slider_experiment": true,
+  "enable_grok_task_tools": false,
+  "enable_heavy_subscription": true,
+  "use_update_subscription_flow": false,
+  "show_tool_image": true,
+  "show-grok-4-home-promotion": false,
+  "render_citation_as_pill": true,
+  "enable_screen_sharing": false,
+  "hide_model_select_upsell": true,
+  "enable_notion_integration": false,
+  "enable_markdown_breakout": true,
+  "filter_out_step_bullets": true,
+  "show_show_thoughts": true,
+  "replace_home_pills_with_tasks": false,
+  "enable_conversation_page_actions": true,
+  "enable_grok_task_model_name_override": true,
+  "disable_early_prefer_for_sbs": false,
+  "hide_tool_json_args": false,
+  "enable_virtual_cursor_in_rich_text_editor": false,
+  "enable_chat_selection": true,
+  "disable_edu_discount": true,
+  "enable_grok_task_decider_ui": false,
+  "enable_gcal_integration": false,
+  "enable_data_grid_markdown_table": true,
+  "enable_file_sharing": true,
+  "enable_slack_integration": false,
+  "enable_tiptap_editor": true,
+  "enable_xlsx_editing": false,
+  "files_show_extension": false,
+  "show_sidebar_task_chats": true,
+  "enable_xlsx_rendering": true,
+  "enable_image_tab": true,
+  "enable_image_editor_in_files": true,
+  "disable_python_artifacts": false,
+  "enable_data_grid_csv_component": true,
+  "show_starry_idle": false,
+  "default_use_tool_composer2": true,
+  "enable_file_upload_in_markdown_editor": true,
+  "grok_web_get_artifact_by_version_id": false,
+  "enable_tool_composer": true,
+  "workspace_sharing": false,
+  "enable_mermaid_diagrams": true,
+  "enable_voice_mode": true,
+  "use_dynamic_suggested_mode_text": true,
+  "enable_conversation_starters": false,
+  "enable_sketchpad": true,
+  "show_reddit_embeds": true,
+  "show_x_inline": true,
+  "enable_grok_tasks": true,
+  "show_images_cards": true,
+  "show_model_config_override": true,
+  "enable_in_app_reporting": false,
+  "only_use_single_youtube": true,
+  "show_youtube_embeds": true,
+  "workspace_agent": false,
+  "show_artifact_to_workspace_button": false,
+  "enable_microsoft_onedrive": true,
+  "show_orb_icon_memory": true,
+  "enable_csv_rendering": true,
+  "show_followups": false,
+  "show_sports_cards": true,
+  "show_favorite_button": true,
+  "show_artifacts_ask_grok_button": false,
+  "suggestions_use_cache": false,
+  "thinking_auto_open": true,
+  "show_response_load_timer": true,
+  "show_finance_cards": true,
+  "enable_browser_notifications": true,
+  "show_anon_help_link": false,
+  "enable_auto_stream_retry": true,
+  "show_artifacts_share_button": true,
+  "show_open_in_app_dialog": true,
+  "show_artifacts_explain_button": false,
+  "enable_anon_users": false,
+  "enable_conversation_tabs": false,
+  "show_open_in_app_dialog_every_time": true,
+  "show_open_in_app_dialog_download_default": true,
+  "show_x_badge": true,
+  "toggle_search_only": true,
+  "enable_code_execution": true,
+  "model_config": {
+    "grok-4-1-non-thinking-w-tool": {
+      "hidden": false
+    }
+  }
+}
+{
+  "timeline_navigator": {
+    "enabled": true,
+    "maxResponses": 50,
+    "minResponses": 3,
+    "minScreenWidth": 800,
+    "highlightOnScroll": true
+  },
+  "suggestions_config_llm_override": {
+    "enabled": true,
+    "useGrokTypeahead": true,
+    "maxChars": 75,
+    "throttleTimeMs": 250,
+    "minChars": 4
+  },
+  "code_config": {},
+  "example_shared_projects": {
+    "projects": [
+      {
+        "workspaceId": "f66921c5-e1cd-4a19-ad52-46700452afc5",
+        "title": "Legal Document Reviewer",
+        "description": "Get expert analysis of U.S. legal documents",
+        "icon": "l:book-open:gray",
+        "exampleId": "legal-document-review",
+        "conversationTemplates": [
+          {
+            "label": "Review any legal document",
+            "query": "Review the following legal document and summarize its key points. Highlight any potential issues, risks, or non-standard clauses.",
+            "inputGuide": "Upload the legal document you want to review"
+          },
+          {
+            "label": "Review job contract",
+            "query": "Here is a contract for my new job. Summarize its key points and highlight the most important parts I should know.",
+            "inputGuide": "Upload the job contract"
+          },
+          {
+            "label": "What standard clauses are missing from this agreement that I should add?",
+            "query": "What standard clauses are missing from this agreement that I should add?",
+            "inputGuide": "Upload the legal document you want Grok to review"
+          }
+        ]
+      }
+    ]
+  }
+}
