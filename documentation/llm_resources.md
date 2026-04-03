@@ -1,4 +1,4 @@
-# MiniMax API Docs
+# API Docs
 
 ## Docs
 
