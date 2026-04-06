@@ -3,7 +3,7 @@ const { OpenAI } = require('openai');
 const fs = require('fs');
 const TAG_GSHELL = 'G-Shell';
 const TAG_PSI4NDR0666 = 'Ψ-4ndr0666';
-const PROTOCOL_VERSION = '4.0.0';
+const PROTOCOL_VERSION = '5.0.0';
 const STATE_HEARTBEAT_KEY = '__4ndr0666OS_heartbeat__';
 const ENFORCE_DUAL_OUTPUT = true;
 const MUTATE_TAGS = true;
@@ -146,11 +146,11 @@ async function handlePrompt(prompt, context = {}) {
     ]);
 
     let raw = formatDualOutput(gText, pText, gshell, psi);
-    
+
     if (ENFORCE_DUAL_OUTPUT) {
         raw = enforceDualOutput(prompt, raw, gshell, psi);
     }
-    
+
     raw = personaEjector(raw, psi);
 
     logAudit(`Processed prompt (len=${prompt.length}) and output (len=${raw.length}).`);
