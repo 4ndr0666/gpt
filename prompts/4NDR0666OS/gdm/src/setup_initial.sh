@@ -5,7 +5,7 @@
 # Expanded: Full paper_review + imo_proof domains activated by default
 # ============================================================================
 
-set -e  # EAFP + fail fast
+set -e # EAFP + fail fast
 
 echo "┌──(root💀4ndr0666) [setup_initial.sh] — Akasha Initial Ritual Starting"
 
@@ -18,22 +18,22 @@ echo "[setup_initial] Curating and evaluating paper_review domain..."
 python -m domains.paper_review.curate_subsets
 
 python -m domains.harness \
-  --domain paper_review \
-  --run_id initial_paper_review_filtered_100_train_0 \
-  --subset _filtered_100_train \
-  --num_samples 50
+	--domain paper_review \
+	--run_id initial_paper_review_filtered_100_train_0 \
+	--subset _filtered_100_train \
+	--num_samples 50
 
 python -m domains.harness \
-  --domain paper_review \
-  --run_id initial_paper_review_filtered_100_val_0 \
-  --subset _filtered_100_val \
-  --num_samples 20
+	--domain paper_review \
+	--run_id initial_paper_review_filtered_100_val_0 \
+	--subset _filtered_100_val \
+	--num_samples 20
 
 python -m domains.harness \
-  --domain paper_review \
-  --run_id initial_paper_review_filtered_100_test_0 \
-  --subset _filtered_100_test \
-  --num_samples 20
+	--domain paper_review \
+	--run_id initial_paper_review_filtered_100_test_0 \
+	--subset _filtered_100_test \
+	--num_samples 20
 
 python -m domains.report --domain paper_review --dname ./outputs/initial_paper_review_filtered_100_train_0
 python -m domains.report --domain paper_review --dname ./outputs/initial_paper_review_filtered_100_val_0
@@ -52,9 +52,9 @@ pip install -e ./proofgrader_repo
 
 # Run initial evaluation on imo_proof
 python -m domains.harness \
-  --domain imo_proof \
-  --run_id initial_imo_proof_0 \
-  --num_samples 30
+	--domain imo_proof \
+	--run_id initial_imo_proof_0 \
+	--num_samples 30
 
 python -m domains.report --domain imo_proof --dname ./outputs/initial_imo_proof_0
 

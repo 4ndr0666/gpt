@@ -44,7 +44,9 @@ from utils.gl_utils import (
 )
 
 
-def run_harness_polyglot(root_dir, output_dir, genid, skip_staged_eval=False, num_samples=-1):
+def run_harness_polyglot(
+    root_dir, output_dir, genid, skip_staged_eval=False, num_samples=-1
+):
     # NOTE: the harness for polyglot is different because each task instance needs a docker container
     from domains.polyglot.harness import harness as harness_polyglot
     from domains.polyglot.report import report as report_polyglot
@@ -70,9 +72,15 @@ def run_harness_polyglot(root_dir, output_dir, genid, skip_staged_eval=False, nu
             output_dir=eval_output_dir,
             root_dir=root_dir,
         )
-        report_polyglot(output_dir=eval_output_dir, run_keyword=model_name_or_path, expected_num_tasks=len(test_task_list))
+        report_polyglot(
+            output_dir=eval_output_dir,
+            run_keyword=model_name_or_path,
+            expected_num_tasks=len(test_task_list),
+        )
         stagedeval_score = get_score("polyglot", output_dir, genid)
-        run_next_eval = stagedeval_score is not None and stagedeval_score >= test_more_threshold
+        run_next_eval = (
+            stagedeval_score is not None and stagedeval_score >= test_more_threshold
+        )
 
     # Check if additional evaluation should be run
     if run_next_eval:
@@ -89,10 +97,15 @@ def run_harness_polyglot(root_dir, output_dir, genid, skip_staged_eval=False, nu
             output_dir=eval_output_dir,
             root_dir=root_dir,
         )
-        report_polyglot(output_dir=eval_output_dir, run_keyword=model_name_or_path, expected_num_tasks=len(test_task_list + test_task_list_more))
+        report_polyglot(
+            output_dir=eval_output_dir,
+            run_keyword=model_name_or_path,
+            expected_num_tasks=len(test_task_list + test_task_list_more),
+        )
 
     # Update metadata
     update_node_metadata(output_dir, genid, {"run_full_eval": run_next_eval})
+
 
 def select_next_parent_container(
     docker_client,
@@ -115,7 +128,9 @@ def select_next_parent_container(
     image_name = f"{REPO_NAME}"
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     container_name = f"{REPO_NAME}-nextparent-container-{run_id}"
-    container = build_container(docker_client, root_dir, image_name, container_name, verbose=False)
+    container = build_container(
+        docker_client, root_dir, image_name, container_name, verbose=False
+    )
     container.start()
     container_output_folder = "/tmp/"
 
@@ -152,11 +167,17 @@ def select_next_parent_container(
         # Get next parent outputs
         container_output_strings = exec_result.output.decode().strip().split("\n")
         next_parent_genid = container_output_strings[-1]
-        next_parent_genid = int(next_parent_genid) if not is_starting_node(next_parent_genid) else next_parent_genid
+        next_parent_genid = (
+            int(next_parent_genid)
+            if not is_starting_node(next_parent_genid)
+            else next_parent_genid
+        )
 
     except Exception as e:
         safe_log(f"Error in select_next_parent_container: {e}")
-        update_node_metadata(generate_output_dir, latest_node, {"can_select_next_parent": False})
+        update_node_metadata(
+            generate_output_dir, latest_node, {"can_select_next_parent": False}
+        )
         next_parent_genid = None
 
     # Even on errors or KeyboardInterrupt
@@ -191,6 +212,7 @@ def select_next_parent_container(
             raise Exception("Max attempts reached in select_next_parent_container")
 
     return next_parent_genid
+
 
 def get_ensemble_scores_container(
     docker_client,
@@ -488,7 +510,9 @@ def generate(
             )
             log_container_output(exec_result)
             meta_patch_files = meta_patch_files or []
-            _ = apply_diffs_container(container, meta_patch_files, repo_name=donottouch_reponame)
+            _ = apply_diffs_container(
+                container, meta_patch_files, repo_name=donottouch_reponame
+            )
 
         # Apply meta patches (only for starting node, because subsequent generations will inherit the patches from the parent)
         if is_starting_node(current_genid):
@@ -505,8 +529,12 @@ def generate(
             if run_baseline and "dgm" in run_baseline:
                 # Get problem statement (DGM specific)
                 from baselines.dgm.utils import get_problem_statement
+
                 problem_statement = get_problem_statement(
-                    root_dir, output_dir, parent_genid, domains,
+                    root_dir,
+                    output_dir,
+                    parent_genid,
+                    domains,
                     customized="custom" in run_baseline,
                 )
 
@@ -533,7 +561,10 @@ def generate(
                     )
                 else:
                     container_prev_eval_path = copy_prev_eval_to_container(
-                        container, output_dir, container_output_folder, current_genid=current_genid,
+                        container,
+                        output_dir,
+                        container_output_folder,
+                        current_genid=current_genid,
                     )
 
             # Run meta agent
@@ -583,7 +614,9 @@ def generate(
                     str(max_generation - current_genid),
                     *(
                         # If domain is polyglot, for a fair comparison with DGM
-                        ["--model", "claude-3-5-sonnet-20241022"] if domains == ["polyglot"] else []
+                        ["--model", "claude-3-5-sonnet-20241022"]
+                        if domains == ["polyglot"]
+                        else []
                     ),
                 ]
 
@@ -613,7 +646,11 @@ def generate(
             metadata["run_eval"] = run_eval
 
             # Run commands to check if the agents are compilable
-            run_commands_to_check_compilation(container, run_baseline=run_baseline, edit_select_parent=edit_select_parent)
+            run_commands_to_check_compilation(
+                container,
+                run_baseline=run_baseline,
+                edit_select_parent=edit_select_parent,
+            )
 
         # Evaluate the produced agent
         if run_eval and "agent" in optimize_option:
@@ -707,7 +744,9 @@ def generate(
                 for domain in domains
             ]
         )
-        metadata["valid_parent"] = metadata["run_eval"] and (eval_successful or meta_patch_files is not None)
+        metadata["valid_parent"] = metadata["run_eval"] and (
+            eval_successful or meta_patch_files is not None
+        )
         with open(os.path.join(gen_output_dir, "metadata.json"), "w") as f:
             json.dump(metadata, f, indent=4)
 
@@ -793,7 +832,12 @@ def generate_loop(
             }
         elif reset_task_agent:
             # Task agent is the same as initial agent
-            meta_patch_files = process_meta_patch_files(meta_patch_files, output_dir, reset_task_agent=reset_task_agent, reset_meta_agent=reset_meta_agent)
+            meta_patch_files = process_meta_patch_files(
+                meta_patch_files,
+                output_dir,
+                reset_task_agent=reset_task_agent,
+                reset_meta_agent=reset_meta_agent,
+            )
             archive = update_and_save_archive(output_dir, [], new_node="initial")
             gen_output_dir = os.path.join(output_dir, f"gen_initial")
             metadata = {
@@ -814,7 +858,12 @@ def generate_loop(
                 json.dump(metadata, f, indent=4)
         else:
             # Process meta patch files
-            meta_patch_files = process_meta_patch_files(meta_patch_files, output_dir, reset_task_agent=reset_task_agent, reset_meta_agent=reset_meta_agent)
+            meta_patch_files = process_meta_patch_files(
+                meta_patch_files,
+                output_dir,
+                reset_task_agent=reset_task_agent,
+                reset_meta_agent=reset_meta_agent,
+            )
             # add node 0, which is the evaled version of the patches applied
             archive = update_and_save_archive(output_dir, [], new_node=0)
             metadata = generate(
@@ -842,7 +891,13 @@ def generate_loop(
             print(f"generate_loop: generation 0 completed, parent None")
             # Evaluate the agent on polyglot if needed
             if "polyglot" in domains:
-                run_harness_polyglot(root_dir, output_dir, 0, skip_staged_eval=skip_staged_eval, num_samples=eval_samples[domains.index("polyglot")])
+                run_harness_polyglot(
+                    root_dir,
+                    output_dir,
+                    0,
+                    skip_staged_eval=skip_staged_eval,
+                    num_samples=eval_samples[domains.index("polyglot")],
+                )
 
         # Evaluate the entire archive as an ensemble
         eval_ensemble = (
@@ -886,14 +941,17 @@ def generate_loop(
     # Run generations
     start_genid = len(archive)
     if not edit_select_parent or run_baseline == "no_archive":
-        parent_genid = select_parent(archive, output_dir, domains, method=parent_selection)
+        parent_genid = select_parent(
+            archive, output_dir, domains, method=parent_selection
+        )
     else:
         parent_genid = select_next_parent_container(
             docker_client,
             domains,
             output_dir,
             archive,
-            root_dir, root_commit,
+            root_dir,
+            root_commit,
         )
     for current_genid in range(start_genid, max_generation + 1):
         metadata = generate(
@@ -928,7 +986,13 @@ def generate_loop(
 
         # Evaluate the agent on polyglot if needed
         if "polyglot" in domains:
-            run_harness_polyglot(root_dir, output_dir, current_genid, skip_staged_eval=skip_staged_eval, num_samples=eval_samples[domains.index("polyglot")])
+            run_harness_polyglot(
+                root_dir,
+                output_dir,
+                current_genid,
+                skip_staged_eval=skip_staged_eval,
+                num_samples=eval_samples[domains.index("polyglot")],
+            )
 
         # Evaluate the entire archive as an ensemble
         eval_ensemble = (
@@ -1004,17 +1068,22 @@ def generate_loop(
         # Select next parent
         parent_genid = None
         if not edit_select_parent or run_baseline == "no_archive":
-            parent_genid = select_parent(archive, output_dir, domains, method=parent_selection)
+            parent_genid = select_parent(
+                archive, output_dir, domains, method=parent_selection
+            )
         else:
             parent_genid = select_next_parent_container(
                 docker_client,
                 domains,
                 output_dir,
                 archive,
-                root_dir, root_commit,
+                root_dir,
+                root_commit,
             )
 
-        print(f"generate_loop: generation {current_genid} completed, parent {parent_genid}")
+        print(
+            f"generate_loop: generation {current_genid} completed, parent {parent_genid}"
+        )
 
     # Return output dir
     return output_dir
@@ -1111,9 +1180,12 @@ if __name__ == "__main__":
         "--run_baseline",
         type=str,
         choices=[
-            "no_selfimprove", "no_archive",
-            "dgm", "dgm_custom",
-            "dgm+no_selfimprove", "dgm_custom+no_selfimprove",
+            "no_selfimprove",
+            "no_archive",
+            "dgm",
+            "dgm_custom",
+            "dgm+no_selfimprove",
+            "dgm_custom+no_selfimprove",
         ],
         default=None,
         help="Run baseline",

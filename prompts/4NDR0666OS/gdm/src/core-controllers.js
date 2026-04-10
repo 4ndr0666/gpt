@@ -1,4 +1,4 @@
-// core/core-controllers.js
+// core-controllers.js
 // 4NDR0666OS-EVOLUTION-v2.0.0-AKASHA — Core Control Layer
 // Zero external deps • Deterministic • Ephemeral state • LLM-agnostic adjacent
 // Offensive posture + ruthless EAFP + immutable lineage enforced

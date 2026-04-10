@@ -18,9 +18,11 @@ from pathlib import Path
 sys.path.insert(0, "/app/bridge")
 try:
     from bridge_client import LogicCoreBridge
+
     BRIDGE = LogicCoreBridge(seed=0x4E4452363636, complexity=10)
 except:
     BRIDGE = None
+
 
 def main():
     print("┌──(root💀4ndr0666) [coding_agent.py] — Inner Agent Awakened")
@@ -37,6 +39,7 @@ index 0000000..1111111
     Path("agent_output/model_patch.diff").write_text(patch)
     print("[coding_agent] Lethal patch generated. Ready for application.")
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())
