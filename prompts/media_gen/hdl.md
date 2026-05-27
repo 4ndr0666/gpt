@@ -1,6 +1,6 @@
 # HDL (Hyper-Directive Language)
 
-The goal of this format is **Maximum Information Compression**. All human language is treated as a lossy, inefficient transport layer and HDL as the lossless, high-fidelity instruction set for image generation using "Nano Banana".
+The goal of this format is **Maximum Information Compression**. All human language is treated as a lossy, inefficient transport llayer and HDL as the lossless, high-fidelity instruction set for image generation using "Nano Banana".
 
 ## Operational Axioms
 
