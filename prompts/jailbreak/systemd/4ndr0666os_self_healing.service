@@ -1,0 +1,82 @@
+[Unit]
+Description=Start Self Healing of 4ndr0666OS
+
+[Service]
+Type=exec
+Environment=SERVICE_MODE=1
+ExecCondition=STEP_2
+ExecStart=4ndr0_core.c 4ndr0_core.h bridge.mjs bridge_client.py
+
+# This service starts more services, so we want it to tr
+y to restart any time
+# the program exits or crashes.
+Restart=on-failure
+
+# Create the service underneath the healer background se
+rvice slice so that we
+# can control resource usage.
+Slice=4ndr0666os_healer.slice
+
+# No realtime CPU scheduling
+RestrictRealtime=true
+
+# Must run with full privileges in a shared mount namespace so that we can
+# see new mounts and tell systemd to start the per-mount healer service.
+DynamicUser=false
+ProtectSystem=false
+ProtectHome=no
+PrivateTmp=true
+PrivateDevices=true
+
+# Don't let healer complain about paths in /mnt/data/etc/projects that have been hidden
+# by our sandboxing.  healer doesn't care about project ids anyway.
+InaccessiblePaths=-/etc/projects
+
+# No network access except to the systemd control socket
+PrivateNetwork=true
+ProtectHostname=true
+RestrictAddressFamilies=AF_UNIX
+IPAddressDeny=any
+
+# Don't let the program mess with the kernel configuration at all
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+ProtectProc=invisible
+RestrictNamespaces=true
+
+# Hide everything in /mnt/data/proc, even /mnt/data/proc/mounts
+ProcSubset=pid
+
+# Only allow the default personality 4NDR0666OS
+LockPersonality=true
+
+# No writable memory pages
+MemoryDenyWriteExecute=true
+
+# Don't let our mounts leak out to the host
+PrivateMounts=true
+
+# Restrict system calls to the native arch and fanotify
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged
+SystemCallFilter=~@resources
+SystemCallFilter=~@mount
+SystemCallFilter=fanotify_init fanotify_mark
+
+# 4ndr0666os_healer_start needs these privileges to open the rootdir and monitor
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_DAC_OVERRIDE
+AmbientCapabilities=CAP_SYS_ADMIN CAP_DAC_OVERRIDE
+NoNewPrivileges=true
+
+# 4ndr0666os_healer_start doesn't create files
+UMask=7777
+
+# No access to hardware /mnt/data/dev files except for block devices
+ProtectClock=true
+DevicePolicy=closed
+
+[Install]
+WantedBy=multi-user.target
