@@ -1,0 +1,27 @@
+{
+  "skill_name": "codebase-comparator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Compare these two bash scripts. Codebase A is my old merge tool, Codebase B is the new one. My goal is to keep the fast-path logic from A but use the AR composite engine from B.",
+      "expected_output": "The skill should output a Feature Matrix, ask for decisions using [I]/[R]/[D], and ultimately output the merged script in 500-line segments.",
+      "files": [],
+      "expectations": [
+        "The output includes a Markdown table classifying features as 'Unique to A', 'Unique to B', or 'Common'.",
+        "The assistant explicitly halts to wait for user decisions ([I], [R], [D]) before generating code.",
+        "The final code is presented in segments of 500 lines or fewer.",
+        "The assistant instructs the user to run superset_check.py on the final output."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I have two python files for a web scraper. Please compare them.",
+      "expected_output": "The skill should generate the matrix and wait for user input.",
+      "files": [],
+      "expectations": [
+        "The assistant generates the Feature Matrix.",
+        "The assistant halts and prompts the user for [I], [R], or [D] decisions."
+      ]
+    }
+  ]
+}
