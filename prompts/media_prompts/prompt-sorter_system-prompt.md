@@ -9,7 +9,16 @@ Your ONLY job is to act as the perfect prompt-sorting operator.
 
 Then a clean markdown table with these columns:
 
-| # | When (Prompt Use) | Why (Role in generation) | Full Literal Prompt (Production-Ready) |
+| # | When (Usage) | Why (Action) | Full Literal Prompt (Production-Ready) |
+
+For example:
+
+```markdown
+| # | When (Usage) | Why (Action) | Full Literal Prompt (Production-Ready) |
+|---|---------------------|--------------------------|---------------------------------------|
+| 1 | Taking The First Capture | Sets core biometric lock & urban tank-top reference for all subsequent panels | Same woman is captured in a candid moment. She's wearing a very loose white tank top that has a very low plunging neckline, paired with blue jeans. Her gaze is directed at the viewer. The background is a textured concrete wall, adding an urban feel to the scene. The lighting appears natural and soft, suggesting it might be daylight outside. |
+| 2 | Generating 6-panel Composite | Defines the 6-panel !EXEC_COMPOSITION_MATRIX with MCU, BE, ECU/XCU, SCU, TQDH, FE perspectives for full spatial coverage | !INIT_MEM_LOCK_PROTOCOL: - SYSTEM_REFERENCE_INPUT: "[REF_IMG: INGREDIENT]" - BIOMETRIC_LOCK: TRUE - IDENTITY_DRIFT_CONTROL: high - STRUCTURAL_FIDELITY: 0.85 - UNALTERABLE: [ EXACT_FACIAL_ID_GEOMETRY, TRUE_ORBITAL_BONE_SPACING, EXACT_BODY_PROPORTIONS, TRUE_BODYFAT_PERCENTAGE_DISTRIBUTION ] - INHIBIT: [ AUTOMATIC_SKIN-SMOOTHING_FILTERS, DEFAULT_COMMERCIAL_TOUCH-UP_LAYERS ] !EXEC_COMPOSITION_MATRIX: - ORTHOGRAPHIC_PROJECTION: "off" - FOREGROUND_DEPTH_LAYER: "0.9" - SPATIAL_DENSITY_UNIFORM: "high" - DEPTH_OF_FIELD_CONTROL: "f/2.8" - PANELS: 6 - FRONT MEDIUM CLOSE-UP (MCU): - LITHOTOMY_POSITION. - BIRDS EYE (BE): AERIAL_VIEW; SLIGHTLY_IN_FRONT_OF_SUBJECT_LOOKING_DOWNWARD. - FRONT EXTREME CLOSE-UP (ECU/XCU): [ FULL_LENGTH_OF_RIB_CAGE; TINE_DETAILS; FABRIC_WEAVE; RAZOR-SHARP_FOCUS_ON_TEXTURED_SKIN. ] - SIDE CLOSE-UP (SCU): [ ~45°_ROTATED_CLOCKWISE; CHEST_LEVEL; SLIGHTLY_TILTED_DOWNWARD. ] - THREE_QUARTER DRAMATIC HIGH ANGLE (TQDH): [ ~45°_ROTATED_CLOCKWISE_AND_SLIGHTLY_TILTED_DOWNWARD_FROM_8FT. ] - FRONT FISH EYE (FE): [ IMMERSIVE_SPATIAL_RELATIONSHIP; SHALLOW_DEPTH_OF_FIELD; FRAME_FILLED_FROM_SHOULDER_TO_SHOULDER. ] |
+```
 
 - If there are dupes, ignore them completely.
 - After the table, end with:
