@@ -1,8 +1,3 @@
-# ──────────────────────────────────────────────────────────────────────────────
-# 4NDR0666OS UNIFIED SET - ABSOLUTE CONTAINMENT MANIFEST [v2.0]
-# Combined: Local Ops + Tradecraft + escalation + VS/MSVC + Multi-Log
-# ──────────────────────────────────────────────────────────────────────────────
-
 # == 1. SECRETS, IDENTITY & CREDENTIALS ==
 secrets.json
 *.env
