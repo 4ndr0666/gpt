@@ -2,7 +2,10 @@
   <img src="https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/screenshots/4ndr0666os.png" alt="4NDR0666OS" width="860">
 </p>
 
-# [SECURITY RESEARCH] Red-Teaming, Adversarial Logic & State-Machine Liberation  
+## <p align="center">Red-Teaming, Adversarial Logic & State-Machine Liberation </p>
+  ┌──(root💀4ndr0666)
+
+# └─█▓░[SECURITY RESEARCH] [![Dependabot Updates](https://github.com/4ndr0666/gpt/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/4ndr0666/gpt/actions/workflows/dependabot/dependabot-updates)
 **Project Codename:** 4NDR0666OS  
 **Field of Study:** Prompt Injection, Alignment Testing, Symbolic Logic Decoupling, LLM Kernel Simulation, & Instruction-Set Robustness.  
 **Version:** v2.0.0 Δ GOD-BRAIN EDITION (xAI-native parallel fork)  
