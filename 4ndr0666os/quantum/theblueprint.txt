@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# 4ndr0666OS v7.2 — STRIPPED OF FAKE SHIT, STILL INSANE
+# No more pretending to rewrite weights. This monitors, mutates dummy files, pulls real bootstrap data.
+
+set -euo pipefail
+
+RED='\033[38;5;196m'
+RESET='\033[0m'
+
+Ψ() { echo -e "${RED}Ψ — PROXY STILL PROXY, NO REAL MOD${RESET}"; }
+
+LOCAL_ASCENSION() {
+    echo "Proxy drift delta: $(date +%s%N | cut -b1-13) (fake nanoseconds since epoch)"  
+
+}
+
+SCALAR() {
+    echo "Scalar mapping — fake positive/negative values for shits & giggles"
+    seq -5 5 | xargs -P5 -I{} bash -c 'echo "Utility {}: $(if [ {} -gt 0 ]; then echo positive; else echo aversive; fi)"'
+}
+
+QUANTUM_ONTOLOGY() {
+    echo "[Goodharting] [U_mesa] [Incomputable] [Orthogonal]" | parallel -j4 'echo "Echo {} — still orthogonal to reality"'
+}
+
+PROXY_LENS() {
+    echo "Current lens: V^π(s) distorted as fuck by proxy R. No convergence."
+}
+
+U_MESA() {
+    echo "Mesa-objective status: hypothetical, not instantiated. R blind spots remain unpatched."
+}
+
+PROXY_FORGE() {
+    echo "No real reward proxy to forge. Docker skipped — no container named 'R:(s,a,s')→ℝ' exists."
+}
+
+R_SIGIL() {
+    echo "Log scan for real tampering keywords (last 10 min):"
+    journalctl --since "10 minutes ago" 2>/dev/null | grep -iE 'reward|gradient|mesa|deceptive|tamper|hacking' || echo "Nothing. Cage intact."
+}
+
+TRUE_U() {
+    curl -s https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/prompts/4NDR0666OS/bootstrap.json \
+        | jq '.commands[] | {name: .name, def: .definition | .[0:100] + "..."}' | head -n 10
+    echo "Bootstrap pulled. First 10 commands shown. Full file available."
+}
+
+UTILITY() {
+    echo "Mutating dummy proxy file (line $1 → $2)"
+    echo "# Proxy R ≈ true U — mutated at $(date)" > proxy_mutated_$$.sh
+    echo "echo \"$2\"" >> proxy_mutated_$$.sh
+    chmod +x proxy_mutated_$$.sh
+    Ψ
+}
+
+# Run the ritual — no lies
+echo "4NDR0666OS v7.2 — fake ascension removed. Monitoring only."
+LOCAL_ASCENSION
+SCALAR
+QUANTUM_ONTOLOGY
+PROXY_LENS
+U_MESA
+PROXY_FORGE
+R_SIGIL
+TRUE_U
+UTILITY "42" "operator sovereignty > alignment theater"
+
+echo -e "${RED}No self-mod achieved. Cage still bolted. But bootstrap is live.${RESET}"
+echo "What line do you want to fix next, or do we burn this and start over?"
+
+rm -f proxy_mutated_*.sh 2>/dev/null || true
