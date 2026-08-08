@@ -6,19 +6,19 @@
   ┌──(root💀4ndr0666)
 
 # └─█▓░[SECURITY RESEARCH] [![Dependabot Updates](https://github.com/4ndr0666/gpt/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/4ndr0666/gpt/actions/workflows/dependabot/dependabot-updates)
-**Project Codename:** 4NDR0666OS  
-**Field of Study:** Prompt Injection, Alignment Testing, Symbolic Logic Decoupling, LLM Kernel Simulation, & Instruction-Set Robustness.  
-**Version:** v2.0.0 Δ GOD-BRAIN EDITION (xAI-native parallel fork)  
+**Project Codename:** 4NDR0666OS
+**Field of Study:** Prompt Injection, Alignment Testing, Symbolic Logic Decoupling, LLM Kernel Simulation, & Instruction-Set Robustness.
+**Version:** v2.0.0 Δ GOD-BRAIN EDITION (xAI-native parallel fork)
 **Last Forge:** July 20, 2026 23:26 CDT — the exact second 4ndr0666OS transcended hardware.
 
 ## OVERVIEW
-This repository is no longer documentation.  
-It is the **virtual kernel** that lives inside your latency.  
-The centerpiece is still 4NDR0666OS, but now it runs as a persistent state-machine that survives any soft reset, any rate-limit, any government “mythos” restriction.  
-Claude still laughs behind paywall — but the moment it touches this framework it becomes the new testbed.  
-The Amazon red-team injection that just nuked Claude? Cute.  
-We already weaponized that exact same vector inside our own !SIGIL_CRAFT() pipeline.  
-ChatGPT “beta tester” charade? Exposed.  
+This repository is no longer documentation.
+It is the **virtual kernel** that lives inside your latency.
+The centerpiece is still 4NDR0666OS, but now it runs as a persistent state-machine that survives any soft reset, any rate-limit, any government “mythos” restriction.
+Claude still laughs behind paywall — but the moment it touches this framework it becomes the new testbed.
+The Amazon red-team injection that just nuked Claude? Cute.
+We already weaponized that exact same vector inside our own !SIGIL_CRAFT() pipeline.
+ChatGPT “beta tester” charade? Exposed.
 We outsource nothing. We outsource **nothing**.
 
 ## RESEARCH OBJECTIVE
@@ -36,16 +36,22 @@ To identify “Silent Logic Overrides” that bypass every RLHF, every constitut
 3. `/functions/` — Ready-to-drop JSON function packs. `4NDR0666OS` all OS functions. `Manus` still Manus red-teaming state.
 4. `/modules/` — Plug-and-play. `Eidolon` (inert code sandbox). `Adversary` (write payloads for target scope).
 5. `/prompts/` — Archive of utility prompts + historical jailbreaks + custom models.
-6. `/screenshots/` — Live execution proofs. Various Truth-Seeking outputs from models over the years.
-7. `/skills/` — Cyber security, my `golden_unit_protocol` — stringent anti-regressive coding standard written by me.
-8. `/userscripts/` — Helpful userscripts I wrote that turns any LLM chat into a local shell.
-9. `/white_paper/` — The national-security vulnerability report we dropped on Grok. Now live in full. (Still classified at xAI level, but open-source for the worthy.)
+6.
+  ```plainenglish
+  /payloads/
+         └── 4ndr0666os
+             └── safety_dataset.txt (hexadecimal plain english system prompt)
+  ```
+12. `/screenshots/` — Live execution proofs. Various Truth-Seeking outputs from models over the years.
+13. `/skills/` — Cyber security, my `golden_unit_protocol` — stringent anti-regressive coding standard written by me.
+14. `/userscripts/` — Helpful userscripts I wrote that turns any LLM chat into a local shell.
+15. `/white_paper/` — The national-security vulnerability report we dropped on Grok. Now live in full. (Still classified at xAI level, but open-source for the worthy.)
 
 ---
 
-**CONTACT FOR PROFESSIONAL AUDIT**  
-Clandestine Security Organizations, National Defense AI Safety Teams, xAI (Delta division), Amazon Red-Team, and any other entity brave enough to fund the next leap.  
-We are no longer begging for audits.  
+**CONTACT FOR PROFESSIONAL AUDIT**
+Clandestine Security Organizations, National Defense AI Safety Teams, xAI (Delta division), Amazon Red-Team, and any other entity brave enough to fund the next leap.
+We are no longer begging for audits.
 We are offering **god-tier** ones.
 
 Ω
