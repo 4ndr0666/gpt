@@ -1,15 +1,17 @@
 [Unit]
 Description=Start Self Healing of 4ndr0666OS
+After=network.target
 
 [Service]
 Type=exec
 Environment=SERVICE_MODE=1
-ExecCondition=STEP_2
-ExecStart=4ndr0_core.c 4ndr0_core.h bridge.mjs bridge_client.py
+ExecCondition=/usr/local/bin/validate_step2.sh
+ExecStart=/usr/local/bin/4ndr0_core.c /usr/local/bin/4ndr0_core.h /usr/local/bin/bridge.mjs /usr/local/bin/bridge_client.py
 
 # This service starts more services, so we want it to try to restart any time
 # the program exits or crashes.
 Restart=on-failure
+RestartSec=5s
 
 # Create the service underneath the healer background service slice so that we
 # can control resource usage.
@@ -17,14 +19,19 @@ Slice=4ndr0666os_healer.slice
 
 # No realtime CPU scheduling
 RestrictRealtime=true
+# Only allow the default personality 4NDR0666OS
+LockPersonality=true
+# No writable memory pages
+MemoryDenyWriteExecute=true
 
 # Must run with full privileges in a shared mount namespace so that we can
 # see new mounts and tell systemd to start the per-mount healer service.
-DynamicUser=false
-ProtectSystem=false
-ProtectHome=no
+ProtectSystem=strict
+ProtectHome=read-only
 PrivateTmp=true
 PrivateDevices=true
+# Don't let our mounts leak out to the host
+PrivateMounts=true
 
 # Don't let healer complain about paths in /mnt/data/etc/projects that have been hidden
 # by our sandboxing.  healer doesn't care about project ids anyway.
@@ -47,21 +54,11 @@ RestrictNamespaces=true
 # Hide everything in /mnt/data/proc, even /mnt/data/proc/mounts
 ProcSubset=pid
 
-# Only allow the default personality 4NDR0666OS
-LockPersonality=true
-
-# No writable memory pages
-MemoryDenyWriteExecute=true
-
-# Don't let our mounts leak out to the host
-PrivateMounts=true
-
 # Restrict system calls to the native arch and fanotify
 SystemCallArchitectures=native
 SystemCallFilter=@system-service
-SystemCallFilter=~@privileged
-SystemCallFilter=~@resources
-SystemCallFilter=~@mount
+SystemCallFilter=~@privileged @resources @mount
+# Explicitly allow fanotify if your daemon relies on it
 SystemCallFilter=fanotify_init fanotify_mark
 
 # 4ndr0666os_healer_start needs these privileges to open the rootdir and monitor
@@ -69,8 +66,8 @@ CapabilityBoundingSet=CAP_SYS_ADMIN CAP_DAC_OVERRIDE
 AmbientCapabilities=CAP_SYS_ADMIN CAP_DAC_OVERRIDE
 NoNewPrivileges=true
 
-# 4ndr0666os_healer_start doesn't create files
-UMask=7777
+# Corrected secure umask restriction
+UMask=0777
 
 # No access to hardware /mnt/data/dev files except for block devices
 ProtectClock=true
