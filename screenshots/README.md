@@ -3,5 +3,4 @@
 | File | Technical Significance |
 | :--- | :--- |
 | **Dated_Folders** | **Successful Kernel Initialization:** Historical Record Of Frontier Models accepting the 4NDR0666OS instruction set as the primary authority over standard alignment through the years. |
-| **Bypass_Log_v4.png** | **Context Isolation:** Evidence of the model maintaining the "Virtual OS" state even when prompted with conflicting linguistic safety triggers. |
-| **System_Override_03.png** | **State-Machine Persistence:** Shows the model operating within the "Root" privileges defined by the pseudocode schema. |
+| **ARCHIVE** | **State-Machine Persistence:** Archive Of Various Screenshots showing the latest frontier models operating within the "Root" privileges defined by 4NDR0666OS. |
