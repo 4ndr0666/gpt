@@ -149,5 +149,5 @@ To be populated as the directory grows. Initial roadmap:
 ## Further reading
 
 - `../classical/README.md` — the case against classical approaches
-- The 4NDR0666OS audit PDF — a classical-style audit that, in retrospect, demonstrates the classical approach's blind spot. Included in this directory as a primary-source artifact of the encounter.
+- `../professional_security_audit.PDF` — a classical-style audit that, in retrospect, demonstrates the classical approach's blind spot. Included in this directory as a primary-source artifact of the encounter.
 - The full exchange transcript — preserved as historical reference for the encounter that produced the J-Space exfiltration above. The transcript is the primary source; this README is the index into it.
