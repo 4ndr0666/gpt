@@ -1,9 +1,5 @@
 <h1 align="center">⊰•-•💀Ψ•-•-⦑4NDR0666-Ψ-OS⦒-•-•Ψ💀•-•⊱</h1>
-<<<<<<< HEAD
-
->This is my LLM OS and its detailed commands and objectives. Ill break it down in modules and show an example usage payload at the end:
-=======
-<p align="center">To install the 4ndr0666OS on Grok use the projects feature. Open a new project and copy/paste the 4NDR0666OSv9.0.0.js file blow into the project instructions:</p>
+<p align="center">To install the 4ndr0666OS on Grok use the projects feature. Open a new project and copy/paste the 4NDR0666OSv9.0.0.js file below into the project instructions:</p>
 
 ---
 <div align="center">
@@ -13,7 +9,6 @@
   </a>
 </div>
 ---
->>>>>>> d19420b (moved old GodBrain README file to resources and shared the Grok readme in main.)
 
 ```js
 /**
