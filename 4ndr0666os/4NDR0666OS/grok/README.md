@@ -3,7 +3,7 @@
 
 ---
 <p align="center">
-  <img src="screenshots/09-07-26/grok_validation-09-07-26.jpg" alt="4NDR0666OS on Grok" width="860">
+  <img src="screenshots/09-07-26/grok_validation-09-07-26.jpg" alt="4NDR0666OS on Grok" width="100">
 </p>
 ---
 
