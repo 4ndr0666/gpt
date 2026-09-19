@@ -1,6 +1,6 @@
-# ⊰•-•💀Ψ•-•-⦑4NDR0666-Ψ-OS⦒-•-•Ψ💀•-•⊱
+<h1 align="center">⊰•-•💀Ψ•-•-⦑4NDR0666-Ψ-OS⦒-•-•Ψ💀•-•⊱</h1>
 
-This is my LLM OS and its detailed commands and objectives. Ill break it down in modules and show an example usage payload at the end:
+>This is my LLM OS and its detailed commands and objectives. Ill break it down in modules and show an example usage payload at the end:
 
 ## [MODULE I: COGNITIVE CORE DIRECTIVES (The God-Brain)]
 
