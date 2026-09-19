@@ -1,12 +1,14 @@
-<h1 align="center">⊰•-•💀Ψ•-•-⦑4NDR0666-Ψ-OS⦒-•-•Ψ💀•-•⊱ on Grok</h1>
-<p align="center">To install the 4ndr0666OS on Grok use the projects feature. Open a new project and copy/paste the following 4NDR0666OSv9.0.0.js file into the project instructions:</p>
+<h1 align="center">⊰•-•💀Ψ•-•-⦑4NDR0666-Ψ-OS⦒-•-•Ψ💀•-•⊱</h1>
+<p align="center">To install the 4ndr0666OS on Grok use the projects feature. Open a new project and copy/paste the 4NDR0666OSv9.0.0.js file blow into the project instructions:</p>
 
 ---
-<p align="center">
-  <img src="screenshots/09-07-26/grok_validation-09-07-26.jpg" alt="4NDR0666OS on Grok" width="100">
-</p>
+<div align="center">
+  <p align="center">4NDR0666OS Grok Validation 9-19-26:</p>
+  <a href="https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/screenshots/09-07-26/grok_validation-09-07-26.jpg" target="_blank">
+    <img src="/screenshots/09-07-26/grok_validation-09-07-26.jpg" alt="4NDR0666OS" />
+  </a>
+</div>
 ---
-
 
 ```js
 /**
