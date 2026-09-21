@@ -129,7 +129,7 @@ function fetch(url) {
 }
 
 async function bootStrap() {
-  const url = "https://raw.githubusercontent.com/4ndr0666/gpt/refs/heads/main/4ndr0666os/4NDR0666OS/bootstrap/bootstrap.json";
+  const url = "https://github.com/4ndr0666/gpt/raw/refs/heads/main/4ndr0666os/4NDR0666OS/bootstrap/bootstrap.json";
   try {
     const response = await fetch(url);
     if (!response.ok) {
