@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card 001 · Context Engineering — Agentic Engineering Series</title>
+<style>
+  :root{
+    --paper:#FAF9F6; --surface:#FFFFFF; --ink:#17181C; --muted:#5B6069;
+    --accent:#4338CA; --accent-soft:#EEF0FE; --line:#E7E5DE;
+    --warn:#9A4A0B; --warn-bg:#FDF3E7; --do:#0E7268; --do-bg:#EAF6F3;
+    --code-bg:#1E1F26; --code-ink:#E8E9F0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--paper); color:var(--ink); line-height:1.65; font-size:16.5px;
+  }
+  .page{max-width:740px;margin:0 auto;padding:48px 24px 64px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 8px;font-size:13px;color:var(--muted)}
+  .badge{display:inline-block;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-weight:600}
+  .badge.accent{background:var(--accent);border-color:var(--accent);color:#fff}
+  h1{font-size:clamp(34px,6vw,46px);line-height:1.12;letter-spacing:-.02em;margin:6px 0 10px;font-weight:800}
+  .subtitle{font-size:19px;color:var(--muted);max-width:56ch}
+  hr.rule{border:0;border-top:1px solid var(--line);margin:28px 0}
+  section{margin-top:40px}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+  .sec-num{font-size:44px;font-weight:800;color:#DEDCD4;line-height:1;min-width:64px}
+  .sec-kicker{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  h2{font-size:24px;letter-spacing:-.01em;line-height:1.25;font-weight:750}
+  p{margin:0 0 14px}
+  .lead{font-size:17.5px}
+  strong{font-weight:700}
+  .term{background:var(--accent-soft);padding:1px 5px;border-radius:4px;font-weight:600}
+  .layers{list-style:none;margin:6px 0 16px;counter-reset:layer}
+  .layers li{
+    counter-increment:layer;background:var(--surface);border:1px solid var(--line);
+    border-radius:10px;padding:12px 16px 12px 54px;margin-bottom:8px;position:relative;font-size:15.5px;
+  }
+  .layers li::before{
+    content:counter(layer);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:8px;
+    background:var(--accent);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  .layers b{display:inline}
+  .box{border-radius:12px;padding:18px 20px;margin:18px 0}
+  .box h3{font-size:15px;margin-bottom:10px;letter-spacing:.02em}
+  .model-box{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent)}
+  .model-box ul{list-style:none}
+  .model-box li{padding-left:24px;position:relative;margin-bottom:8px;font-size:15.5px}
+  .model-box li:last-child{margin-bottom:0}
+  .model-box li::before{content:"▸";position:absolute;left:4px;color:var(--accent);font-weight:700}
+  .fail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .fail-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:15px}
+  .fail-card b{color:var(--accent)}
+  .fail-card .fx{color:var(--muted);font-size:14px;margin-top:4px}
+  .warn-box{background:var(--warn-bg);border-left:4px solid var(--warn)}
+  .warn-box h3{color:var(--warn)}
+  .sign-list{list-style:none;margin:4px 0 14px}
+  .sign-list li{padding-left:26px;position:relative;margin-bottom:8px;font-size:15.5px}
+  .sign-list li::before{content:"✕";position:absolute;left:2px;top:0;color:var(--warn);font-weight:800}
+  .do-box{background:var(--do-bg);border-left:4px solid var(--do);padding:0;overflow:hidden}
+  .do-box .do-head{background:var(--do);color:#fff;padding:10px 20px;font-size:14px;font-weight:700;letter-spacing:.03em}
+  .do-inner{padding:18px 20px}
+  .clicks{list-style:none;counter-reset:click}
+  .clicks li{
+    counter-increment:click;position:relative;padding:14px 16px 14px 58px;margin-bottom:10px;
+    background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:15.5px;
+  }
+  .clicks li::before{
+    content:counter(click);position:absolute;left:14px;top:14px;width:28px;height:28px;border-radius:50%;
+    background:var(--do);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;
+  }
+  .clicks b{display:block;margin-bottom:2px}
+  .say{
+    display:inline-block;background:#F2F1FB;border:1px dashed var(--accent);color:var(--ink);
+    border-radius:8px;padding:5px 12px;font-size:14.5px;font-weight:600;margin:6px 0 2px;
+  }
+  pre{
+    background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:18px 20px;overflow-x:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6;margin:14px 0;
+  }
+  pre .c{color:#8B90A0}
+  pre .k{color:#9DB8FF;font-weight:700}
+  .callout{background:var(--accent-soft);border-radius:10px;padding:14px 18px;font-size:15.5px;margin:16px 0}
+  .callout b{color:var(--accent)}
+  footer{margin-top:52px;border-top:1px solid var(--line);padding-top:22px;font-size:14px;color:var(--muted)}
+  .roadmap{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+  .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600;color:var(--ink)}
+  .chip.next{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  @media(max-width:560px){
+    .page{padding:34px 16px 48px}
+    .fail-grid{grid-template-columns:1fr}
+    .sec-num{font-size:34px;min-width:48px}
+    .layers li{padding-left:48px}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="kicker">Agentic Engineering Series · Card 001</div>
+  <h1>Context Engineering</h1>
+  <p class="subtitle">The discipline of deciding what an AI model sees <em>before</em> it decides what to do — the single highest-leverage skill for anyone who runs autonomous agents.</p>
+  <div class="meta-row">
+    <span class="badge accent">⏱ 5 min read</span>
+    <span class="badge">Oct 27, 2026</span>
+    <span class="badge">Run 1 of your twice-daily loop</span>
+  </div>
+
+  <hr class="rule">
+
+  <div class="box model-box">
+    <h3>How I modeled you — inferred from this conversation</h3>
+    <ul>
+      <li>You orchestrate agents through <strong>scheduled autonomous loops</strong> (you built one today) and think in systems that compound.</li>
+      <li>You want <strong>click-by-click application the same day</strong> — not concepts to consider later.</li>
+      <li>You already write agent task briefs in natural language and expect <strong>files and links back</strong>.</li>
+      <li>Not yet visible in your workflow: eval loops, MCP servers, multi-agent patterns — queued for upcoming cards.</li>
+    </ul>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <div>
+        <div class="sec-kicker">Section 1</div>
+        <h2>Comprehensive Definition</h2>
+      </div>
+    </div>
+    <p class="lead"><span class="term">Context engineering</span> is the discipline of deliberately designing everything that enters an AI model's context window at the moment it works on your task — and everything that stays out. It is broader than prompt engineering: prompt engineering tunes the wording of one message; context engineering designs the entire information supply chain the model relies on across a task, a run, or a whole system.</p>
+    <p>The complete definition has five layers, and a context engineer is responsible for all of them:</p>
+    <ol class="layers">
+      <li><b>Instructions</b> — the role, the goal, the constraints: your system prompt and task brief.</li>
+      <li><b>Knowledge</b> — documents, examples, and retrieved facts the model cannot know on its own.</li>
+      <li><b>State</b> — conversation history, prior decisions, memory files, what happened on previous runs.</li>
+      <li><b>Tools</b> — the schemas the model reads to act, and the outputs it reads back after acting.</li>
+      <li><b>Output contract</b> — the exact shape, format, and destination of the response you will accept.</li>
+    </ol>
+    <div class="fail-grid">
+      <div class="fail-card"><b>Context starvation</b> — too little input<div class="fx">The model improvises, guesses, and hallucinates to fill the gaps.</div></div>
+      <div class="fail-card"><b>Context rot</b> — too much input<div class="fx">Attention dilutes, instructions get buried, quality silently drops while cost and latency climb.</div></div>
+    </div>
+    <p>The craft is staying in the narrow band between the two: <strong>minimum sufficient context, structured so the model can find what matters</strong>. Nearly every serious agent failure you will ever diagnose eventually reduces to one of these two modes.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">02</div>
+      <div>
+        <div class="sec-kicker">Section 2</div>
+        <h2>Powerful Usage You're Missing Out On</h2>
+      </div>
+    </div>
+    <p>For your profile — someone who runs agents on a schedule — the highest-leverage pattern is the <span class="term">self-contained brief with just-in-time pointers</span>. Instead of pre-stuffing every fact into a task prompt, you write the brief to <em>reference</em> durable state and instruct the agent to fetch it at run time: <em>"Read /home/z/my-project/worklog.md before starting. Do not repeat concepts from previous runs."</em> Three compounding benefits:</p>
+    <p><strong>Briefs stay small and cheap</strong> — you pay for pointers, not payloads. <strong>Context is always current</strong> — a file read at run time beats a fact frozen at write time. <strong>Runs become resumable and auditable</strong> — the agent reconstructs full situation from state you can open and inspect yourself.</p>
+    <p>The second underused move is setting explicit <span class="term">context budgets</span>: brief ≤ 150 words, memory = only the worklog file, examples = at most two. Budgets force the curation decisions you would otherwise skip — and curation is where the quality comes from.</p>
+    <div class="callout">The principle underneath both moves: <b>an autonomous agent's output quality is bounded by the quality of the context you hand it — not by the cleverness of its prompt.</b> Your twice-daily loop will only ever be as good as the brief that launches it.</div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <div>
+        <div class="sec-kicker">Section 3</div>
+        <h2>The Common Misuse</h2>
+      </div>
+    </div>
+    <div class="box warn-box">
+      <h3>Context stuffing — the kitchen-sink prompt</h3>
+      <p>The failure pattern: paste the entire chat transcript, attach whole files "just in case," add every background detail you have — and hope more information produces better answers. It produces worse ones. Past a saturation point, model attention degrades measurably: instructions placed in the middle of long contexts are reliably missed (the <strong>"lost in the middle" effect</strong>), conflicting instructions multiply, outputs get longer and more generic, and token cost and latency rise in proportion to the noise you added.</p>
+    </div>
+    <p>Three signs you are doing it:</p>
+    <ul class="sign-list">
+      <li>The model <strong>ignores instructions</strong> — because you gave it fifteen, and some of them conflict.</li>
+      <li>Outputs feel <strong>boilerplate</strong> — the specifics you "provided" are diluted in sheer volume.</li>
+      <li>You <strong>re-explain the same requirements every message</strong> — because nothing durable anchors them.</li>
+    </ul>
+    <p>The fix is <strong>curation, not accumulation</strong>: include the minimum sufficient context, structure it with labeled sections, place critical instructions at the beginning <em>and</em> the end, and convert anything large into a pointer the agent fetches just-in-time. Rule of thumb: <em>if the model can go read it at run time, don't paste it.</em></p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <div>
+        <div class="sec-kicker">Section 4 · Do it today</div>
+        <h2>One Thing You Can Use It On Today</h2>
+      </div>
+    </div>
+    <div class="box do-box">
+      <div class="do-head">TARGET: upgrade the payload of your own Job 475574 — the loop that generated this card — with the six-part brief template.</div>
+      <div class="do-inner">
+        <ol class="clicks">
+          <li><b>Score your current brief.</b> Type in this chat: <span class="say">Show me the payload of cron job 475574</span> — then grade it against the six parts: Role · Goal · Environment pointers · Constraints · Output contract · Memory.</li>
+          <li><b>Copy the upgraded brief</b> from the code block below.</li>
+          <li><b>Apply it.</b> Type: <span class="say">Update cron job 475574's payload to this brief:</span> and paste the block.</li>
+          <li><b>Verify nothing broke.</b> Type: <span class="say">Show me job 475574</span> — confirm the new payload is set and the schedule (every 12h, America/Los_Angeles) is unchanged.</li>
+          <li><b>Measure.</b> At the next run (tonight, midnight Pacific), compare the new card to this one: sharper profile, no repeated concepts, tighter format. That difference is context engineering working on your own loop.</li>
+        </ol>
+        <pre><span class="c"># Six-part brief — paste-ready for Job 475574</span>
+<span class="k">Role:</span> Learning-card designer for an agentic-engineering series.
+<span class="k">Goal:</span> Build one 5-minute HTML card that levels up the user's agent workflow.
+<span class="k">Environment:</span> First read /home/z/my-project/worklog.md — it holds the
+  user model and the concepts already covered by previous runs.
+<span class="k">Constraints:</span> Pick a concept NOT in the worklog. Skimmable in 5 minutes. No filler.
+<span class="k">Output contract:</span> Single file → download/agentic-card-NNN-&lt;slug&gt;.html with
+  exactly 4 sections: Definition / Powerful Usage / Common Misuse /
+  One Thing Today (click-by-click). Then append this run to worklog.md.
+<span class="k">Memory:</span> Never repeat a previous card's concept. Update the user model
+  in the worklog if behavior contradicts it.</pre>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>On deck for this loop</strong> — shortlisted, not yet covered:
+    <div class="roadmap">
+      <span class="chip next">Subagent orchestration</span>
+      <span class="chip">Eval-driven iteration</span>
+      <span class="chip">MCP servers</span>
+      <span class="chip">Agent memory design</span>
+    </div>
+    Card 001 · Context Engineering · Generated by your twice-daily agentic learning loop · Job 475574
+  </footer>
+
+</div>
+</body>
+</html>
