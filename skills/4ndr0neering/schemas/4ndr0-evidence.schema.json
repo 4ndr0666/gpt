@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://4ndr0neering.invalid/schemas/4ndr0-evidence.schema.json",
+  "title": "4ndr0neering Unified Engineering Protocol v8.0.0 Evidence Schema",
+  "type": "object",
+  "required": [
+    "protocol_version",
+    "tier",
+    "delivery_mode",
+    "baseline_commit",
+    "candidate_commit",
+    "units",
+    "comparison",
+    "semantic_reviews",
+    "alignment",
+    "acceptance_criteria",
+    "integration_closure",
+    "manifest_targets"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "protocol_version": { "const": "8.0.0" },
+    "tier": { "enum": ["T0", "T1", "T2", "T3"] },
+    "delivery_mode": { "enum": ["WIP_CHECKPOINT", "BOUNDED_HANDOFF", "CERTIFIED_RELEASE"] },
+    "baseline_commit": { "type": "string", "pattern": "^[0-9a-f]{40,64}$" },
+    "candidate_commit": { "type": "string", "pattern": "^[0-9a-f]{40,64}$" },
+    "units": {
+      "type": "object",
+      "required": ["baseline_manifest", "candidate_manifest", "comparison_artifact"],
+      "additionalProperties": false,
+      "properties": {
+        "baseline_manifest": { "type": "string", "minLength": 1 },
+        "candidate_manifest": { "type": "string", "minLength": 1 },
+        "comparison_artifact": { "type": "string", "minLength": 1 }
+      }
+    },
+    "comparison": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["unit_id", "classification"],
+        "properties": {
+          "unit_id": { "type": "string", "minLength": 1 },
+          "path": { "type": "string" },
+          "classification": { "enum": ["UNCHANGED", "CHANGED", "NEW", "MISSING"] },
+          "baseline_sha256": { "type": ["string", "null"] },
+          "candidate_sha256": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "semantic_reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["unit_id", "classification", "verdict", "rationale", "evidence"],
+        "properties": {
+          "unit_id": { "type": "string", "minLength": 1 },
+          "classification": { "enum": ["UNCHANGED", "CHANGED", "NEW", "MISSING"] },
+          "verdict": {
+            "enum": [
+              "PRESERVED_SUPERSET",
+              "ACCEPTED_NEW_CAPABILITY",
+              "AUTHORIZED_REMOVAL",
+              "UNVERIFIED_BEHAVIOR"
+            ]
+          },
+          "rationale": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string", "minLength": 1 },
+          "user_authorization": { "type": "boolean" }
+        }
+      }
+    },
+    "alignment": {
+      "type": "object",
+      "required": ["alignment_file"],
+      "properties": {
+        "alignment_file": { "type": "string", "minLength": 1 }
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "description", "check_type"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "target": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "check_type": {
+            "enum": ["file_exists", "symbol_present", "command_exit_zero", "unverified_external"]
+          },
+          "path": { "type": "string" },
+          "expected_sha256": { "type": "string" },
+          "symbols": { "type": "array", "items": { "type": "string" } },
+          "command": { "type": "string" },
+          "log_file": { "type": "string" },
+          "log_sha256": { "type": "string" },
+          "exit_code": { "type": "integer" },
+          "rationale": { "type": "string" }
+        }
+      }
+    },
+    "integration_closure": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["surface", "status"],
+        "properties": {
+          "surface": {
+            "enum": [
+              "entry_points",
+              "loaders",
+              "callers",
+              "providers",
+              "consumers",
+              "configuration_paths",
+              "install_migration_paths",
+              "tests",
+              "runtime_dependencies"
+            ]
+          },
+          "status": { "enum": ["CLOSED", "UNVERIFIED", "NOT_APPLICABLE"] },
+          "evidence": { "type": "string" },
+          "rationale": { "type": "string" }
+        }
+      }
+    },
+    "manifest_targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["target", "status", "evidence"],
+        "properties": {
+          "target": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["VERIFIED", "BOUNDED_UNVERIFIED", "BLOCKED", "DEFECT"] },
+          "evidence": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
