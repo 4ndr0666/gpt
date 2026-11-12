@@ -1,0 +1,19 @@
+{
+  "name": "4ndr0neering",
+  "version": "8.2.0",
+  "deliverable_sha256": "e885445f3dc13efc8e4b54b002034a1dd143d9d60dc811266e8e22c10f794682",
+  "deliverable_bytes": 87122,
+  "skill_archive_entries": 26,
+  "adversarial_tests": {
+    "new": 26,
+    "inherited": 4,
+    "validator_end_to_end": 1
+  },
+  "json_schema_checks": {
+    "schemas": 4,
+    "examples": 2
+  },
+  "package_integrity": "VERIFIED",
+  "iso_certification_claim": false,
+  "application_gaps_closed": false
+}

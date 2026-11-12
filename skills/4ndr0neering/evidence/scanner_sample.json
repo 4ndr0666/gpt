@@ -1,0 +1,8 @@
+{
+  "claim_boundary": "Heuristics do not prove a CWE, a performance regression, ISO conformity, or absence of risk.",
+  "findings": [],
+  "not_analyzed": [],
+  "python_files_analyzed": 0,
+  "schema_version": "1.0",
+  "status": "HINTS_ONLY"
+}

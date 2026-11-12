@@ -1,0 +1,223 @@
+{
+  "claim_boundary": "This measures this command and workload on this host; it is not ISO/IEC 5055 conformance.",
+  "config": {
+    "max_regression_pct": 5.0,
+    "samples": 9,
+    "timeout_seconds": 10.0,
+    "warmups": 2
+  },
+  "contract_sha256": "51a45d710219ca090a4c561ddf01c238ea2bcf11242615221a874a7e568ed2a4",
+  "environment": {
+    "machine": "x86_64",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python": "3.13.5"
+  },
+  "fingerprints": {
+    "baseline": [
+      {
+        "path": "examples/demo_baseline.sh",
+        "sha256": "5921d6565a53b3ba3aa5a64586df2ecee5d8fcb8cab93dc275cfd52866d7fa1c"
+      }
+    ],
+    "candidate": [
+      {
+        "path": "examples/demo_candidate.sh",
+        "sha256": "25fc676b1ee95d756d139ba7d2c888adf22ca47d05826cd92316b930944b2efc"
+      }
+    ]
+  },
+  "measurements": [
+    {
+      "baseline": {
+        "ms": 64.188598,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "candidate": {
+        "ms": 16.191249,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "index": 0,
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "baseline": {
+        "ms": 64.158058,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "candidate": {
+        "ms": 7.814468,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "index": 1,
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "baseline": {
+        "ms": 64.844188,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "candidate": {
+        "ms": 8.030554,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "index": 2,
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "baseline": {
+        "ms": 64.242404,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "candidate": {
+        "ms": 7.953006,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "index": 3,
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "baseline": {
+        "ms": 65.138061,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "candidate": {
+        "ms": 7.855341,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "index": 4,
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "baseline": {
+        "ms": 64.057165,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "candidate": {
+        "ms": 7.943928,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "index": 5,
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "baseline": {
+        "ms": 68.287306,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "candidate": {
+        "ms": 14.279206,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "index": 6,
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    },
+    {
+      "baseline": {
+        "ms": 64.283127,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "candidate": {
+        "ms": 7.770078,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "index": 7,
+      "order": [
+        "candidate",
+        "baseline"
+      ]
+    },
+    {
+      "baseline": {
+        "ms": 66.858868,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "candidate": {
+        "ms": 8.091673,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_bytes": 12,
+        "stdout_sha256": "9c500e8cf413532aea85919ffb23bb800813308a968e804409ee1d8b137db901"
+      },
+      "index": 8,
+      "order": [
+        "baseline",
+        "candidate"
+      ]
+    }
+  ],
+  "metrics": {
+    "absolute_budget_exceeded": false,
+    "absolute_budget_ms": null,
+    "baseline_median_ms": 64.283127,
+    "candidate_median_ms": 7.953006,
+    "candidate_over_baseline_median_ratio": 0.12371840592011028,
+    "max_regression_pct": 5.0,
+    "n": 9,
+    "paired_bootstrap_ci95": [
+      0.12187117235241163,
+      0.1699739587134333
+    ],
+    "paired_geomean_ratio": 0.14065599460546585,
+    "regression_evidence": "paired bootstrap log-ratio; descriptive, not machine-independent proof",
+    "status": "VERIFIED"
+  },
+  "problem": null,
+  "schema_version": "1.0",
+  "status": "VERIFIED",
+  "tool_version": "8.2.0",
+  "workload_id": "demo-shell-process-duration"
+}
