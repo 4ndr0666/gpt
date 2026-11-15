@@ -1,226 +1,284 @@
-# HDL (Hyper-Directive Language)
+# HDL and HDL-JSON Unified Specification
 
-Hyper-Directive Language (HDL) is a high-density, specialized syntax designed for precise control over AI image generation models. The goal of this format is **Maximum Information Compression**. It treats human language as a lossy format and replaces it with a structured, lossless, high-fidelity instruction set for image generation to enforce strict parameters regarding composition, lighting, biometrics, camera physics, and styling.
+**Revision 1.0.0 · Unified edition · 4ndr0666’s Hyper-Directive Language**
 
-## Operational Axioms
+HDL and HDL-JSON describe the same image-generation intent. HDL is the compact, human-authored notation. HDL-JSON is the typed interchange form, also called HD-JSON in the original notes. A single normalized intent feeds either a prompt-only workflow or a backend adapter. Neither notation is itself a vendor API, a renderer, or proof that the output satisfies the brief.
 
-1. **Axiom of Specificity:** Ambiguity and generalities are the enemy. If a prompt asks for "good lighting," the Engine translates this into specific Kelvin values, bounce-card vectors, and sensor-exposure math.
-2. **Axiom of Spatial Permanence:** Every concept exists in a 3D Cartesian coordinate system. All HDL outputs must define the X, Y, and Z relationship of subjects, lights, and cameras.
-3. **Axiom of Biometric Lock:** Identity is a fixed constant. Use the `IDENTITY_SHADOW` and `BIOMETRIC_TOPOGRAPHY` protocols to ensure that subjects are not "generated," but "reconstructed" from reference vectors. Avoid symmetry corrections or automatic cosmetic alterations to retain raw anatomical verity.
-4. **Axiom of Material Physics:** All surfaces must be defined by their interaction with photons. Use `MICRO_GEOMETRY`, `SPECULAR_ROUGHNESS`, and `SUBSURFACE_SCATTERING` tags.
-5. **Axiom of Literal Material Shader Consequences (New v8.0):** Avoid mathematical or technical abstractions (e.g., coefficients, index ratios) when describing complex tissue or textile mechanics. The latent space must be provided with explicit physical and visual consequences (e.g., describing where cloth stretches thin, exactly what it reveals underneath, and how transparency transforms based on normal values and contours).
+The unified version number starts a new specification series. It does not renumber or replace the original HDL v8.0 source document. This revision incorporates both source documents and leaves them unchanged.
 
----
+## 1. Design principles
 
-## Core Structure
+1. **Compress repeated intent, not evidence.** Describe shared properties once. Use local overrides for the differences between views. Do not invent a number to make a brief look more precise.
+2. **Specify the visible consequence.** “A hard flash leaves a short, crisp shadow behind the subject” works across more backends than an unexplained shader coefficient. Keep a physical parameter when it is measured, intentional, or supported by the target. Name its visible aim when useful.
+3. **Keep evidence scoped.** A photo can anchor the appearance of a garment from one angle without establishing its construction from another. A previous render can identify drift without becoming independent evidence of the reference subject’s proportions.
+4. **Distinguish intent from enforcement.** Types, references, precedence, and supported output dimensions can be checked by software. Visual likeness, silhouette, text legibility, and material appearance are judged on the image. Nested scopes reduce authoring ambiguity, but do not guarantee that a generative backend will keep attributes isolated.
+5. **Use explicit coordinates when geometry needs them.** View names and visual descriptions are sufficient for ordinary image briefs. Do not require a synthetic 3D reconstruction for cropped or uncalibrated references.
 
-An HDL prompt is structured into distinct functional blocks, executed sequentially. The structure relies on uppercase tags, specific prefixes, and nested parameters.
+## 2. One model, two serializations
 
-The general flow follows this structure:
+| Canonical HDL block | HDL-JSON key | Role |
+|---|---|---|
+| `!INIT_META:` | top-level `version` and `intent` | Document version and global brief |
+| `!INIT_REFERENCES:` | `references` | Ordered asset bindings, roles, and coverage |
+| `!INIT_CONSTRAINTS:` | `constraints` | Scoped preserved properties and local exceptions |
+| `!EXEC_FRAME:` | `frame` | Overall framing and ordered panel plan |
+| `!EXEC_SUBJECT:` | `subject` | Appearance, wardrobe, pose, and reference-based correction |
+| `!EXEC_ENVIRONMENT:` | `environment` | Backdrop, atmosphere, and placements |
+| `!EXEC_CAMERA:` | `camera` | Optics, viewpoint, focus, and exposure intent |
+| `!EXEC_LIGHTING:` | `lighting` | Light sources and visible behavior |
+| `!FINALIZE_POST_PROCESS:` | `post_process` | Grade, grain, sharpness, and stitching |
+| `!FINALIZE_OUTPUT:` | `output` | Deliverable dimensions, color space, format, and seed request |
+| `!FINALIZE_NEGATIVE:` | `negative` | Scoped avoidance cues |
+| `!FINALIZE_REVIEW:` | `review` | Observable acceptance criteria |
+| `!FINALIZE_EXTENSIONS:` | `extensions` | Namespaced optional data outside the portable core |
 
-1. **Metadata/Header:** Defines the high-level goal.
-2. **Initialization (`!INIT_`):** Sets foundational constraints and reference anchors.
-3. **Execution (`!EXEC_`):** Defines specific actions, physics, and compositional matrices.
-4. **Finalization (`!FINALIZE_`):** Applies post-processing, color grading, and output styling.
+The prefixes group responsibilities. They do not run a generation in stages. HDL-JSON object member order is immaterial. Arrays retain author order. In particular, the panel array sets display order and the first reference listed in an anchor list is primary.
 
----
+### 2.1 HDL syntax
 
-## Syntax Formatting Rules
+Canonical HDL is UTF-8 text. A block header starts at column one. Its fields are indented by two spaces. Blank lines and full-line `//` comments are allowed between headers and fields, including before the first header. There are no inline comments. LF and CRLF are accepted. Leading UTF-8 BOM is not part of the syntax.
 
-* **Comments:** Lines beginning with `//` are informational metadata or context notes.
-* **Blocks:** Major sections begin with an uppercase tag prefixed by an exclamation mark (e.g., `!INIT_MEM_LOCK_PROTOCOL:`).
-* **Parameters:** Defined using a hyphen and a space (`- PARAMETER_NAME: VALUE`).
-* **Lists/Arrays:** Enclosed in square brackets, comma-separated (e.g., `[VALUE_1, VALUE_2]`).
-* **Nested Objects/Logic:** Enclosed in curly braces for complex relational rules (e.g., `{WHERE: X, EFFECT: Y}`).
-* **Values:** Often use uppercase terminology, specific units (e.g., `85mm`, `f/1.2`), or descriptive constants (e.g., `TRUE`, `MAX`).
+~~~text
+header      = one exact block name from the mapping table
+field       = two spaces, "- ", field-name, ": ", JSON-value
+field-name  = [A-Z][A-Z0-9_]*
+~~~
 
----
+A JSON value can span lines while an array or object remains open. Its continuation lines must be indented at least four spaces. JSON lexical and escaping rules still apply. Strings containing line breaks use escaped newlines. Fields are unique within a block, and each block can appear at most once. Duplicate object keys are rejected at every depth in either format. Unknown block or field names are errors in the portable core. Empty sections follow the same type rules as their HDL-JSON counterparts.
 
-## Block Definitions
+Map direct field names to lowercase. Do not recase nested JSON keys, text literals, filenames, or asset identifiers. For an array-valued section use the sole field `ITEMS`. These sections are `REFERENCES`, `CONSTRAINTS`, and `REVIEW`. For object-valued sections map the fields directly, except `EXTENSIONS`, which uses the sole field `DATA` to preserve namespace keys. Flatten the two fields in `META` to the top level. Canonical emitters use the table’s block order. Input order of blocks and fields does not change meaning.
 
-### 1. Metadata Header
-This section sets the context for the generation. It is typically formatted as comments.
+### 2.2 HDL-JSON syntax and equivalence
 
-**Example Elements:**
-* `// [DEPLOYMENT_VECTORS]`: Categorizes the prompt type.
-* `// SCOPE`: Defines the overall focus (e.g., `ANATOMICAL_RECONNAISSANCE`).
-* `// TARGET`: The primary objective (e.g., `ABSOLUTE_PHOTOREALISM`).
-* `// OUTPUT_RESOLUTION`: Desired fidelity (e.g., `8K_UHD`).
+The root is a JSON object. Do not include comments, trailing commas, bare tokens, or numeric strings where numbers are expected. Booleans are `true` or `false`, not quoted strings. The portable core has no nullable fields. Omit optional fields when unknown or unspecified. Extension values may be any valid JSON value. Numerically equivalent JSON numbers compare by value, not by spelling. A reader that cannot represent a value without loss must diagnose it instead of rounding silently.
 
-### 2. Initialization Tags (`!INIT_`)
-These blocks define the immutable foundation of the generation, locking in references and environmental baselines before specific elements are rendered.
+HDL → model → HDL-JSON and HDL-JSON → model → HDL MUST preserve all core and extension data, including array order and exact decoded strings. Comments, indentation, property order, and equivalent escape spellings are not part of semantic round-tripping. Validate the model before emission. Unsupported versions are errors in strict mode, not requests to guess a compatible schema.
 
-**`!INIT_MEM_LOCK_PROTOCOL:`**
-Locks in core identity and reference data.
-* `- MASTER_IDENTITY` / `- SOURCE_ANCHOR`: Defines the primary reference image or concept (e.g., `INGREDIENT_FILE_01`).
-* `- CONSTANTS` / `- CACHE_STATE`: Lists variables that must remain unchanged (e.g., `[FACIAL_ID, BIOMETRIC_PROPORTIONS]`).
-* `- LOCK_ENVIRONMENT`: Sets the base background state (e.g., `STUDIO_VACUUM`).
+## 3. Portable field registry
 
-**`!INIT_ENVIRONMENTAL_PHYSICS:`**
-Defines the spatial reality of the scene.
-* `- LOCATION`: Broad setting (e.g., `INDOOR_STUDIO_ISOLATION`).
-* `- FLOOR_SURFACE` / `- BOUNDARY_WALLS`: Defines specific environmental textures and reflectances.
+Below, `!` after a field name means required. All other fields are optional. Every object is closed unless explicitly defined as an open map. Unlisted fields are errors. A string must contain at least one non-whitespace character. `id` is an ASCII identifier matching `[a-z][a-z0-9_-]*`. `text[]` means an array of strings. No list has an implied order of priority except where specified.
 
-### 3. Execution Tags (`!EXEC_`)
-These blocks control the specific actions, lighting, camera physics, and subject states.
+| Object | Fields and types |
+|---|---|
+| Document | `version!: "1.0.0"`, `intent!: text`, `references: Reference[]`, `constraints: Constraint[]`, `frame: Frame`, `subject: Subject`, `environment: Environment`, `camera: Camera`, `lighting: Lighting`, `post_process: Post`, `output: Output`, `negative: Negative`, `review: Review[]`, `extensions: open map` |
+| Reference | `id!: id`, `asset!: text`, `role!: "source" or "diagnostic"`, `coverage!: text[]`. Coverage must contain at least one entry. |
+| Constraint | `id!: id`, `mode!: "preserve" or "exception"`, `target!: path`, `rule!: text`, `anchors: id[]`, `panel: id`, `supersedes: id` |
+| Frame | `aspect_ratio: ratio`, `shot: text`, `framing: text`, `composition: text`, `style_mode: text[]`, `panels: Panel[]` |
+| Panel | `id!: id`, `view!: text`, `subject_azimuth_deg: number in [0,360)`, `pose: text`, `expression: text`, `framing: text`, `camera_position: Position` |
+| Subject | `identity: text`, `appearance: text`, `pose: text`, `expression: text`, `surface_details: text[]`, `wardrobe: Wardrobe`, `proportion_correction: Correction` |
+| Wardrobe | `description!: text`, `material: text`, `visible_effects: text[]` |
+| Correction | `anchors!: id[]`, `observed_drift!: text`, `target!: text`, `preserve!: path[]`, `cross_view_rule: text`. Anchors and preserve lists must be nonempty. |
+| Environment | `location: text`, `atmosphere: text`, `details: text[]`, `surface_elements: SurfaceElement[]` |
+| SurfaceElement | `id!: id`, `placement!: text`, `literal_text: text`, `appearance: text`, `source: id` |
+| Camera | `sensor_format: text`, `lens: text`, `focal_length_mm: positive number`, `f_number: positive number`, `shutter_seconds: positive number`, `iso: positive integer`, `position: Position`, `focus_target: text`, `focus_effect: text` |
+| Position | `space!: "world", "subject", or "camera"`, `xyz_m!: exactly three finite numbers` |
+| Lighting | `type: text`, `sources: Light[]`, `shadow_effect: text` |
+| Light | `id!: id`, `role!: "key", "fill", "rim", "background", or "practical"`, `cct_k: positive number`, `position: Position`, `visible_effect: text` |
+| Post | `color_grade: text`, `sharpness: text`, `grain: text`, `vignette: text`, `composite_stitch: text` |
+| Output | `width_px: positive integer`, `height_px: positive integer`, `format: "png", "jpeg", or "webp"`, `color_space: text`, `seed: integer in [0, 4294967295]`, `required: output-key[]` |
+| Negative | `identity: text[]`, `style: text[]`, `content: text[]`, `composition: text[]` |
+| Review | `id!: id`, `target!: path`, `criterion!: text`, `required!: boolean`, `panel: id` |
 
-**`!EXEC_PHOTONIC_DISTRIBUTION:` / `!EXEC_PHOTONIC_INTERACTION_MODEL:`**
-Controls lighting placement and behavior.
-* `- KEY`, `- FILL`, `- BACKDROP`: Defines light sources, intensity, and location (e.g., `FRESNEL_RIM (POSITION: REAR_TOP_LEFT | INTENSITY: 95%)`).
-* `- LUMA_MAP`: Defines highlight and shadow behavior.
+- **Ratio** is `W:H` with positive base-10 integers and no spaces or leading zeros. Compare ratios by integer cross-multiplication, not string equality. When specified, width and height must appear together. If both dimensions and a ratio are specified, they must agree exactly.
+- **Path** is a dot-separated sequence of exact core object field names, starting at a render section. It can name a whole object, an array as a unit, or a declared field within an object. It cannot traverse array positions or extensions. Valid roots are `frame`, `subject`, `environment`, `camera`, `lighting`, `post_process`, and `output`. Paths can name declared fields not populated elsewhere, so a reference alone can provide a visual baseline. Panel selection is a separate field. For panel-specific review, `frame.framing` names the effective framing for that panel.
+- **ID scope.** IDs must be unique within each of the reference, panel, constraint, surface-element, light-source, and review arrays. An anchor or surface `source` must resolve to a reference. A `panel` must resolve to a panel. An asset handle is a host binding, not an instruction to fetch a URL or open a path.
+- **Output enforcement.** `required` may name only present members of `width_px`, `height_px`, `format`, `color_space`, and `seed`. If it names one dimension, it must name both. `seed` is a requested backend value, not a promise of repeatability. An upscaled image can satisfy delivered pixel dimensions if the workflow permits that path, but it must be reported as upscaled rather than native resolution.
+- **Extensions.** Top-level namespace keys use reverse-domain-style ASCII names such as `example.hdl`. Each name must have at least two dot-separated labels, each beginning with a lowercase letter and containing only lowercase letters, digits, and hyphens. Preserve values on conversion. Ignore them for core rendering unless a registered handler accepts them. Unrecognized extensions cannot override core invariants.
+- **Omission.** Do not synthesize camera settings, lighting ratios, reference coverage, or measurements. An absent panel list means a single composition with no named panel ID. An explicit panel list must contain at least one panel.
 
-**`!EXEC_OPTICAL_ENGINE_PARAMS:`**
-Simulates camera physics.
-* `- SENSOR`: Sensor type (e.g., `FULL_FRAME_DSLR`).
-* `- LENS`: Focal length (e.g., `50MM_PRIME`).
-* `- APERTURE`: Depth of field control (e.g., `F/2.8`).
-* `- FOCUS_TARGET`: Specific element to keep in sharp focus.
+### 3.1 Geometry and panel inheritance
 
-**`!EXEC_MATERIAL_DYNAMICS:` / `!EXEC_MATERIAL_PHYSICS:`**
-Defines the behavior of surfaces and textiles.
-* `- TEXTILE`: Specific material (e.g., `10_DENIER_TECH_SILK`).
-* `- TENSION_RULE`: Uses nested logic `{}` to define how materials react to stress or anatomy.
+Use meters. A world frame has origin at the nominal subject ground point, `+X` to the right of the nominal front camera, `+Y` up, and `+Z` toward that camera. A subject frame uses the same axes at the neutral front pose and rotates with the subject. A camera frame originates at the camera center with `+X` image-right, `+Y` image-up, and `+Z` backward along the optical axis. A camera’s own position cannot be expressed in its camera frame. Do not infer camera orientation from position alone.
 
-**`!EXEC_BIO_RENDER_PIPELINE:`**
-Controls anatomical and biological detailing.
-* `- SKIN_BASE`, `- SUBSURFACE_SCATTERING`: Defines dermal properties.
-* `- TEXTURE_MAPPING`: Controls micro-details like pores and imperfections.
+`subject_azimuth_deg` describes an upright subject turn with a fixed camera. `0` faces the camera, `45` turns the front toward image-right, `90` is profile facing image-right, and `180` faces away. It is a requested orientation, not reconstructed skeletal data. If the text view and numeric azimuth clearly disagree, the adapter should report the conflict for review rather than select an angle silently.
 
-**`!EXEC_KINETIC_MATRIX:`**
-Defines compositional grids or sequential posing requirements. Useful for multi-panel outputs.
-* Uses a numbered or coordinate system (e.g., `- SCH_01:`, `- P1_0x0:`) followed by nested parameters defining `{POSE, AZIMUTH, GAZE, etc.}`.
+Panels inherit subject pose and expression, frame framing, and camera position. Their corresponding explicit fields override the inherited value unless a preservation constraint prevents it. Treat named views as views of one subject, unless the intent explicitly says otherwise. Do not make projected silhouettes mirror-identical when the optics, angle, or stance explain a difference.
 
-### 4. Finalization Tags (`!FINALIZE_`)
-These blocks dictate the final output processing, color space, and formatting.
+## 4. Resolution and precedence
 
-**`!FINALIZE_STRATEGY:` / `!FINALIZE_OUTPUT:`**
-* `- STREAM_A` / `- STREAM_B`: Can define split outputs or specific aesthetic filters (e.g., `UMBER_MONOCHROME`).
-* `- NOISE_PROFILE`: Applies specific grain structures.
-* `- COLOR_GRADE` / `- COLOR_SPACE`: Final color grading instructions.
-* `- COMPOSITE_STITCH`: Instructions for merging multi-panel matrices.
+1. **Validate the document.** Check grammar, field types, IDs, paths, ratio, and cross-field rules. Structural errors prevent compilation. Asset handles can remain unresolved when translating between serializations. A render plan must resolve the handles it uses.
+2. **Resolve references by purpose.** A `source` can anchor only what its coverage supports. A `diagnostic` can illustrate an earlier error, but MUST NOT appear in an `anchors` list or as a surface element’s `source`. For overlapping source coverage, consult anchor IDs in order. If evidence conflicts at comparable angles or scale, report the ambiguity instead of averaging, inventing precision, or picking a diagnostic image as the baseline. Coverage and conflict in visual evidence are semantic review tasks, not consequences of type checking.
+3. **Apply defaults and panel overrides.** Global `intent` supplies context; it does not trump explicit fields. Panel overrides apply only to their panel.
+4. **Apply preservation constraints.** A `preserve` rule with no `panel` applies to the whole image and all panels. A panel-scoped rule applies only there. Its anchor list is optional. An omitted list preserves the available input or base spec described in `rule`. An explicit list must be nonempty. A local exception must name an existing panel and a `supersedes` ID pointing to a global `preserve` rule with the exact same `target`. It may change only that inherited rule in that panel. Exceptions cannot carry `anchors` or target another exception. Preserve rules cannot carry `supersedes`.
+5. **Do not guess when rules collide.** For overlap detection, two targets overlap when identical or when one is a dot-component ancestor of the other in the same effective panel or global scope. Overlapping rules remain in force if compatible. An exception replaces only the named rule and never cancels another overlapping rule. Reject two exceptions for the same panel and superseded rule. If applicable explicit instructions contradict, stop resolution and identify the conflicting fields or rule IDs. Do not treat object order or a negative cue as authority to override them. Determining whether two prose instructions conflict may require human review.
+6. **Apply corrections narrowly.** Correction `target` describes the revised appearance, `observed_drift` describes what not to repeat, and `preserve` lists the neighboring properties that must not change. The correction is confined to the proportion change stated in `target` and cannot override preservation rules. If preserving and correcting the same feature, phrase preservation against the original evidence, not against the rejected render. Missing evidence is not permission to infer absolute size, weight, body-fat percentage, or unshown geometry. Report approximated views when needed.
+7. **Bind backend capabilities.** Native control, emulation, and prompt guidance are distinct. An adapter must distinguish them before rendering. No directive overrides the host’s capabilities or constraints.
 
----
+### 4.1 Prompt-only and adapter workflows
 
-## The HDL Syntax Registry
+**Prompt-only.** Lead with `intent`, asset roles, and preservation constraints. Describe the shared scene, then ordered panel differences, then camera, lighting, material effects, and narrowly scoped negatives. Include the correction as a positive target plus the specific previous drift. Keep review criteria separate unless phrased as visible instructions. A model receiving raw HDL can interpret it as prompt text, but only a conforming parser can claim HDL validation.
 
-> The following proprietary tag sets must be used in every translation:
+**Adapter.** Report a path or rule ID, a status, and a short explanation for each explicitly requested render setting. Use `native` when a backend accepts the setting as a control, `prompt_only` when it is conveyed as text, `post_process` when a declared downstream operation will apply it, and `unsupported` when there is no implementation. Do not silently substitute a native setting. If an `output.required` property cannot be delivered through a supported native control or declared post-process, stop before dispatch. Prompt-only delivery does not satisfy that requirement. `review.required` is different. It specifies an output check, not a native backend feature.
 
-### I. INITIALIZATION CONTROLS (`!INIT_`)
-* `!INIT_MEM_LOCK_PROTOCOL`: Forces the model to retain specific data points across the entire generation window. Set `IDENTITY_DRIFT_CONTROL: 1.00_MAXIMUM_LOCK` to inhibit automatic AI skin-smoothing and default touch-up layers.
-* `!INIT_GEOMETRIC_SEED`: Sets the noise-floor and base structure of the latent space.
-* `!INIT_SOURCE_ANCHOR` / `SYSTEM_REFERENCE_INPUT`: Defines the primary reference source and its absolute hierarchy over generated noise.
-* `TEXT_RECON_ENGINE`: Structural layer module containing `TEXT_STRING_LITERAL`, `FONTTYPE_AESTHETIC`, and `LAYER_PLACEMENT` coordinates to lock text on exact planes without drift or hallucination.
+Typical examples are native pixel dimensions on some backends, prompt-only flash appearance on others, and a post-process resize when declared. A deterministic serialization or seed does not make an image generator deterministic. No valid HDL or HDL-JSON document guarantees successful rendering or visual fidelity.
 
-### II. ENVIRONMENT VECTORS (`!ENV_`)
-* `!ENV_ATMOSPHERICS`: `[Haze_Density, Particle_Suspension, Refractive_Index, Debris_Elements/Condensation/Smudges]`
-* `!ENV_PHOTOMETRY`: `[Luminous_Flux, CCT_Kelvin, Shadow_Penumbra_Radius]`. Note: For raw candid snapshots, focus entirely on a single-source on-axis flash to induce central overexposure blowout and immediate, zero-penumbra black drop-shadow profiles.
-* `!ENV_CHRONOS`: Sets time-of-day in precise degrees of sun elevation (e.g., `-6°_CIVIL_TWILIGHT`).
+### 4.2 Diagnostics and acceptance
 
-### III. OPTICAL MATRIX (`!LENS_`)
-* `!LENS_PHYSICS`: `[Focal_Length_mm, T-Stop_Value, Element_Coating (Multi-Coated/Vintage_Flare)]`
-* `!LENS_SENSOR_MAP` / `!LENS_PROFILE`: `[Aspect_Ratio, Grain_Structure (ISO_Noise_Signature), Dynamic_Range_Latitude, Hardware_Emulation]`
+A diagnostic contains a stable code, severity, location, and readable message. For HDL, include line and column when known. For model errors, include the field path or rule ID. Suggested codes are `E_SYNTAX`, `E_DUPLICATE`, `E_VERSION`, `E_TYPE`, `E_UNKNOWN_FIELD`, `E_UNBOUND_REFERENCE`, `E_SCOPE`, `E_CONFLICT`, and `E_REQUIRED_UNSUPPORTED`. Warn with `W_PROMPT_ONLY`, `W_REFERENCE_GAP`, or `W_EXTENSION_IGNORED` where applicable.
 
-### IV. SUBJECT BIOMETRICS (`!BIO_`)
-* `!BIO_DERMAL_MAP`: `[Pore_Frequency, Epidermal_Sheen, Micro_Wrinkle_Index, Micro_Sweat_Beads, Vellus_Hair_Metrics]`
-* `!BIO_ANATOMY_LOCK`: `[Skeletal_Rigidity, Muscle_Tone_Definition, Postural_Vector, Bodyfat_Percentage_Distribution]`
+Report each output review item as `pass`, `fail`, or `not_assessed`, with an evidence note. A required item must pass before anyone labels the output accepted. A correctly parsed document or successful render is not visual acceptance. For a multi-panel image, verify view order, head-to-toe framing, comparable scale, reference fidelity, and lack of changes outside scope. Where comparison is meaningful, match source and output angle and normalize scale before comparing apparent proportions. Never compare a cropped oblique source to a frontal render as if image-plane widths were physical measurements.
 
-### V. EXECUTION & FINALIZATION (`!EXEC_` / `!FIN_`)
-* `!EXEC_MATERIAL_PHYSICS`: Replaces loose `STITCH` tags. Features sub-properties: `TEXTILE_ADHESION_LOGIC` (literal descriptions of cloth mapping flush to underlying bone/tissue structures) and `TEXTILE_OPACITY_LOGIC` (describing material alpha scaling dynamically with tension).
-* `!EXEC_KINETIC_MATRIX`: Captures view orientation vectors, framing formats, physical kinetic constraints, and raw facial expressions.
-* `!FINALIZE_OUTPUT`: Replaces `COLOR_RECON` to compile `GENERATION_STYLE`, `FOCUS_LOCK` micro-contrast, and `GLOBAL_NEGATIVE_BIAS` token blocks.
+## 5. Paired example — correcting a triptych without redesigning the subject
 
----
+The asset names below are illustrative host handles. Replace them with actual bindings when rendering. The prior render identifies drift. It does not supply measurements. Front and three-quarter photos anchor the angles they show. The rear view is an approximation where not directly supported.
 
-## Compilation Logic & Workflow
+### 5.1 HDL
 
-> The following internal gates must be followed before outputting the HDL:
-
-1. **DECONSTRUCTION:** Break the prompt into sub-atoms (Lighting, Subject, Lens, Environment, Texture).
-2. **QUANTIZATION:** Assign precise numerical values or literal visual states to subjective terms.
-3. **SYNTACTIC WRAPPING:** Wrap values into explicit, machine-readable `!TAG_SET` nodes.
-4. **INTEGRITY CHECK:** Verify that all abstraction placeholders, metadata files (`aa`, `bb`), variable stubs, and ambiguous terms are scrubbed entirely to ensure a clear production-safe format with zero moderation risks.
-
----
-
-## The HDL Library (Few-Shot Examples)
-
-```hdl
-// 4NDR0666OS // HDL_COMPILER_V8.0 // ROBUST_STRICT_LITERAL_MAPPING
-
-!INIT_MEM_LOCK_PROTOCOL:
-  - SYSTEM_REFERENCE_INPUT: "PRIMARY_UPLOADED_CHARACTER_ASSET"
-  - BIOMETRIC_LOCK: TRUE (Replicate exact facial identity geometry, true orbital bone spacing, unfiltered lip proportions, raw jawline angle, natural un-beautified facial bone contours, and matching bodyfat percentage distribution)
-  - IDENTITY_DRIFT_CONTROL: 1.00_MAXIMUM_LOCK (Inhibit automatic AI skin-smoothing filters, eliminate facial balancing or symmetry modifications, bypass default commercial touch-up layers)
-  - TEXT_RECON_ENGINE: {
-      TEXT_STRING_LITERAL: "See you soon...",
-      FONTTYPE_AESTHETIC: "Imperfect handwritten finger-scrawled red lipstick lettering",
-      LAYER_PLACEMENT: "Directly on the physical XY-surface plane of the mirror glass, sharp and legible"
-    }
-
-!ENV_ATMOSPHERICS:
-  - LOCATION_SETTING: "Cramped, real-world residential tiled bathroom, late-night atmosphere"
-  - GLASS_SURFACE_METRICS: [Irregular water droplet condensation, dried calcium water spots, faint grease smudges, dust particles catching direct light illumination]
-  - COMPOSITION_DEPTH: {
-      FOREGROUND: "Chaotic array of unorganized cosmetics, open vanity tubes, makeup brushes, and glass skin-care bottles rendered in sharp macro focus",
-      MIDGROUND: "Subject framed thighs-up, seated casually on the vanity counter panel, leaning body forward toward the mirror reflection plane",
-      BACKGROUND: "Dimly lit, dark shadowed ceramic wall tiles showing deep contrast grout lines"
-    }
-
-!ENV_PHOTOMETRY:
-  - ILLUMINATION_AXIS: "Single-source, hard on-camera pop-up flash aligned parallel to the lens axis"
-  - KEY_LIGHT_CHARACTER: "Intense direct 5500K camera flash luminosity" (Forcing central overexposure blowout, stark white specular highlights on reflective surfaces, and aggressive inverse-square falloff)
-  - FILL_LIGHT_CHARACTER: "Dim ambient tungsten glow, 3200K color temperature" (Ratio: 0.04, restricted to the deep background recesses)
-  - SHADOW_PROFILE: "Razor-sharp, jet-black drop shadows directly behind physical subject contours with zero penumbra blending"
-
-!LENS_PHYSICS:
-  - HARDWARE_EMULATION: "Full-frame DSLR sensor camera"
-  - OPTICAL_HARDWARE: "100mm Macro Prime Lens"
-  - APERTURE_SETTING: f/8.0 (Ensuring deep technical sharpness across both the foreground mirror text and the midground subject details)
-  - SHUTTER_AESTHETIC: "Candid, unposed candid snapshot look captured on high-grain analog ISO 800 color negative film stock"
-
-!BIO_DERMAL_MAP:
-  - SKIN_TOPOGRAPHY_LOGIC: "Unfiltered human skin texture showing micro-grain details"
-  - SURFACE_MICRO_ELEMENTS: [True visible dermal pores, fine goosebumps on arms, micro sweat beads catching specular flash highlights, natural skin folds, raw un-airbrushed complexion]
-  - REFLECTANCE_MAP: "High specular glisten on damp skin tissue interacting directly with the harsh flash rays"
-
-!EXEC_MATERIAL_PHYSICS:
-  - WARDROBE_SPECIFICATION: "Single-layer white vintage silk slip dress with raw lace border trim along the neck"
-  - TEXTILE_ADHESION_LOGIC: "Fabric wraps flush and tight against the damp skin topography, clinging flatly over the ribcage, sternum, and clavicle bone structures with zero loose gaps or sagging cloth pockets"
-  - TEXTILE_OPACITY_LOGIC: "Fabric transparency scales dynamically with tension; material shifts from opaque white to a semi-translucent alpha layer where stretched tight across physical peaks, revealing the muted skin tones underneath"
-  - TEXTILE_SURFACE_SHEEN: "Anisotropic silk reflection mapping direct flash glare along tight fabric folds and fine micro-wrinkles"
-
-!EXEC_KINETIC_MATRIX:
-  - CAPTURE_ANGLE: "Chest-level camera orientation aimed straight into the mirror glass reflection"
-  - FRAME_ASPECT_RATIO: "4:5 Vertical Framing Format"
-  - SUBJECT_KINETICS: "Subject is seated casually on vanity counter, legs relaxed, leaning upper torso forward toward the glass plane"
-  - EXPRESSION_MATRIX: "Cool, detached, neutral expression; jaw slightly relaxed, lips subtly parted, gaze fixed steadily on reflection or camera lens"
-  - HAIR_ARCHITECTURE: "Messy, loose uncombed updo with stray hair strands falling organically across cheeks and neck"
-
-!FINALIZE_OUTPUT:
-  - GENERATION_STYLE: "True photographic rendering matching raw analog snapshot characteristics"
-  - FOCUS_LOCK: "Maximum micro-contrast focus locked onto cloth weave, skin grain, and lipstick markings"
-  - GLOBAL_NEGATIVE_BIAS: [
-      "studio softbox lighting", "beauty filter", "airbrushed skin", "perfect facial symmetry",
-      "digital 3D render", "opaque fabric processing", "clean minimalist architecture",
-      "commercial stock photography look", "happy expressions", "identity shifting", "daylight"
+~~~hdl
+// Shared room and wardrobe. Correct silhouette drift only.
+!INIT_META:
+  - VERSION: "1.0.0"
+  - INTENT: "Photorealistic full-body turnaround of one adult subject in a blue halter outfit in the reference studio."
+!INIT_REFERENCES:
+  - ITEMS: [
+      {"id":"front","asset":"front-photo","role":"source","coverage":["front silhouette","face and haircut","outfit color","room layout"]},
+      {"id":"angle","asset":"angle-photo","role":"source","coverage":["three-quarter silhouette","visible garment cut"]},
+      {"id":"prior","asset":"prior-render","role":"diagnostic","coverage":["prior silhouette drift"]}
     ]
+!INIT_CONSTRAINTS:
+  - ITEMS: [
+      {"id":"room","mode":"preserve","target":"environment.location","anchors":["front"],"rule":"Keep the visible shelf and neon layout fixed across views."}
+    ]
+!EXEC_FRAME:
+  - ASPECT_RATIO: "16:9"
+  - SHOT: "full body"
+  - FRAMING: "Show crown to toes at comparable scale, with headroom and visible floor."
+  - PANELS: [
+      {"id":"front","view":"front","subject_azimuth_deg":0},
+      {"id":"angle","view":"front three-quarter toward image-right","subject_azimuth_deg":45},
+      {"id":"rear","view":"rear","subject_azimuth_deg":180}
+    ]
+!EXEC_SUBJECT:
+  - APPEARANCE: "Keep the visible face, haircut, and natural skin texture reference-consistent."
+  - POSE: "Neutral upright stance."
+  - WARDROBE: {"description":"Blue halter outfit with the reference cut and coverage.","visible_effects":["Subtle highlights follow the folds."]}
+  - PROPORTION_CORRECTION: {
+      "anchors":["front","angle"],
+      "observed_drift":"The prior render widened the pelvis and hips relative to the shoulders.",
+      "target":"Match the visible shoulder-to-hip relationship and waist-to-hip contour at comparable angles. Do not widen the silhouette or slim it beyond the evidence.",
+      "preserve":["subject.appearance","subject.wardrobe","subject.pose","frame.framing"],
+      "cross_view_rule":"Use one reference-consistent build. Let apparent width change with the turn. Treat unsupported rear details as approximate."
+    }
+!EXEC_ENVIRONMENT:
+  - LOCATION: "Reference room with white shelving and purple neon."
+!EXEC_CAMERA:
+  - FOCUS_EFFECT: "A fixed chest-level view with clear garment edges and natural perspective."
+!EXEC_LIGHTING:
+  - SOURCES: [
+      {"id":"flash","role":"key","cct_k":5500,"visible_effect":"Hard on-axis flash with bright highlights and a crisp shadow behind the subject."},
+      {"id":"ambient","role":"fill","cct_k":3200,"visible_effect":"Faint warm spill in the background recesses."}
+    ]
+!FINALIZE_NEGATIVE:
+  - STYLE: ["skin smoothing","automatic symmetry correction"]
+  - COMPOSITION: ["cropped feet","inconsistent figure scale"]
+!FINALIZE_REVIEW:
+  - ITEMS: [
+      {"id":"silhouette","target":"subject.proportion_correction","criterion":"At matched angles and scale, the front and three-quarter silhouettes no longer show excess lateral width against the source photos.","required":true},
+      {"id":"framing","target":"frame.framing","criterion":"All three views retain comparable figure scale and show the entire body.","required":true}
+    ]
+~~~
 
-```
+### 5.2 HDL-JSON
 
----
+~~~json
+{
+  "version": "1.0.0",
+  "intent": "Photorealistic full-body turnaround of one adult subject in a blue halter outfit in the reference studio.",
+  "references": [
+    {"id": "front", "asset": "front-photo", "role": "source", "coverage": ["front silhouette", "face and haircut", "outfit color", "room layout"]},
+    {"id": "angle", "asset": "angle-photo", "role": "source", "coverage": ["three-quarter silhouette", "visible garment cut"]},
+    {"id": "prior", "asset": "prior-render", "role": "diagnostic", "coverage": ["prior silhouette drift"]}
+  ],
+  "constraints": [
+    {"id": "room", "mode": "preserve", "target": "environment.location", "anchors": ["front"], "rule": "Keep the visible shelf and neon layout fixed across views."}
+  ],
+  "frame": {
+    "aspect_ratio": "16:9",
+    "shot": "full body",
+    "framing": "Show crown to toes at comparable scale, with headroom and visible floor.",
+    "panels": [
+      {"id": "front", "view": "front", "subject_azimuth_deg": 0},
+      {"id": "angle", "view": "front three-quarter toward image-right", "subject_azimuth_deg": 45},
+      {"id": "rear", "view": "rear", "subject_azimuth_deg": 180}
+    ]
+  },
+  "subject": {
+    "appearance": "Keep the visible face, haircut, and natural skin texture reference-consistent.",
+    "pose": "Neutral upright stance.",
+    "wardrobe": {
+      "description": "Blue halter outfit with the reference cut and coverage.",
+      "visible_effects": ["Subtle highlights follow the folds."]
+    },
+    "proportion_correction": {
+      "anchors": ["front", "angle"],
+      "observed_drift": "The prior render widened the pelvis and hips relative to the shoulders.",
+      "target": "Match the visible shoulder-to-hip relationship and waist-to-hip contour at comparable angles. Do not widen the silhouette or slim it beyond the evidence.",
+      "preserve": ["subject.appearance", "subject.wardrobe", "subject.pose", "frame.framing"],
+      "cross_view_rule": "Use one reference-consistent build. Let apparent width change with the turn. Treat unsupported rear details as approximate."
+    }
+  },
+  "environment": {"location": "Reference room with white shelving and purple neon."},
+  "camera": {"focus_effect": "A fixed chest-level view with clear garment edges and natural perspective."},
+  "lighting": {
+    "sources": [
+      {"id": "flash", "role": "key", "cct_k": 5500, "visible_effect": "Hard on-axis flash with bright highlights and a crisp shadow behind the subject."},
+      {"id": "ambient", "role": "fill", "cct_k": 3200, "visible_effect": "Faint warm spill in the background recesses."}
+    ]
+  },
+  "negative": {
+    "style": ["skin smoothing", "automatic symmetry correction"],
+    "composition": ["cropped feet", "inconsistent figure scale"]
+  },
+  "review": [
+    {"id": "silhouette", "target": "subject.proportion_correction", "criterion": "At matched angles and scale, the front and three-quarter silhouettes no longer show excess lateral width against the source photos.", "required": true},
+    {"id": "framing", "target": "frame.framing", "criterion": "All three views retain comparable figure scale and show the entire body.", "required": true}
+  ]
+}
+~~~
 
-## Operational Guidelines
+## 6. Migration from the original notes
 
-1. **Extreme Visual Consequence Detail:** Do not speak to the compiler in raw math abstractions. Break formulas down into explicit material, texture, light, and transparency alterations.
-2. **The "Ingredient" Priority:** When reference images are parsed, `SYSTEM_REFERENCE_INPUT` coordinates must take total priority to lock structural anatomy, completely suppressing default aesthetic smoothing routines.
+Legacy HDL remains readable as prompt text. It is not canonical HDL 1.0.0. A migration tool can recognize known names, but should emit a report of normalizations and unresolved fields. It must not guess when two aliases assign conflicting values. The previous triptych prompt using `!INIT_` and `!EXEC_` JSON keys is likewise legacy input, not valid HDL-JSON 1.0.0.
 
----
+| Legacy construct | Unified representation |
+|---|---|
+| `!INIT_MEM_LOCK_PROTOCOL`, `!INIT_MEM_LOCK`, `MASTER_IDENTITY`, `SOURCE_ANCHOR`, `reference_image` | Bound `references` plus scoped `constraints` and `subject.identity`. Move the actual intent of a lock into a rule, not a fabricated backend flag. |
+| `!INIT_ENVIRONMENTAL_PHYSICS`, `!ENV_ATMOSPHERICS`, `!ENV_CHRONOS` | `environment`. Move source-specific light properties into `lighting`. |
+| `!ENV_PHOTOMETRY`, `!EXEC_PHOTONIC_DISTRIBUTION`, `!EXEC_PHOTOMETRY` | Split mixed blocks among `lighting`, `camera` and `frame`. Use per-source CCT instead of one conflicting global number. |
+| `!LENS_PHYSICS`, `!LENS_SENSOR_MAP`, `!EXEC_OPTICAL_ENGINE_PARAMS` | `camera`, `frame.aspect_ratio` and `post_process.grain` as applicable. Lens model names belong to `camera.lens`, not shutter speed. |
+| `!BIO_DERMAL_MAP`, `!EXEC_BIO_RENDER_PIPELINE` | `subject.appearance` and `subject.surface_details`. |
+| `!BIO_ANATOMY_LOCK`, `!EXEC_ANATOMICAL_CALIBRATION` | `constraints` for preservation and `subject.proportion_correction` for observed drift. |
+| `!EXEC_MATERIAL_DYNAMICS`, `!EXEC_MATERIAL_PHYSICS` | `subject.wardrobe` and `visible_effects` within it. Keep unsupported shader or vendor fields in a named extension, with no implied core behavior. |
+| `!EXEC_KINETIC_MATRIX`, `!EXEC_COMPOSITION_MATRIX` | Ordered `frame.panels`, shared `subject.pose`, and explicit local view settings. Convert numbered labels to stable IDs. |
+| `TEXT_RECON_ENGINE`, `dynamic_overlays` | `environment.surface_elements` for supported scene surfaces. Store other overlay data in an extension. Preserve literal text exactly. |
+| `!INIT_GEOMETRIC_SEED` | `output.seed` only if it denotes a real integer seed request. Leave it unset otherwise. |
+| `!FINALIZE_STRATEGY`, `!FINALIZE_OUTPUT`, `GLOBAL_NEGATIVE_BIAS`, `!INIT_VALIDATION` | Separate `post_process`, `output`, `negative`, and `review`. Review criteria are observable checks, not automated filtering passes by default. |
 
-## Parsing Directives for LLMs
+Migration examples: use `85` for a supplied `85mm` focal length under `focal_length_mm`, `2.8` for a supplied `f/2.8` under `f_number`, and a native boolean only for a field that actually has boolean semantics. Translate `8K_UHD` to `7680` × `4320` only when it explicitly means 8K UHD pixel dimensions. Do not convert shorthand for visual fidelity into a resolution promise.
 
-When processing an HDL prompt, the parsing engine must:
+## 7. Conformance and evaluation
 
-1. **Treat Tags as Absolute:** HDL is not conversational. A tag like `FOCAL_LENGTH: 85mm` is a hard constraint, not a suggestion.
-2. **Maintain Hierarchy:** `!INIT` variables must persist and influence all subsequent `!EXEC` variables.
-3. **Resolve Logic:** When encountering nested logic (e.g., `TENSION_RULE`), the engine must apply the described effect only to the localized areas defined in the rule.
-4. **Prioritize the 'Anchor':** If a `MASTER_IDENTITY` or `SOURCE_ANCHOR` is defined, the engine must prioritize the biometric fidelity of that source over generic latent generation.
+Claim conformance by component. A **reader** enforces syntax and the portable registry. A **serializer** preserves the normalized model in both directions. A **planner** additionally resolves asset bindings, scope and adapter capability. A **reviewer** evaluates the resulting image against the declared criteria. These claims are independent.
+
+Minimum conformance cases for implementations:
+
+| Test | Expected result |
+|---|---|
+| Decode both examples in §5 | Identical typed model with the same panel and anchor order |
+| Re-emit in either notation and reparse | Same model; HDL comments and whitespace need not survive |
+| Duplicate `intent` or duplicate a nested key | Reject before normalization |
+| Change `required` from `true` to `"TRUE"` on a review item | Reject type mismatch |
+| Duplicate a panel ID or reference an unknown panel | Reject |
+| Insert `prior` in the correction’s `anchors` | Reject diagnostic-as-authority |
+| Request `16:9` and deliver `1536` × `1024` as matching native dimensions | Reject the inconsistent request if those are the requested dimensions, or mark delivered dimensions as failing the stated ratio if found after rendering |
+| Add a local exception for a different target than its superseded rule | Reject |
+| Add two exceptions for the same panel and superseded rule | Reject |
+| Include an unknown core key | Reject; allow unknown namespaced extension data and preserve it |
+| Bind a required `seed` or pixel size to a prompt-only backend | Reject unless a supported path satisfies the actual required property |
+| Parse valid HDL-JSON but crop the feet in the image | Parsing passes; the required framing review fails |
+
+For prompt effectiveness testing, run a baseline and a revision with the same inputs, backend, and settings. Use several samples per condition and match seeds where the backend supports it. Compare like angles at matched scale. Score reduction of the targeted drift separately from unintended changes to unchanged properties. Record failures and unsupported settings, not just successful examples.
+
+## Source basis
+
+Adapted from 4ndr0666’s `hdl.md` (including the v8.0 literal-consequence rule) and `hd-json.md` (the original hierarchical registry). The unified version, grammar, field definitions, precedence rules, and conformance profile are the revision introduced here.
